@@ -1,0 +1,23 @@
+<div class="battle-container" *ngIf="battle">
+  <h2 class="boss-name">Kampf gegen: {{ battle.bossId }}</h2>
+  <p class="timestamp">Beginn: {{ battle.startedAt | date: 'shortTime' }}</p>
+
+  <div class="advantages" *ngIf="battle.advantagesUnlocked.length > 0">
+    <h3>Deine Vorteile</h3>
+    <ul>
+      <li *ngFor="let adv of battle.advantagesUnlocked">
+        <strong>{{ adv.name }}</strong><br />
+        <span>{{ adv.description }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="battle-actions">
+    <button class="rpg-button win" (click)="finish(true)">Sieg</button>
+    <button class="rpg-button lose" (click)="finish(false)">Niederlage</button>
+  </div>
+</div>
+
+<div *ngIf="!battle" class="no-battle">
+  <p>Kein aktiver Kampf.</p>
+</div>

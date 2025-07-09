@@ -1,0 +1,33 @@
+.boss-list {
+  .boss-card {
+    display: flex;
+    background: #2b1f13;
+    border: 2px solid #e3b873;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+
+    &.defeated {
+      opacity: 0.6;
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+      margin-right: 1rem;
+      border-radius: 4px;
+    }
+
+    h3 {
+      margin: 0;
+    }
+
+    p {
+      margin: 0.3rem 0;
+    }
+
+    button {
+      margin-top: 0.5rem;
+    }
+  }
+}

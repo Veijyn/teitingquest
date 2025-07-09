@@ -1,0 +1,16 @@
+<div class="inventory">
+  <h2>Inventar</h2>
+  <div *ngIf="items.length === 0">Du besitzt keine Items.</div>
+
+  <div class="item-list">
+    <div class="item" *ngFor="let item of items">
+      <img class="item-icon" [src]="'/assets/icons/' + item.icon" alt="{{ item.name }}" />
+      <div class="item-info">
+        <strong>{{ item.name }}</strong>
+        <p>{{ item.description }}</p>
+        <small *ngIf="item.bonusStats">Boni: {{ item.bonusStats | json }}</small>
+        <button class="rpg-button small" (click)="useItem(item)">Benutzen</button>
+      </div>
+    </div>
+  </div>
+</div>

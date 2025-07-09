@@ -1,0 +1,108 @@
+.swipe-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  gap: 0.5rem;
+  background: var(--rpg-bg);
+  z-index: 10;
+}
+
+.slider-viewport {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  transition: transform 0.3s ease-in-out;
+
+  // Dynamische Breite durch flex, keine manuelle width
+}
+
+.slide {
+  flex: 0 0 100vw; // <- Wichtig! Jede Slide nimmt exakt 100vw ein
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+.slide-inner {
+  width: 100%;
+  max-width: 480px;
+  padding: 1rem;
+  box-sizing: border-box;
+
+  @media (max-width: 480px) {
+    padding: 1.25rem 1.5rem;
+    padding-right: 3rem; 
+    padding-left: 0rem;
+  }
+}
+
+.game-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.slider-viewport {
+  flex: 1;
+}
+
+.swipe-indicator {
+  display: flex;
+  gap: 0.5rem;
+
+  span {
+    font-size: 1.5rem;
+    color: #777;
+    transition: color 0.3s ease;
+  }
+
+  .active {
+    color: var(--rpg-highlight); // z. B. rot oder gold
+  }
+}
+
+.qr-scan-button {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 999;
+  background: var(--rpg-accent);
+  border: 2px solid var(--rpg-border);
+  border-radius: 50%;
+  padding: 0.6rem;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(1.2);
+  }
+
+  &:hover {
+    background: var(--rpg-highlight);
+  }
+}
+
+.qr-icon{
+  background-color: rgba($color: #00000000, $alpha: 0); // einrücken und durchsichtig machen!
+}

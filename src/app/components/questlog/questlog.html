@@ -1,0 +1,20 @@
+<div class="questlog">
+  <h2>Questlog</h2>
+  <div *ngIf="quests.length === 0">Keine Quests verfügbar.</div>
+
+  <ul>
+    <li *ngFor="let quest of quests" [class.completed]="quest.status === 'completed'">
+      <h3>{{ quest.title }}</h3>
+      <p>{{ quest.description }}</p>
+      <p>Status: {{ quest.status }}</p>
+
+      <div *ngIf="quest.rewardItems?.length || quest.rewardXp">
+        <strong>Belohnung:</strong>
+        <ul>
+          <li *ngFor="let item of quest.rewardItems">{{ item.name }}</li>
+          <li *ngIf="quest.rewardXp">XP: {{ quest.rewardXp }}</li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>

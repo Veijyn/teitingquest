@@ -1,0 +1,30 @@
+<div class="rpg-panel outer-panel">
+  <h2>Teiting Quest</h2>
+  <div *ngIf="savegames.length">
+    <h3>
+      <img class="icon" src="assets/icons/save.svg" />
+      Spielstände:
+    </h3>
+
+    <div class="savegame-list">
+      <div *ngFor="let save of savegames">
+        <button class="rpg-button" (click)="loadGame(save.id)">
+          <img class="icon" src="assets/icons/open-book.svg" />
+          {{ save.name }} ({{ save.updatedAt | date:'short' }})
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="new-save-container">
+  <input
+    [(ngModel)]="newGameName"
+    placeholder="Name für neuen Spielstand"
+    class="rpg-input"
+  />
+  <button class="rpg-button" (click)="newGame()">
+    <img class="icon" src="assets/icons/falling-boulder.svg" />
+    Neues Spiel starten
+  </button>
+</div>
+</div>

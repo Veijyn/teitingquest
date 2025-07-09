@@ -1,0 +1,75 @@
+.battle-container {
+  background: #1e1b18;
+  border: 2px solid #e3b873;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem;
+  color: #fff;
+
+  .boss-name {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .timestamp {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+  }
+
+  .advantages {
+    background: #2a2520;
+    border: 1px solid #e3b873;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 0.8rem;
+        line-height: 1.2;
+
+        strong {
+          color: #ffd700;
+        }
+      }
+    }
+  }
+
+  .battle-actions {
+    display: flex;
+    justify-content: space-around;
+
+    .rpg-button {
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+
+      &.win {
+        background: #4caf50;
+        color: #fff;
+      }
+
+      &.lose {
+        background: #f44336;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.no-battle {
+  text-align: center;
+  color: #aaa;
+  padding: 2rem;
+}

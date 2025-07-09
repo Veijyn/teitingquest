@@ -1,0 +1,16 @@
+<div class="boss-list">
+  <h2>Bossübersicht</h2>
+
+  <div *ngFor="let boss of bosses" class="boss-card" [class.defeated]="boss.defeated">
+    <img [src]="'/assets/bosses/' + boss.image" alt="{{ boss.name }}" *ngIf="boss.image" />
+    <div>
+      <h3>{{ boss.name }} <span *ngIf="boss.title">({{ boss.title }})</span></h3>
+      <p>{{ boss.description }}</p>
+      <p>Status: <strong>{{ boss.defeated ? 'Besiegt' : 'Bereit zum Kampf' }}</strong></p>
+      <p *ngIf="boss.attempts">Versuche: {{ boss.attempts }}</p>
+      <button class="rpg-button" (click)="startBattle(boss.id)" [disabled]="boss.defeated">
+        Kampf starten
+      </button>
+    </div>
+  </div>
+</div>

@@ -3,18 +3,25 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "ES2022",
-    "module": "preserve"
+  "target": "ES2022",
+  "module": "es2022",
+  "moduleResolution": "node",
+  "experimentalDecorators": true,
+  "emitDecoratorMetadata": true,
+  "importHelpers": true,
+  "typeRoots": ["node_modules/@types"],
+  "baseUrl": "./",
+  "paths": {
+    "@core/*": ["src/app/core/*"],
+    "@views/*": ["src/app/views/*"],
+    "@components/*": ["src/app/components/*"]
   },
+  "lib": ["es2022", "dom"],
+  "strict": true,
+  "noImplicitReturns": true,
+  "noFallthroughCasesInSwitch": true,
+  "skipLibCheck": true
+},
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
@@ -32,3 +39,4 @@
     }
   ]
 }
+

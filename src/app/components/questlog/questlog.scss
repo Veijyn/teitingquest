@@ -1,0 +1,24 @@
+.questlog {
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      border: 2px solid #e3b873;
+      background: #2b1f13;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+
+      &.completed {
+        opacity: 0.6;
+        text-decoration: line-through;
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<div class="">
+  <div *ngIf="stats" class="stats stats-content">
+    <h2>Deine Werte</h2>
+    <ul>
+      <li><strong>HP:</strong> {{ stats.hp }}</li>
+      <li><strong>Stärke:</strong> {{ stats.strength }}</li>
+      <li><strong>Agilität:</strong> {{ stats.agility }}</li>
+      <li><strong>Intelligenz:</strong> {{ stats.intelligence }}</li>
+      <li><strong>Gil:</strong> {{ stats.money }}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="!stats">
+    <p>Keine Werte geladen.</p>
+  </div>
+</div>

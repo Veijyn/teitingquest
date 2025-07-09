@@ -1,0 +1,101 @@
+.shop {
+  h2 {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .shop-message {
+    background: #2e8b57;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+    animation: fadeOut 3s forwards;
+  }
+
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; display: none; }
+  }
+
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .item {
+    background: #2b1f13;
+    border: 2px solid #e3b873;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+
+    img.item-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+
+    .item-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      strong {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+      }
+
+      p {
+        margin: 0.2rem 0;
+        font-size: 0.85rem;
+      }
+
+      .rpg-button.small {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.75rem;
+        align-self: flex-start;
+      }
+    }
+  }
+}
+.shop {
+  position: relative; // Wichtig für absolute Positionierung im Kontext
+
+  .shop-toast {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2e8b57;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    z-index: 10;
+    pointer-events: none;
+    text-align: center;
+    animation: toastFade 3s ease-out forwards;
+    max-width: 90%;
+  }
+}
+
+@keyframes toastFade {
+  0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+}
+
+
+

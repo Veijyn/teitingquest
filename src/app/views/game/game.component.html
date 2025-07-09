@@ -1,0 +1,35 @@
+<div class="game-wrapper">
+  <div class="slider-viewport">
+    <div class="slider-container" [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
+      <div class="slide">
+        <div class="slide-inner"><app-stats></app-stats></div>
+      </div>
+      <div class="slide">
+        <div class="slide-inner"><app-inventory></app-inventory></div>
+      </div>
+      <div class="slide">
+        <div class="slide-inner"><app-questlog></app-questlog></div>
+      </div>
+      <div class="slide">
+        <div class="slide-inner"><app-boss-list></app-boss-list></div>
+      </div>
+      <div class="slide">
+        <div class="slide-inner"><app-shop></app-shop></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swipe-footer">
+    <div class="swipe-indicator">
+      <span *ngFor="let i of [0,1,2,3,4]; let idx = index" [class.active]="idx === currentIndex">•</span>
+    </div>
+
+    <div class="swipe-controls">
+      <button (click)="currentIndex = (currentIndex - 1 + 5) % 5">◀</button>
+      <button (click)="currentIndex = (currentIndex + 1) % 5">▶</button>
+    </div>
+    <button class="qr-scan-button" (click)="openScanner()" title="QR-Code scannen">
+      <img src="assets/icons/eye-target.svg" class="icon qr-icon" alt="QR-Scanner" />
+    </button>
+  </div>
+</div>
