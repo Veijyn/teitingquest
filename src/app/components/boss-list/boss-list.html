@@ -2,7 +2,7 @@
   <h2>Bossübersicht</h2>
 
   <div *ngFor="let boss of bosses" class="boss-card" [class.defeated]="boss.defeated">
-    <img [src]="'/assets/bosses/' + boss.image" alt="{{ boss.name }}" *ngIf="boss.image" />
+    <img [src]="'assets/bosses/' + boss.image" alt="{{ boss.name }}" *ngIf="boss.image" />
     <div class="boss-details">
       <h3>{{ boss.name }} <span *ngIf="boss.title">({{ boss.title }})</span></h3>
       <p class="description">{{ boss.description }}</p>

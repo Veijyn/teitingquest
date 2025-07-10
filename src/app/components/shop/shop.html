@@ -1,7 +1,7 @@
 <div class="shop">
   <h2>Shop</h2>
   <div class="item" *ngFor="let item of itemsForSale">
-    <img class="item-icon" [src]="'/assets/icons/' + item.icon" />
+    <img class="item-icon" [src]="'assets/icons/' + item.icon" />
     <div class="item-info">
       <strong>{{ item.name }}</strong>
       <p>{{ item.description }}</p>

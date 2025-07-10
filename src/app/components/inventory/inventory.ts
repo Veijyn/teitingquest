@@ -5,6 +5,7 @@ import { Item } from '@core/models/item.model';
 import { GameSaveService } from '@core/services/game-save.service';
 import { PlayerStats } from '@core/models/player-stats.model';
 import { ToastService } from '@views/toasts/toast.service';
+import { SoundService } from '@core/services/sound.service';
 
 type NumericStatKey = 'hp' | 'strength' | 'agility' | 'intelligence' | 'money' | 'experience' | 'level';
 
@@ -32,7 +33,8 @@ export class InventoryComponent implements OnInit {
   }
 
 
-  constructor(private inventoryService: InventoryService, private playerService: PlayerService, private gameSave: GameSaveService, private toastService: ToastService) { }
+  constructor(private inventoryService: InventoryService, private playerService: PlayerService, 
+    private gameSave: GameSaveService, private toastService: ToastService, private soundService: SoundService) { }
 
   ngOnInit(): void {
     this.inventoryService.getInventory().subscribe(items => {
@@ -96,7 +98,7 @@ export class InventoryComponent implements OnInit {
       if (isPotion) {
         this.playerService.updateStats({ lastPotionUsedAt: new Date().toISOString() });
       }
-
+      this.soundService.playEffect('trank-benutzen');
       this.inventoryService.removeSingleItem(item); // 👈 nur EIN Item entfernen!
       this.toastService.show(`Buff aktiv: ${buffs.join(', ')}`);
     }
@@ -111,6 +113,7 @@ export class InventoryComponent implements OnInit {
         }
       }
 
+      this.soundService.playEffect('item-benutzen');
       this.playerService.updateStats(statsToApply);
       this.inventoryService.removeSingleItem(item); // 👈 nur EIN Item entfernen!
       this.toastService.show(`Verbraucht: ${buffs.join(', ')}`);
@@ -118,8 +121,6 @@ export class InventoryComponent implements OnInit {
 
     this.gameSave.updateCurrentGame();
   }
-
-
 
   checkForUnlockedEquipment() {
     const player = this.playerService.getSnapshot() ?? { questsCompleted: 0 };

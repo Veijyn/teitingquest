@@ -45,7 +45,7 @@
       <div class="equipment-slots">
         <div class="slot-card" *ngFor="let slot of equipmentSlots">
           <ng-container *ngIf="getEquippedItem(slot); else empty">
-            <img class="slot-icon" [src]="'/assets/icons/' + getEquippedItem(slot)?.icon"
+            <img class="slot-icon" [src]="'assets/icons/' + getEquippedItem(slot)?.icon"
               [alt]="getEquippedItem(slot)?.name" />
             <div class="slot-info">
               <strong>{{ getEquippedItem(slot)?.name }}</strong>
@@ -57,7 +57,7 @@
             </div>
           </ng-container>
           <ng-template #empty>
-            <img class="slot-icon" src="/assets/icons/equipment-slot.svg" />
+            <img class="slot-icon" src="assets/icons/equipment-slot.svg" />
             <div class="slot-info">
               <strong>{{ slotLabels[slot] }}</strong>
             </div>
