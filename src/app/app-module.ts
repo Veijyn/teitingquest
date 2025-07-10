@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
-
 import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
-
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { ToastComponent } from '@views/toasts/toast.component';
 
 export const dbConfig = {
   name: 'TeitingQuestDB',
@@ -38,12 +36,13 @@ export const dbConfig = {
 @NgModule({
   declarations: [
     App,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgxIndexedDBModule.forRoot(dbConfig),
-    ZXingScannerModule
+    ZXingScannerModule,
   ],
   providers: [
     

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestService } from '@core/services/quest.service';
 import { Quest } from '@core/models/quest.model';
+import { InventoryService } from '@core/services/inventory.service';
+import { PlayerService } from '@core/services/player.service';
 
 @Component({
   selector: 'app-questlog',
@@ -10,10 +12,55 @@ import { Quest } from '@core/models/quest.model';
 })
 export class QuestlogComponent implements OnInit {
   quests: Quest[] = [];
+  filter: 'main' | 'side' = 'main';
 
-  constructor(private questService: QuestService) {}
+  constructor(private questService: QuestService, private inventoryService: InventoryService,
+    private playerService: PlayerService) { }
 
   ngOnInit(): void {
     this.questService.getQuests().subscribe(qs => this.quests = qs);
   }
+
+  toggleFilter(type: 'main' | 'side') {
+    this.filter = type;
+  }
+
+  get filteredQuests() {
+  return this.quests.filter(q => q.type === this.filter && q.acquired);
+}
+
+  startQuest(id: string) {
+    this.questService.startQuest(id);
+  }
+
+  failQuest(id: string) {
+    this.questService.failQuest(id);
+  }
+
+  completeQuest(id: string) {
+    this.questService.markCompleted(id, this.inventoryService, this.playerService);
+  }
+
+  // confirmingAction: { type: 'complete' | 'fail'; questId: string } | null = null;
+
+// openConfirm(type: 'complete' | 'fail', questId: string) {
+//   this.confirmingAction = { type, questId };
+// }
+
+// cancelConfirm() {
+//   this.confirmingAction = null;
+// }
+
+// confirmAction() {
+//   if (!this.confirmingAction) return;
+//   const { type, questId } = this.confirmingAction;
+//   if (type === 'complete') this.questService.markCompleted(questId, this.inventoryService, this.playerService);
+//   else this.questService.failQuest(questId);
+//   this.confirmingAction = null;
+// }
+
+  cancelQuest(id: string) {
+    this.questService.cancelQuest(id);
+  }
+
 }

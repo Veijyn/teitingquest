@@ -15,7 +15,7 @@ export class BattleService {
   constructor(
     private router: Router,
     private gameSave: GameSaveService
-  ) {}
+  ) { }
 
   setGameState(state: GameState) {
     this.gameState = state;
@@ -62,9 +62,13 @@ export class BattleService {
     this.gameState.battles.push(battle);
     this.currentBattle$.next(null);
 
-    this.gameState.updatedAt = new Date();
-    await this.gameSave.updateGame(this.gameState);
-   
+    await this.gameSave.updateCurrentGame();
+
     this.router.navigate(['/game']);
   }
+
+  getSnapshot(): Battle[] {
+    return this.gameState.battles;
+  }
+
 }

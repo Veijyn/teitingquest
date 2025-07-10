@@ -14,6 +14,10 @@ export class PlayerService {
     return this.player$.asObservable();
   }
 
+  updatePlayer(stats: PlayerStats) {
+    this.player$.next({ ...stats });
+  }
+
   heal(amount: number) {
     const stats = this.player$.value;
     if (!stats) return;
@@ -35,6 +39,19 @@ export class PlayerService {
     stats.money += amount;
     this.player$.next({ ...stats });
   }
+
+  addXp(amount: number) {
+    const stats = this.player$.value;
+    if (!stats) return;
+    stats.experience += amount;
+    this.player$.next({ ...stats });
+  }
+
+  updateStats(partial: Partial<PlayerStats>) {
+    const current = this.player$.value!;
+    this.player$.next({ ...current, ...partial });
+  }
+
 
   getSnapshot(): PlayerStats | null {
     return this.player$.value;

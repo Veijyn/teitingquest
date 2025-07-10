@@ -11,7 +11,18 @@
       </li>
     </ul>
   </div>
+<div class="hp-manipulation" *ngIf="playerHp !== null">
+  <h3>HP: {{ playerHp }} </h3>
 
+  <label>
+    <input type="number" [(ngModel)]="hpInput" placeholder="z. B. 10 oder 25" />
+  </label>
+
+  <div class="buttons">
+    <button class="rpg-button" (click)="adjustHp(false)">HP abziehen</button>
+    <button class="rpg-button" (click)="adjustHp(true)">HP % abziehen</button>
+  </div>
+</div>
   <div class="battle-actions">
     <button class="rpg-button win" (click)="finish(true)">Sieg</button>
     <button class="rpg-button lose" (click)="finish(false)">Niederlage</button>

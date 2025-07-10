@@ -1,7 +1,5 @@
 import { GameState } from '@core/models/game-state.model';
 import { PlayerStats } from '@core/models/player-stats.model';
-import { exampleBosses } from '@components/boss-list/boss.factory';
-import { createShopItems } from '@components/shop/shop.factory';
 
 export function createNewGameState(name: string): Omit<GameState, 'id'> {
   const now = new Date();
@@ -23,8 +21,8 @@ export function createNewGameState(name: string): Omit<GameState, 'id'> {
     player,
     inventory: [],
     quests: [],
-    bosses: JSON.parse(JSON.stringify(exampleBosses)),
+    bosses: [],
     battles: [],
-    shopItems: JSON.parse(JSON.stringify(createShopItems())) // ✅
+    shopItems: []
   };
 }

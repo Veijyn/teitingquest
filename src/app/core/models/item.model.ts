@@ -9,6 +9,8 @@ export interface Item {
   bonusStats?: Partial<PlayerStats>;
   price?: number;
   acquiredAt: Date;
+ questsRequired?: number | null;
+  available?: boolean | null;
 }
 
 export interface ShopItem extends Item {

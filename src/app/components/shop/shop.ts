@@ -32,7 +32,7 @@ export class ShopComponent implements OnInit {
     });
   }
 
-  buy(item: ShopItem) {
+  async buy(item: ShopItem) {
     if (item.stock <= 0) return;
 
     if (this.playerService.pay(item.price!)) {
@@ -40,34 +40,18 @@ export class ShopComponent implements OnInit {
       this.inventoryService.addItem(purchasedItem);
       this.shopService.updateStock(item.id, -1);
 
-      // Spielstand speichern
-      this.gameSave.updateGame({
-        ...this.buildGameStateSnapshot()
-      });
-
-      this.soundService.playEffect('item');
-      this.showMessage(`Gekauft: ${item.name}`);
+      try {
+        await this.gameSave.updateCurrentGame();
+        this.soundService.playEffect('item');
+        this.showMessage(`Gekauft: ${item.name}`);
+      } catch (err) {
+        console.error('Fehler beim Speichern:', err);
+        this.showMessage('Fehler beim Speichern!');
+      }
     } else {
       this.showMessage('Nicht genug Gil!');
     }
   }
-
-  private buildGameStateSnapshot(): GameState {
-    return {
-      id: 1, // dein aktueller Savegame-ID-Mechanismus
-      name: 'Aktueller Spielstand', // evtl. dynamisch
-      createdAt: new Date(), // ggf. aus gespeichertem Zustand
-      updatedAt: new Date(),
-      player: this.playerService.getSnapshot()!,
-      inventory: this.inventoryService.getSnapshot(),
-      quests: [], // TODO
-      bosses: [], // TODO: über BossService holen
-      battles: [], // TODO
-      shopItems: this.shopService.getSnapshot()
-    };
-  }
-
-
   showMessage(text: string) {
     this.message = text;
 

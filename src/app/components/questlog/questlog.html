@@ -1,19 +1,52 @@
+<!-- Modal auskommentieren -->
+<!--
+<div class="modal-backdrop" *ngIf="confirmingAction">
+  <div class="modal-panel">
+    <p>Diese Quest wirklich {{ confirmingAction.type === 'complete' ? 'abschließen' : 'als fehlgeschlagen' }} markieren?</p>
+    <div class="modal-buttons">
+      <button class="rpg-button" (click)="confirmAction()">Ja</button>
+      <button class="rpg-button" (click)="cancelConfirm()">Nein</button>
+    </div>
+  </div>
+</div>
+-->
 <div class="questlog">
   <h2>Questlog</h2>
-  <div *ngIf="quests.length === 0">Keine Quests verfügbar.</div>
+
+  <div class="filters">
+    <button [class.active]="filter === 'main'" (click)="toggleFilter('main')">Hauptquests</button>
+    <button [class.active]="filter === 'side'" (click)="toggleFilter('side')">Nebenquests</button>
+  </div>
 
   <ul>
-    <li *ngFor="let quest of quests" [class.completed]="quest.status === 'completed'">
-      <h3>{{ quest.title }}</h3>
+    <li *ngFor="let quest of filteredQuests" [class.completed]="quest.status === 'completed'">
+      <h3>{{ quest.title }}
+        <button *ngIf="quest.type === 'side' && quest.status === 'doing'" class="quest-cancel-btn"
+          title="Quest abbrechen" (click)="cancelQuest(quest.id)">
+          ✖
+        </button>
+      </h3>
       <p>{{ quest.description }}</p>
-      <p>Status: {{ quest.status }}</p>
+      <p class="status" [ngClass]="quest.status">Status: {{ quest.status }}</p>
 
-      <div *ngIf="quest.rewardItems?.length || quest.rewardXp">
+      <div *ngIf="quest.rewardItems?.length || quest.rewardXp || quest.rewardMoney" class="reward">
         <strong>Belohnung:</strong>
         <ul>
           <li *ngFor="let item of quest.rewardItems">{{ item.name }}</li>
           <li *ngIf="quest.rewardXp">XP: {{ quest.rewardXp }}</li>
+          <li *ngIf="quest.rewardMoney">💰: {{ quest.rewardMoney }}</li>
         </ul>
+      </div>
+
+      <div *ngIf="quest.failedAttempts">Fehlversuche: {{ quest.failedAttempts }}</div>
+
+      <div class="actions" *ngIf="quest.type === 'side' && quest.status === 'open'">
+        <button class="rpg-button" (click)="startQuest(quest.id)">Quest starten</button>
+      </div>
+
+      <div class="actions" *ngIf="quest.status === 'doing'">
+        <button class="rpg-button" (click)="completeQuest(quest.id)">Erledigt</button>
+<button class="rpg-button" (click)="failQuest(quest.id)">Fehlgeschlagen</button>
       </div>
     </li>
   </ul>

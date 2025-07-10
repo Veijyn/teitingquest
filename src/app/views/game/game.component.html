@@ -1,3 +1,9 @@
+<div class="top-nav">
+  <button *ngFor="let i of [0,1,2,3,4]; let idx = index" [class.active]="currentIndex === idx"
+    (click)="currentIndex = idx" [title]="navLabels[idx]">
+    <img [src]="'assets/icons/' + navIcons[idx]" class="nav-icon" />
+  </button>
+</div>
 <div class="game-wrapper">
   <div class="slider-viewport">
     <div class="slider-container" [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
@@ -18,11 +24,11 @@
       </div>
     </div>
   </div>
-
+  <div class="footer-divider"></div>
   <div class="swipe-footer">
-    <div class="swipe-indicator">
+    <!--<div class="swipe-indicator">
       <span *ngFor="let i of [0,1,2,3,4]; let idx = index" [class.active]="idx === currentIndex">•</span>
-    </div>
+    </div>-->
 
     <div class="swipe-controls">
       <button (click)="currentIndex = (currentIndex - 1 + 5) % 5">◀</button>

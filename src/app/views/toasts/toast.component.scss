@@ -1,0 +1,28 @@
+.toast {
+  position: fixed;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--rpg-panel);
+  border: 2px solid var(--rpg-border);
+  color: var(--rpg-text);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  font-family: var(--rpg-font);
+  box-shadow: 0 0 12px #000;
+  z-index: 9999;
+  max-width: 90vw;
+  width: 400px;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  opacity: 0.95;
+  animation: fadeInOut 4s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  10%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  90%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}

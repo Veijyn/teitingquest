@@ -3,11 +3,45 @@
 
   <div *ngFor="let boss of bosses" class="boss-card" [class.defeated]="boss.defeated">
     <img [src]="'/assets/bosses/' + boss.image" alt="{{ boss.name }}" *ngIf="boss.image" />
-    <div>
+    <div class="boss-details">
       <h3>{{ boss.name }} <span *ngIf="boss.title">({{ boss.title }})</span></h3>
-      <p>{{ boss.description }}</p>
+      <p class="description">{{ boss.description }}</p>
+
+      <div class="boss-stats">
+        <span>🗡️ {{ boss.stats.strength }}</span>
+        <span>🎯 {{ boss.stats.agility }}</span>
+        <span>🧠 {{ boss.stats.intelligence }}</span>
+        <span>❤️ {{ boss.stats.hp }}</span>
+        <span>💰 {{ boss.stats.money }}</span>
+        <span>⭐ {{ boss.stats.level }}</span>
+      </div>
+
       <p>Status: <strong>{{ boss.defeated ? 'Besiegt' : 'Bereit zum Kampf' }}</strong></p>
       <p *ngIf="boss.attempts">Versuche: {{ boss.attempts }}</p>
+
+      <div *ngIf="boss.advantages?.length" class="advantages">
+        <button class="toggle-btn" (click)="toggleAdvantages(boss.id)">
+          {{ showAdvantages(boss.id) ? '−' : '+' }} Pot. Vorteile
+        </button>
+
+        <div class="advantages-list" *ngIf="showAdvantages(boss.id)">
+          <div *ngFor="let adv of boss.advantages" class="advantage-entry">
+            <div class="advantage-header">
+              <span class="advantage-name">{{ adv.name }}</span>
+              <span class="advantage-desc">{{ adv.description }}</span>
+            </div>
+
+            <div class="conditions">
+              <span *ngFor="let cond of adv.condition" class="condition-pill">
+                <span class="icon-stat">{{ statIcon(cond.stat) }}</span>
+                <span>{{ cond.stat }} {{ cond.operator }} {{ cond.value }}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
       <button class="rpg-button" (click)="startBattle(boss.id)" [disabled]="boss.defeated">
         Kampf starten
       </button>

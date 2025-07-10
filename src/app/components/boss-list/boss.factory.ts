@@ -1,47 +1,204 @@
 import { Boss } from '@core/models/boss.model';
 
-export const exampleBosses: Boss[] = [
-  {
-    id: 'boss001',
-    name: 'Feuerfürst Ignar',
-    title: 'Der Flammenzunge',
-    description: 'Ein feuriger Dämon, der alles in Asche legen will.',
-    image: 'ignar.png',
-    stats: {
-      strength: 10,
-      agility: 4,
-      intelligence: 3,
-      hp: 100,
-      money: 500,
-      level: 5,
-      experience: 250
-    },
-    advantages: [
-      {
-        id: 'fire-resistant',
-        name: 'Feuerresistenz',
-        description: 'Du erleidest weniger Schaden durch Feuerangriffe.',
-        condition: [
-          {
-            stat: 'hp',
-            operator: '>=',
-            value: 80
-          }
-        ]
+export function createBosses(): Boss[] {
+  return [
+    {
+      id: 'boss-mimic',
+      name: 'Mimic',
+      title: 'Der Gestaltlose',
+      description: 'Ein gefährliches Spiegelwesen, das nur durch geschicktes Nachahmen besiegt werden kann.',
+      image: 'mimic.png',
+      stats: {
+        hp: 100,
+        strength: 10,
+        agility: 10,
+        intelligence: 10,
+        experience: 250,
+        money: 50,
+        level: 1
       },
-      {
-        id: 'agile-dodge',
-        name: 'Ausweichmanöver',
-        description: 'Du kannst seinen Feuerbällen leichter ausweichen.',
-        condition: [
-          {
-            stat: 'agility',
-            operator: '>=',
-            value: 5
-          }
-        ]
-      }
-    ],
-    defeated: false
-  }
-];
+      advantages: [
+        {
+          id: 'int-9',
+          name: 'Regelverständnis',
+          description: 'Questregeln werden erklärt',
+          condition: [{ stat: 'intelligence', operator: '>=', value: 9 }]
+        },
+        {
+          id: 'mimic-fail-damage',
+          name: 'Fehlerbestrafung',
+          description: '50 % max HP Schaden bei Mimic-Fehler',
+          condition: [{ stat: 'hp', operator: '>=', value: 0 }] // rein symbolisch
+        },
+        {
+          id: 'stat-split',
+          name: 'Kampfzeit-Bonus',
+          description: 'Bossfighttime variiert je nach Stärke + Geschicklichkeit',
+          condition: [
+            { stat: 'strength', operator: '>=', value: 15 },
+            { stat: 'agility', operator: '>=', value: 15 }
+          ]
+        }
+      ],
+      defeated: false
+    },
+    {
+      id: 'boss-memory',
+      name: 'Warrior of Light',
+      title: 'Das Licht vergangener Zeiten',
+      description: 'Ein mythischer Krieger, der Patrick auf die Probe seiner geistigen und körperlichen Fähigkeiten stellt.',
+      image: 'warrior.png',
+      stats: {
+        hp: 120,
+        strength: 22,
+        agility: 12,
+        intelligence: 11,
+        experience: 300,
+        money: 75,
+        level: 2
+      },
+      advantages: [
+        {
+          id: 'int-7',
+          name: 'Mechanikerklärung',
+          description: 'Einmalige Erklärung der Mechaniken aus dem Extra-Deck',
+          condition: [{ stat: 'intelligence', operator: '>=', value: 7 }]
+        },
+        {
+          id: 'int-11',
+          name: 'Spickzettel',
+          description: 'Erklärzettel mit Mechaniken werden bereitgelegt',
+          condition: [{ stat: 'intelligence', operator: '>=', value: 11 }]
+        },
+        {
+          id: 'agi-9',
+          name: 'Kettenmechanik (erweitert)',
+          description: 'Mehr Zeit für Aetherial Rift Event',
+          condition: [{ stat: 'agility', operator: '>=', value: 9 }]
+        },
+        {
+          id: 'agi-12',
+          name: 'Kettenmechanik (max)',
+          description: 'Noch mehr Zeit für Kettenmechanik',
+          condition: [{ stat: 'agility', operator: '>=', value: 12 }]
+        },
+        {
+          id: 'str-21',
+          name: 'Limit Break Überlebt',
+          description: 'Schaden vom Ultimate Crossover-Event wird vermieden',
+          condition: [{ stat: 'strength', operator: '>=', value: 21 }]
+        }
+      ],
+      defeated: false
+    },
+    {
+      id: 'boss-music',
+      name: 'Siren',
+      title: 'Die Tödliche Melodie',
+      description: 'Ein verführerisches Wesen, das tödliche Musikrätsel stellt.',
+      image: 'siren.png',
+      stats: {
+        hp: 100,
+        strength: 13,
+        agility: 10,
+        intelligence: 7,
+        experience: 280,
+        money: 60,
+        level: 2
+      },
+      advantages: [
+        {
+          id: 'int-7',
+          name: 'Kategorie 1 Bonus',
+          description: 'Nur noch 2 Lieder aus Kategorie 1',
+          condition: [{ stat: 'intelligence', operator: '>=', value: 7 }]
+        },
+        {
+          id: 'agi-10',
+          name: 'Kategorie 2 Bonus',
+          description: 'Nur noch 2 Lieder aus Kategorie 2',
+          condition: [{ stat: 'agility', operator: '>=', value: 10 }]
+        },
+        {
+          id: 'str-13',
+          name: 'Kategorie 3 Bonus',
+          description: 'Nur noch 2 Lieder aus Kategorie 3',
+          condition: [{ stat: 'strength', operator: '>=', value: 13 }]
+        }
+      ],
+      defeated: false
+    },
+    {
+      id: 'boss-ffquiz',
+      name: 'Kaktor',
+      title: 'Der rasende Fragenwerfer',
+      description: 'Ein hyperaktiver Kaktor stellt dir Fragen, die du besser beantworten solltest.',
+      image: 'kaktor.png',
+      stats: {
+        hp: 150,
+        strength: 12,
+        agility: 12,
+        intelligence: 12,
+        experience: 300,
+        money: 50,
+        level: 3
+      },
+      advantages: [
+        {
+          id: 'attr-check',
+          name: 'Attributsprüfung',
+          description: 'Vor dem Kampf erfolgt ein Check auf Stärke, Intelligenz und Geschicklichkeit',
+          condition: [
+            { stat: 'strength', operator: '>=', value: 10 },
+            { stat: 'agility', operator: '>=', value: 10 },
+            { stat: 'intelligence', operator: '>=', value: 10 }
+          ]
+        }
+      ],
+      defeated: false
+    },
+    {
+      id: 'boss-yojimbo',
+      name: 'Yojimbo',
+      title: 'Der Bestechliche Krieger',
+      description: 'Ein legendärer Samurai, der eher auf Gil als auf Ehre hört.',
+      image: 'yojimbo.png',
+      stats: {
+        hp: 200,
+        strength: 16,
+        agility: 10,
+        intelligence: 8,
+        experience: 350,
+        money: 0,
+        level: 4
+      },
+      advantages: [
+        {
+          id: 'has-lamp',
+          name: 'Wunderlampe notwendig',
+          description: 'Wenn die Wunderlampe nicht im Besitz ist, fallen HP auf 0',
+          condition: [{ stat: 'hp', operator: '>=', value: 1 }]
+        }
+      ],
+      defeated: false
+    },
+    {
+      id: 'boss-alchemie',
+      name: 'Seymour',
+      title: 'Der Flüssige Tod',
+      description: 'Ein unberechenbarer Alchemist – Details folgen.',
+      image: 'seymour.png',
+      stats: {
+        hp: 180,
+        strength: 12,
+        agility: 9,
+        intelligence: 11,
+        experience: 320,
+        money: 50,
+        level: 4
+      },
+      advantages: [],
+      defeated: false
+    }
+  ];
+}

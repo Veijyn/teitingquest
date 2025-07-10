@@ -6,4 +6,5 @@ export interface PlayerStats {
   money: number;
   level: number;
   experience: number;
+  questsCompleted?: number; 
 }

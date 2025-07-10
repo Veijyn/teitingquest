@@ -10,8 +10,10 @@ import { Router } from '@angular/router';
 export class GameComponent {
   currentIndex = 0;
   readonly maxIndex = 4;
+  navIcons = ['skills.svg', 'backpack.svg', 'scroll-quill.svg', 'brute.svg', 'swap-bag.svg'];
+  navLabels = ['Charakter', 'Inventar', 'Quests', 'Bosse', 'Shop'];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   // Optional: mit Touch-Events
   startX = 0;

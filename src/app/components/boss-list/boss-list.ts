@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class BossListComponent implements OnInit {
   bosses: Boss[] = [];
+  advantageVisibility: Record<string, boolean> = {}; 
 
   constructor(
     private bossService: BossService,
@@ -20,11 +21,36 @@ export class BossListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.bossService.getBosses().subscribe(b => this.bosses = b);
+    this.bossService.getBosses().subscribe(b => {
+      this.bosses = b;
+      this.bosses.forEach(boss => this.advantageVisibility[boss.id] = false); 
+    });
+  }
+
+  toggleAdvantages(bossId: string) {
+    this.advantageVisibility[bossId] = !this.advantageVisibility[bossId];
+  }
+
+  showAdvantages(bossId: string): boolean {
+    return this.advantageVisibility[bossId];
   }
 
   startBattle(bossId: string) {
     this.battleService.startBattle(bossId);
     this.router.navigate(['/battle']);
   }
+
+  statIcon(stat: string): string {
+  switch (stat) {
+    case 'strength': return '🗡️';
+    case 'agility': return '🎯';
+    case 'intelligence': return '🧠';
+    case 'hp': return '❤️';
+    case 'level': return '⭐';
+    case 'money': return '💰';
+    case 'experience': return '📘';
+    default: return '❔';
+  }
+}
+
 }
