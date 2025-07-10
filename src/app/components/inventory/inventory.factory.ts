@@ -6,6 +6,7 @@ export function createEquipmentItems(): Item[] {
   return [
     {
       id: 'belt',
+      slot: 'belt',
       name: 'Starker Gürtel',
       description: 'Ein stabiler Gürtel, der Haltung und Magie stärkt.',
       icon: 'belt.svg',
@@ -18,6 +19,7 @@ export function createEquipmentItems(): Item[] {
     {
       id: 'helmet',
       name: 'Mystischer Helm',
+      slot: 'head',
       description: 'Eine verstärkte Kopfbedeckung für mutige Abenteurer.',
       icon: 'helmet.svg',
       type: 'equipment',
@@ -28,6 +30,7 @@ export function createEquipmentItems(): Item[] {
     },
     {
       id: 'backmount',
+      slot: 'back',
       name: 'Waffenhalterung',
       description: 'Ermöglicht dir, deine Waffen noch schneller zu ziehen.',
       icon: 'backmount.svg',
@@ -39,6 +42,7 @@ export function createEquipmentItems(): Item[] {
     },
     {
       id: 'gloves',
+      slot: 'hands',
       name: 'Kampfhandschuhe',
       description: 'Stärken den Griff und den Schlag im Kampf.',
       icon: 'gloves.svg',
@@ -50,6 +54,7 @@ export function createEquipmentItems(): Item[] {
     },
     {
       id: 'pants',
+      slot: 'legs',
       name: 'Bequeme Hose',
       description: 'Bietet Beweglichkeit und etwas Schutz.',
       icon: 'pants.svg',
@@ -61,6 +66,7 @@ export function createEquipmentItems(): Item[] {
     },
     {
       id: 'chest',
+      slot: 'chest',
       name: 'Brustpanzer',
       description: 'Robuste Brustplatte gegen jegliche Gefahren.',
       icon: 'chest.svg',
@@ -72,6 +78,7 @@ export function createEquipmentItems(): Item[] {
     },
     {
       id: 'wrist',
+      slot: 'wrist',
       name: 'Gelenkschützer',
       description: 'Im Shop erhältlich – schützt und stärkt die Gelenke.',
       icon: 'wrist.svg',
@@ -83,6 +90,7 @@ export function createEquipmentItems(): Item[] {
     },
     {
       id: 'shoulder',
+      slot: 'shoulders',
       name: 'Schulterplatte',
       description: 'Kommt aus einer geheimnisvollen Lootbox.',
       icon: 'shoulder.svg',
@@ -93,6 +101,7 @@ export function createEquipmentItems(): Item[] {
     },
     {
       id: 'boots',
+      slot: 'feet',
       name: 'Verzauberte Stiefel',
       description: 'Ein Schatz aus einem alten Haus – macht dich schneller.',
       icon: 'boots.svg',
@@ -103,6 +112,7 @@ export function createEquipmentItems(): Item[] {
     },
     {
       id: 'bastardsword',
+      slot: 'weapon',
       name: 'Bastardschwert',
       description: 'Erhalten durch Sieg gegen alle Triple-Triad-Spieler.',
       icon: 'bastardsword.svg',
@@ -113,6 +123,7 @@ export function createEquipmentItems(): Item[] {
     },
     {
       id: 'gunblade',
+      slot: 'weapon',
       name: 'Gunblade',
       description: 'Ultimative Waffe – nur durch das Sammeln aller Rüstungsteile.',
       icon: 'gunblade.svg',

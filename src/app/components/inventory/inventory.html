@@ -23,7 +23,9 @@
 
         <div class="item-actions">
           <button *ngIf="item.type === 'consumable'" class="rpg-button small" (click)="useItem(item)">Benutzen</button>
-          <button *ngIf="item.type === 'equipment'" class="rpg-button small">Ausrüsten</button>
+          <button class="rpg-button small" *ngIf="item.type === 'equipment'" (click)="toggleEquip(item)">
+            {{ item.equipped ? 'Ausgerüstet' : 'Ausrüsten' }}
+          </button>
         </div>
       </div>
     </div>

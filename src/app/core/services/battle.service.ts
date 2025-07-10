@@ -5,6 +5,7 @@ import { GameState } from '../models/game-state.model';
 import { Battle } from '../models/battle.model';
 import { evaluateCondition } from '../utils/evaluate-condition';
 import { Router } from '@angular/router';
+import { PlayerService } from './player.service';
 import { GameSaveService } from './game-save.service';
 
 @Injectable({ providedIn: 'root' })
@@ -14,6 +15,7 @@ export class BattleService {
 
   constructor(
     private router: Router,
+    private playerService: PlayerService,
     private gameSave: GameSaveService
   ) { }
 
@@ -21,23 +23,27 @@ export class BattleService {
     this.gameState = state;
   }
 
-  startBattle(bossId: string): void {
-    const boss = this.gameState.bosses.find(b => b.id === bossId);
-    if (!boss) return;
+ startBattle(bossId: string): void {
+  const boss = this.gameState.bosses.find(b => b.id === bossId);
+  if (!boss) return;
 
-    const unlockedAdvantages = boss.advantages.filter(adv =>
-      evaluateCondition(adv.condition, this.gameState.player)
-    );
+  const effectivePlayerStats = this.playerService.getEffectiveStats();
+  if (!effectivePlayerStats) return;
 
-    const battle: Battle = {
-      id: `${bossId}-${Date.now()}`,
-      bossId: boss.id,
-      advantagesUnlocked: unlockedAdvantages,
-      startedAt: new Date()
-    };
+  const unlockedAdvantages = boss.advantages.filter(adv =>
+    evaluateCondition(adv.condition, effectivePlayerStats)
+  );
 
-    this.currentBattle$.next(battle);
-  }
+  const battle: Battle = {
+    id: `${bossId}-${Date.now()}`,
+    bossId: boss.id,
+    advantagesUnlocked: unlockedAdvantages,
+    startedAt: new Date()
+  };
+
+  this.currentBattle$.next(battle);
+}
+
 
   getCurrentBattle() {
     return this.currentBattle$.asObservable();

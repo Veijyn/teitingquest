@@ -1,16 +1,46 @@
-<div class="">
-  <div *ngIf="stats" class="stats stats-content">
-    <h2>Deine Werte</h2>
-    <ul>
-      <li><strong>HP:</strong> {{ stats.hp }}</li>
-      <li><strong>Stärke:</strong> {{ stats.strength }}</li>
-      <li><strong>Agilität:</strong> {{ stats.agility }}</li>
-      <li><strong>Intelligenz:</strong> {{ stats.intelligence }}</li>
-      <li><strong>Gil:</strong> {{ stats.money }}</li>
-    </ul>
+<div class="stats-wrapper">
+  <div class="level-display">
+    <span class="level-label">⭐ Level {{ baseStats?.level }}</span>
+    <div class="xp-bar">
+      <div class="xp-fill" [style.width.%]="getXpProgress()"></div>
+    </div>
+    <span class="xp-label">{{ baseStats?.experience }} XP</span>
   </div>
 
-  <div *ngIf="!stats">
-    <p>Keine Werte geladen.</p>
+  <div class="stats-card">
+    <h3>🧾 Statuswerte</h3>
+
+    <div class="stat-row" *ngFor="let key of statsKeys">
+      <span class="stat-icon">{{ statIcon(key) }}</span>
+      <span class="stat-label">{{ getStatLabel(key) }}</span>
+      <span class="stat-value">{{ baseStats?.[key] }}</span>
+      <span class="stat-bonus" *ngIf="isBonusPositive(key)">+{{ bonusStats[key] }}</span>
+      <span class="stat-total">= {{ getTotal(key) }}</span>
+    </div>
+  </div>
+
+  <div class="equipment-section">
+    <h3>🛡️ Ausrüstung</h3>
+    <div class="equipment-slots">
+      <div class="slot-card" *ngFor="let slot of equipmentSlots">
+        <ng-container *ngIf="getEquippedItem(slot); else empty">
+          <img class="slot-icon" [src]="'/assets/icons/' + getEquippedItem(slot)?.icon" />
+          <div class="slot-info">
+            <strong>{{ getEquippedItem(slot)?.name }}</strong>
+            <div class="bonuses">
+              <span *ngFor="let stat of getStatBonuses(getEquippedItem(slot))">
+                {{ stat }}
+              </span>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #empty>
+          <img class="slot-icon" src="/assets/icons/empty-slot.png" />
+          <div class="slot-info">
+            <strong>{{ slotLabels[slot] }}</strong>
+          </div>
+        </ng-template>
+      </div>
+    </div>
   </div>
 </div>

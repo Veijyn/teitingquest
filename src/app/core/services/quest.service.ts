@@ -122,7 +122,6 @@ export class QuestService {
     this.commit(updated as Quest[]);
   }
 
-
   failQuest(id: string) {
     const updated = this.quests$.value.map(q => {
       if (q.id !== id) return q;

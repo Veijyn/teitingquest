@@ -1,3 +1,6 @@
+// player-stats.model.ts
+import { Item } from './item.model';
+
 export interface PlayerStats {
   strength: number;
   agility: number;
@@ -6,5 +9,8 @@ export interface PlayerStats {
   money: number;
   level: number;
   experience: number;
-  questsCompleted?: number; 
+  questsCompleted?: number;
+
+  equippedItems?: Item[];
+  activeBuffs?: Item[];  
 }

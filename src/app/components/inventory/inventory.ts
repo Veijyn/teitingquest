@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '@core/services/inventory.service';
 import { PlayerService } from '@core/services/player.service';
 import { Item } from '@core/models/item.model';
+import { GameSaveService } from '@core/services/game-save.service';
 
 @Component({
   selector: 'app-inventory',
@@ -12,11 +13,14 @@ import { Item } from '@core/models/item.model';
 export class InventoryComponent implements OnInit {
   items: Item[] = [];
 
-  constructor(private inventoryService: InventoryService, private playerService: PlayerService) {}
+  constructor(private inventoryService: InventoryService, private playerService: PlayerService, private gameSave: GameSaveService) {}
 
   ngOnInit(): void {
   this.inventoryService.getInventory().subscribe(items => {
-    this.items = items.filter(item => item.available !== false);
+    this.items = items.filter(item => item.available !== false).sort((a, b) => {
+    const order = ['equipment', 'consumable', 'buff', 'quest'];
+    return order.indexOf(a.type) - order.indexOf(b.type);
+  });
   });
 }
 
@@ -50,5 +54,34 @@ export class InventoryComponent implements OnInit {
     //console.log('Neue Ausrüstung verfügbar:', unlocked.map(i => i.name).join(', '));
   }
 }
+
+toggleEquip(item: Item) {
+  const equipped = !item.equipped;
+
+  // 1. Inventory aktualisieren
+  this.inventoryService.updateEquippedStatus(item.id, equipped);
+
+  // 2. Neuestes Item holen
+  const latestItem = this.inventoryService.getSnapshot().find(i => i.id === item.id);
+  if (!latestItem || !latestItem.slot) {
+    console.warn('Kein gültiger Slot-Item gefunden für Equip:', latestItem);
+    return;
+  }
+
+  // 3. Player aktualisieren
+  if (equipped) {
+    this.playerService.equipItem(latestItem);
+  } else {
+    this.playerService.unequipItem(latestItem.slot);
+  }
+
+  // 4. Spiel speichern
+  this.gameSave.updateCurrentGame();
+}
+
+
+
+
+
 }
 

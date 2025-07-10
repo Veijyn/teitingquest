@@ -1,38 +1,135 @@
-.stats-content {
-  width: 100%;
-  max-width: 480px;
-  background-color: var(--rpg-panel);
-  border: 2px solid var(--rpg-border);
-  border-radius: 12px;
+.stats-wrapper {
+  margin-top: 2rem;
   padding: 1.5rem;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  box-sizing: border-box;
-
-  /* hinzugefügt: */
-  overflow-x: hidden;
-  max-width: 100%;
+  background-color: #1c1b2a;
+  border: 2px solid #ffc76a;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.stats {
-  width: 100%;
+.level-display {
+  text-align: center;
+  margin-bottom: 1.5rem;
 
-  h2 {
-    margin-bottom: 1rem;
-    text-align: center;
+  .level-label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff5b99;
   }
 
-  ul {
-    list-style: none;
-    padding: 0;
+  .xp-bar {
     width: 100%;
+    height: 12px;
+    background-color: #333;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 0.5rem 0;
+  }
 
-    li {
-      padding: 0.5rem 0;
-      font-size: 1.1rem;
-      border-bottom: 1px solid #555;
+  .xp-fill {
+    height: 100%;
+    background-color: #61dafb;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .xp-label {
+    font-size: 0.85rem;
+    color: #ccc;
+  }
+}
+
+.stats-card {
+  background-color: #25253a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 1rem;
+
+  h3 {
+    color: #ffcb74;
+    margin-bottom: 1rem;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1.5rem 6rem auto auto auto;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-family: monospace;
+    font-size: 1rem;
+
+    .stat-icon {
+      font-size: 1.2rem;
+    }
+
+    .stat-label {
+      font-weight: bold;
+    }
+
+    .stat-value {
+      color: #ffffff;
+    }
+
+    .stat-bonus {
+      color: #6fdf6f;
+      font-weight: bold;
+    }
+
+    .stat-total {
+      font-weight: bold;
+      color: #ffca4b;
+    }
+  }
+}
+
+.equipment-section {
+  margin-top: 2rem;
+
+  h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #ff7a99;
+  }
+}
+
+.equipment-slots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+
+  .slot-card {
+    background: #1a1a1a;
+    border: 2px solid #555;
+    border-radius: 8px;
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .slot-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+
+  .slot-info {
+    display: flex;
+    flex-direction: column;
+
+    strong {
+      font-size: 0.85rem;
+      color: #fefefe;
+    }
+
+    .bonuses {
+      font-size: 0.75rem;
+      color: #d3f5a0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
     }
   }
 }
