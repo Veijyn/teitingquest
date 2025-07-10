@@ -14,9 +14,9 @@ __webpack_require__.r(__webpack_exports__);
 function createBosses() {
   return [{
     id: 'boss-mimic',
-    name: 'Mimic',
+    name: 'Vermummter Fremder',
     title: 'Der Gestaltlose',
-    description: 'Ein gefährliches Spiegelwesen, das nur durch geschicktes Nachahmen besiegt werden kann.',
+    description: 'Es ist schon seltsam wie beweglich er in dieser Kleidung ist.',
     image: 'mimic.png',
     stats: {
       hp: 100,
@@ -39,7 +39,7 @@ function createBosses() {
     }, {
       id: 'mimic-fail-damage',
       name: 'Fehlerbestrafung',
-      description: '50 % max HP Schaden bei Mimic-Fehler',
+      description: '50 % max HP Schaden bei Fehler',
       condition: [{
         stat: 'hp',
         operator: '>=',
@@ -49,20 +49,15 @@ function createBosses() {
       id: 'stat-split',
       name: 'Kampfzeit-Bonus',
       description: 'Bossfighttime variiert je nach Stärke + Geschicklichkeit',
-      condition: [{
-        stat: 'strength',
-        operator: '>=',
-        value: 15
-      }, {
-        stat: 'agility',
-        operator: '>=',
-        value: 15
-      }]
+      condition: [
+        /*{ stat: 'strength', operator: '>=', value: 15 },
+        { stat: 'agility', operator: '>=', value: 15 }*/
+      ]
     }],
     defeated: false
   }, {
     id: 'boss-memory',
-    name: 'Warrior of Light',
+    name: 'Krieger des Lichts',
     title: 'Das Licht vergangener Zeiten',
     description: 'Ein mythischer Krieger, der Patrick auf die Probe seiner geistigen und körperlichen Fähigkeiten stellt.',
     image: 'warrior.png',
@@ -96,7 +91,7 @@ function createBosses() {
     }, {
       id: 'agi-9',
       name: 'Kettenmechanik (erweitert)',
-      description: 'Mehr Zeit für Aetherial Rift Event',
+      description: 'Aetherial Rift Event wird leichter',
       condition: [{
         stat: 'agility',
         operator: '>=',
@@ -105,7 +100,7 @@ function createBosses() {
     }, {
       id: 'agi-12',
       name: 'Kettenmechanik (max)',
-      description: 'Noch mehr Zeit für Kettenmechanik',
+      description: 'Aetherial Rift Event wird noch leichter',
       condition: [{
         stat: 'agility',
         operator: '>=',
@@ -126,7 +121,7 @@ function createBosses() {
     id: 'boss-music',
     name: 'Siren',
     title: 'Die Tödliche Melodie',
-    description: 'Ein verführerisches Wesen, das tödliche Musikrätsel stellt.',
+    description: 'Du nimmst einen wundervollen Klang in weiter Ferne wahr. Als du näher herantrittst ertönt eine Stimme in deinem Kopf. Die Stimme ersucht dich eine Beschwörungsformel aufzusagen, damit du ihn aus seiner Gefangenschaft befreien kannst. Du sprichst die Worte aus und ein wundersames Wesen mit Harfe und Flügeln manifestiert sich vor dir. Jedoch hat dieses Wesen seine wahren Absichten verschleiert, ehe du dich versiehst bist du in seinen Bann gezogen worden.',
     image: 'siren.png',
     stats: {
       hp: 100,
@@ -262,6 +257,7 @@ function createEquipmentItems() {
   const now = new Date();
   return [{
     id: 'belt',
+    slot: 'belt',
     name: 'Starker Gürtel',
     description: 'Ein stabiler Gürtel, der Haltung und Magie stärkt.',
     icon: 'belt.svg',
@@ -277,8 +273,9 @@ function createEquipmentItems() {
   }, {
     id: 'helmet',
     name: 'Mystischer Helm',
+    slot: 'head',
     description: 'Eine verstärkte Kopfbedeckung für mutige Abenteurer.',
-    icon: 'helmet.svg',
+    icon: 'helm.svg',
     type: 'equipment',
     bonusStats: {
       hp: 1,
@@ -289,9 +286,10 @@ function createEquipmentItems() {
     available: false
   }, {
     id: 'backmount',
+    slot: 'back',
     name: 'Waffenhalterung',
     description: 'Ermöglicht dir, deine Waffen noch schneller zu ziehen.',
-    icon: 'backmount.svg',
+    icon: 'scheide.svg',
     type: 'equipment',
     bonusStats: {
       hp: 2,
@@ -302,6 +300,7 @@ function createEquipmentItems() {
     available: false
   }, {
     id: 'gloves',
+    slot: 'hands',
     name: 'Kampfhandschuhe',
     description: 'Stärken den Griff und den Schlag im Kampf.',
     icon: 'gloves.svg',
@@ -315,9 +314,10 @@ function createEquipmentItems() {
     available: false
   }, {
     id: 'pants',
+    slot: 'legs',
     name: 'Bequeme Hose',
     description: 'Bietet Beweglichkeit und etwas Schutz.',
-    icon: 'pants.svg',
+    icon: 'beine.svg',
     type: 'equipment',
     bonusStats: {
       hp: 5,
@@ -328,9 +328,10 @@ function createEquipmentItems() {
     available: false
   }, {
     id: 'chest',
+    slot: 'chest',
     name: 'Brustpanzer',
     description: 'Robuste Brustplatte gegen jegliche Gefahren.',
-    icon: 'chest.svg',
+    icon: 'brust.svg',
     type: 'equipment',
     bonusStats: {
       hp: 5,
@@ -341,6 +342,7 @@ function createEquipmentItems() {
     available: false
   }, {
     id: 'wrist',
+    slot: 'wrist',
     name: 'Gelenkschützer',
     description: 'Im Shop erhältlich – schützt und stärkt die Gelenke.',
     icon: 'wrist.svg',
@@ -354,9 +356,10 @@ function createEquipmentItems() {
     available: false
   }, {
     id: 'shoulder',
+    slot: 'shoulders',
     name: 'Schulterplatte',
     description: 'Kommt aus einer geheimnisvollen Lootbox.',
-    icon: 'shoulder.svg',
+    icon: 'schultern.svg',
     type: 'equipment',
     bonusStats: {
       hp: 3,
@@ -367,6 +370,7 @@ function createEquipmentItems() {
     available: false
   }, {
     id: 'boots',
+    slot: 'feet',
     name: 'Verzauberte Stiefel',
     description: 'Ein Schatz aus einem alten Haus – macht dich schneller.',
     icon: 'boots.svg',
@@ -380,9 +384,10 @@ function createEquipmentItems() {
     available: false
   }, {
     id: 'bastardsword',
+    slot: 'weapon',
     name: 'Bastardschwert',
     description: 'Erhalten durch Sieg gegen alle Triple-Triad-Spieler.',
-    icon: 'bastardsword.svg',
+    icon: 'schwert.svg',
     type: 'equipment',
     bonusStats: {
       strength: 3,
@@ -393,9 +398,10 @@ function createEquipmentItems() {
     available: false
   }, {
     id: 'gunblade',
+    slot: 'weapon',
     name: 'Gunblade',
     description: 'Ultimative Waffe – nur durch das Sammeln aller Rüstungsteile.',
-    icon: 'gunblade.svg',
+    icon: 'schwert.svg',
     type: 'equipment',
     bonusStats: {
       strength: 7,
@@ -510,6 +516,15 @@ function createShopItems() {
     price: 10,
     acquiredAt: now,
     stock: 6
+  }, {
+    id: 'jan',
+    name: 'Der Jan',
+    description: 'Manchmal benötigen Dinge einfach länger. Verzögerung ist auch eine Kunst.',
+    icon: 'swap-bag.svg',
+    type: 'consumable',
+    price: 1,
+    acquiredAt: now,
+    stock: 1
   }, {
     id: 'phoenixfeder',
     name: 'Phönixfeder',
@@ -652,13 +667,13 @@ __webpack_require__.r(__webpack_exports__);
 function createNewGameState(name) {
   const now = new Date();
   const player = {
-    hp: 100,
-    money: 200,
+    hp: 20,
+    money: 500,
     level: 1,
     experience: 0,
-    strength: 22,
-    agility: 22,
-    intelligence: 22
+    strength: 1,
+    agility: 1,
+    intelligence: 1
   };
   return {
     name,

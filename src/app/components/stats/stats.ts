@@ -48,11 +48,9 @@ export class StatsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.playerService.removeExpiredBuffs();
-
     this.playerService.getPlayer().subscribe(p => {
       if (!p) return;
-
+      this.playerService.removeExpiredBuffs();
       const effectiveStats = this.playerService.getEffectiveStats();
       if (!effectiveStats) return;
 
@@ -71,6 +69,16 @@ export class StatsComponent implements OnInit {
     });
   }
 
+  getBonus(key: keyof PlayerStats): number {
+    const value = this.bonusStats?.[key];
+    return typeof value === 'number' ? value : 0;
+  }
+
+  getBonusPrefix(key: keyof PlayerStats): string {
+    const bonus = this.getBonus(key);
+    return bonus > 0 ? '+' : '';
+  }
+
   // Hilfsfunktion für Tooltip
   formatBuffTooltip(buff: Item): string {
     const untilRaw = (buff as any).validUntil;
@@ -83,7 +91,7 @@ export class StatsComponent implements OnInit {
       .map(([key, val]) => `${this.getStatLabel(key)} +${val}`)
       .join(', ');
 
-    return `${bonuses}${timeLeft !== null ? ` (noch ${timeLeft} Min)` : ''}`;
+    return `${bonuses}${timeLeft !== null ? `\n🕒 ${timeLeft} Min aktiv` : ''}`;
   }
 
   statIcon(stat: string): string {
@@ -110,21 +118,21 @@ export class StatsComponent implements OnInit {
   }
 
   getXpProgress(): number {
-  const stats = this.baseStats;
-  if (!stats) return 0;
+    const stats = this.baseStats;
+    if (!stats) return 0;
 
-  const currentLevel = stats.level ?? 1;
-  const totalXp = stats.experience ?? 0;
+    const currentLevel = stats.level ?? 1;
+    const totalXp = stats.experience ?? 0;
 
-  if (currentLevel >= this.XP_TABLE.length) return 100; // Max-Level erreicht
+    if (currentLevel >= this.XP_TABLE.length) return 100; // Max-Level erreicht
 
-  const xpAtCurrent = this.XP_TABLE[currentLevel - 1];
-  const xpAtNext = this.XP_TABLE[currentLevel];
+    const xpAtCurrent = this.XP_TABLE[currentLevel - 1];
+    const xpAtNext = this.XP_TABLE[currentLevel];
 
-  const progress = ((totalXp - xpAtCurrent) / (xpAtNext - xpAtCurrent)) * 100;
+    const progress = ((totalXp - xpAtCurrent) / (xpAtNext - xpAtCurrent)) * 100;
 
-  return Math.max(0, Math.min(100, Math.floor(progress)));
-}
+    return Math.max(0, Math.min(100, Math.floor(progress)));
+  }
 
   getStatBonuses(item: Item | undefined): string[] {
     if (!item?.bonusStats) return [];
@@ -134,6 +142,26 @@ export class StatsComponent implements OnInit {
     });
   }
 
+  getBonusSourcesTooltip(stat: keyof PlayerStats): string {
+    const sources: string[] = [];
+
+    const allItems = [...(this.baseStats?.equippedItems ?? []), ...(this.activeBuffs ?? [])];
+
+    for (const item of allItems) {
+      const bonus = item.bonusStats?.[stat];
+      if (bonus && typeof bonus === 'number') {
+        const label = item.type === 'buff' ? `Buff: ${item.name}` : item.name;
+        sources.push(`+${bonus} durch ${label}`);
+      }
+    }
+
+    return sources.length > 0 ? sources.join('\n') : 'Kein Bonus';
+  }
+
+  isNumericBonus(key: keyof PlayerStats): boolean {
+  const numericKeys: (keyof PlayerStats)[] = ['strength', 'agility', 'intelligence', 'hp'];
+  return numericKeys.includes(key);
+  }
 
   getStatLabel(stat: string): string {
     const labels: Record<string, string> = {

@@ -4,9 +4,9 @@ export function createBosses(): Boss[] {
   return [
     {
       id: 'boss-mimic',
-      name: 'Mimic',
+      name: 'Vermummter Fremder',
       title: 'Der Gestaltlose',
-      description: 'Ein gefährliches Spiegelwesen, das nur durch geschicktes Nachahmen besiegt werden kann.',
+      description: 'Es ist schon seltsam wie beweglich er in dieser Kleidung ist.',
       image: 'mimic.png',
       stats: {
         hp: 100,
@@ -27,7 +27,7 @@ export function createBosses(): Boss[] {
         {
           id: 'mimic-fail-damage',
           name: 'Fehlerbestrafung',
-          description: '50 % max HP Schaden bei Mimic-Fehler',
+          description: '50 % max HP Schaden bei Fehler',
           condition: [{ stat: 'hp', operator: '>=', value: 0 }] // rein symbolisch
         },
         {
@@ -35,16 +35,16 @@ export function createBosses(): Boss[] {
           name: 'Kampfzeit-Bonus',
           description: 'Bossfighttime variiert je nach Stärke + Geschicklichkeit',
           condition: [
-            { stat: 'strength', operator: '>=', value: 15 },
-            { stat: 'agility', operator: '>=', value: 15 }
+            /*{ stat: 'strength', operator: '>=', value: 15 },
+            { stat: 'agility', operator: '>=', value: 15 }*/
           ]
-        }
+        },
       ],
       defeated: false
     },
     {
       id: 'boss-memory',
-      name: 'Warrior of Light',
+      name: 'Krieger des Lichts',
       title: 'Das Licht vergangener Zeiten',
       description: 'Ein mythischer Krieger, der Patrick auf die Probe seiner geistigen und körperlichen Fähigkeiten stellt.',
       image: 'warrior.png',
@@ -73,13 +73,13 @@ export function createBosses(): Boss[] {
         {
           id: 'agi-9',
           name: 'Kettenmechanik (erweitert)',
-          description: 'Mehr Zeit für Aetherial Rift Event',
+          description: 'Aetherial Rift Event wird leichter',
           condition: [{ stat: 'agility', operator: '>=', value: 9 }]
         },
         {
           id: 'agi-12',
           name: 'Kettenmechanik (max)',
-          description: 'Noch mehr Zeit für Kettenmechanik',
+          description: 'Aetherial Rift Event wird noch leichter',
           condition: [{ stat: 'agility', operator: '>=', value: 12 }]
         },
         {
@@ -95,7 +95,7 @@ export function createBosses(): Boss[] {
       id: 'boss-music',
       name: 'Siren',
       title: 'Die Tödliche Melodie',
-      description: 'Ein verführerisches Wesen, das tödliche Musikrätsel stellt.',
+      description: 'Du nimmst einen wundervollen Klang in weiter Ferne wahr. Als du näher herantrittst ertönt eine Stimme in deinem Kopf. Die Stimme ersucht dich eine Beschwörungsformel aufzusagen, damit du ihn aus seiner Gefangenschaft befreien kannst. Du sprichst die Worte aus und ein wundersames Wesen mit Harfe und Flügeln manifestiert sich vor dir. Jedoch hat dieses Wesen seine wahren Absichten verschleiert, ehe du dich versiehst bist du in seinen Bann gezogen worden.',
       image: 'siren.png',
       stats: {
         hp: 100,

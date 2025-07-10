@@ -29,7 +29,7 @@ export function createQuestPool(): Quest[] {
       rewardMoney: 25,
       // rewardItems:
       // - Zufällige A-Karte (Triple Triad)
-      // - Gold Saucer Eintrittskarte
+      // - Gold Saucer Eintrittskarte (Gold Saucer Quests freischalten)
       //   (Chocobo-Rennen, Dosenschießen, Pokerturnier, Sackwerfen, Fingerdarts, Ringwurf)
       rewardItems: [],
       createdAt: now
@@ -53,7 +53,7 @@ export function createQuestPool(): Quest[] {
     {
       id: 'mimikry-gogo',
       title: 'Tanz mit dem Teufel',
-      description: `Ein Mann in seltsamen Kleidern versperrt dir wortlos den Weg. Niemand vermag mit Sicherheit zu sagen, wer oder gar was hinter dieser Maskerade steckt... Was hat er nur vor?`,
+      description: `description: Ein Mann in seltsamen Kleidern versperrt dir den Weg. Niemand vermag mit Sicherheit zu sagen, wer oder gar was hinter dieser Maskerade steckt... Was hat er nur vor?`,
       type: 'main',
       status: 'open',
       acquired: true,
@@ -78,6 +78,7 @@ export function createQuestPool(): Quest[] {
       rewardMoney: 25,
       // rewardItems:
       // - Zufällige A-Karte (Triple Triad)
+      // - 1x Abspotten (siehe Shop)
       rewardItems: [],
       createdAt: now
     },
@@ -124,13 +125,14 @@ export function createQuestPool(): Quest[] {
       rewardItems: [],
       createdAt: now
     },
-        {
+      {
       id: 'chocobo-race',
       title: 'Das Rennen der dunklen Feder',
       description: `Gold Saucer Event (Für weitere Informationen siehe dir die separaten Spielregeln an)`,
       type: 'side',
       status: 'open',
       acquired: true,
+      repeatable: true,
       rewardXp: 175,
       rewardMoney: 10,
       // rewardItems:
@@ -145,10 +147,11 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: true,
+      repeatable: true,
       // rewardXp: 25/50/75 XP (abhängig vom High Score)
       // rewardMoney: 5/10/15 Gil (abhängig vom High Score)
-      rewardXp: 75,
-      rewardMoney: 15,
+      rewardXp: 150,
+      rewardMoney: 30,
       // rewardItems: keine
       rewardItems: [],
       createdAt: now
@@ -175,8 +178,9 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: true,
-      rewardXp: 75,
-      rewardMoney: 15,
+      repeatable: true,
+      rewardXp: 150,
+      rewardMoney: 30,
       // rewardItems: keine
       rewardItems: [],
       createdAt: now
@@ -188,8 +192,9 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: true,
-      rewardXp: 75,
-      rewardMoney: 15,
+      repeatable: true,
+      rewardXp: 150,
+      rewardMoney: 30,
       // rewardItems: keine
       rewardItems: [],
       createdAt: now
@@ -201,19 +206,21 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
-      rewardXp: 75,
-      rewardMoney: 15,
+      repeatable: true,
+      rewardXp: 150,
+      rewardMoney: 30,
       // rewardItems: keine
       rewardItems: [],
       createdAt: now
     },
-        {
+    {
       id: 'grill-anfeuern',
       title: 'Brutzelnder Ruhm',
       description: `Zünde den Grill an und lege somit den Grundstein für ein fürstliches Mahl.`,
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 75,
       rewardMoney: 5,
       // rewardItems: keine
@@ -227,6 +234,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 150,
       rewardMoney: 10,
       // rewardItems: keine
@@ -240,6 +248,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 125,
       rewardMoney: 10,
       // rewardItems: keine
@@ -253,6 +262,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 125,
       rewardMoney: 10,
       // rewardItems:
@@ -267,6 +277,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 200,
       rewardMoney: 10,
       // rewardItems: keine
@@ -280,6 +291,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 150,
       rewardMoney: 10,
       // rewardItems: keine
@@ -293,6 +305,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 200,
       rewardMoney: 20,
       // rewardItems: keine
@@ -306,6 +319,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 175,
       rewardMoney: 15,
       // rewardItems: keine
@@ -319,6 +333,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 75,
       rewardMoney: 10,
       // rewardItems: keine
@@ -332,6 +347,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 150,
       rewardMoney: 10,
       // rewardItems: keine
@@ -341,10 +357,11 @@ export function createQuestPool(): Quest[] {
     {
       id: 'iq-test',
       title: 'Weiser und Gelehrter',
-      description: `Stelle dich einem IQ-Test und beantworte entsprechende Fragen. Mindestens 80% der Fragen müssen korrekt sein, damit die Aufgabe als bestanden gilt.`,
+      description: `Stelle dich einem IQ-Test und beantworte entsprechende Fragen. Alle Fragen müssen korrekt beantwortet sein, damit die Aufgabe als bestanden gilt.`,
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 125,
       rewardMoney: 0,
       // rewardItems:
@@ -359,6 +376,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 175,
       rewardMoney: 15,
       // rewardItems: keine
@@ -372,6 +390,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 175,
       rewardMoney: 15,
       // rewardItems: keine
@@ -385,6 +404,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 75,
       rewardMoney: 0,
       // rewardItems:
@@ -399,6 +419,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 100,
       rewardMoney: 5,
       // rewardItems: keine
@@ -412,6 +433,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 150,
       rewardMoney: 10,
       // rewardItems: keine
@@ -425,6 +447,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 75,
       rewardMoney: 5,
       // rewardItems: keine
@@ -438,6 +461,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 150,
       rewardMoney: 15,
       // rewardItems: keine
@@ -451,6 +475,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 200,
       rewardMoney: 15,
       // rewardItems: keine
@@ -464,6 +489,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 125,
       rewardMoney: 10,
       // rewardItems: keine
@@ -477,6 +503,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 175,
       rewardMoney: 10,
       // rewardItems: keine
@@ -490,6 +517,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 125,
       rewardMoney: 0,
       // rewardItems:
@@ -504,6 +532,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 150,
       rewardMoney: 10,
       // rewardItems: keine
@@ -517,6 +546,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 175,
       rewardMoney: 10,
       // rewardItems: keine
@@ -530,6 +560,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 200,
       rewardMoney: 20,
       // rewardItems: keine
@@ -543,6 +574,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 150,
       rewardMoney: 10,
       // rewardItems: keine
@@ -556,6 +588,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 150,
       rewardMoney: 10,
       // rewardItems: keine
@@ -569,6 +602,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 125,
       rewardMoney: 10,
       // rewardItems: keine
@@ -582,6 +616,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 100,
       rewardMoney: 5,
       // rewardItems: keine
@@ -595,6 +630,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 150,
       rewardMoney: 10,
       // rewardItems: keine
@@ -608,6 +644,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 150,
       rewardMoney: 10,
       // rewardItems: keine
@@ -621,6 +658,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 175,
       rewardMoney: 15,
       // rewardItems: keine
@@ -634,6 +672,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 150,
       rewardMoney: 10,
       // rewardItems: keine
@@ -647,6 +686,7 @@ export function createQuestPool(): Quest[] {
       type: 'side',
       status: 'open',
       acquired: false,
+      repeatable: true,
       rewardXp: 150,
       rewardMoney: 10,
       // rewardItems: keine

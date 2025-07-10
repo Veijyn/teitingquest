@@ -13,4 +13,6 @@ export interface PlayerStats {
 
   equippedItems?: Item[];
   activeBuffs?: Item[];  
+  lastBuffFoodUsedAt?: string;
+  lastPotionUsedAt?: string;
 }

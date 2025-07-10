@@ -1,4 +1,6 @@
 <div class="stats-wrapper">
+
+  <!-- ⭐ LEVEL & XP -->
   <div class="level-display">
     <span class="level-label">⭐ Level {{ baseStats?.level }}</span>
     <div class="xp-bar">
@@ -7,40 +9,61 @@
     <span class="xp-label">{{ baseStats?.experience }} XP</span>
   </div>
 
+  <!-- 🧾 STATS-KARTE -->
   <div class="stats-card">
     <h3>🧾 Statuswerte</h3>
 
     <div class="stat-row" *ngFor="let key of statsKeys">
       <span class="stat-icon">{{ statIcon(key) }}</span>
       <span class="stat-label">{{ getStatLabel(key) }}</span>
-      <span class="stat-value">{{ baseStats?.[key] }}</span>
-      <span class="stat-bonus" *ngIf="isBonusPositive(key)">+{{ bonusStats[key] }}</span>
-      <span class="stat-total">= {{ getTotal(key) }}</span>
-    </div>
-  </div>
 
-  <div class="equipment-section">
-    <h3>🛡️ Ausrüstung</h3>
-    <div class="equipment-slots">
-      <div class="slot-card" *ngFor="let slot of equipmentSlots">
-        <ng-container *ngIf="getEquippedItem(slot); else empty">
-          <img class="slot-icon" [src]="'/assets/icons/' + getEquippedItem(slot)?.icon" />
-          <div class="slot-info">
-            <strong>{{ getEquippedItem(slot)?.name }}</strong>
-            <div class="bonuses">
-              <span *ngFor="let stat of getStatBonuses(getEquippedItem(slot))">
-                {{ stat }}
-              </span>
-            </div>
-          </div>
+      <div class="stat-block">
+        <span class="stat-base">{{ baseStats?.[key] ?? 0 }}</span>
+
+        <ng-container *ngIf="getBonus(key) !== 0; else bonusPlaceholder">
+          <span class="stat-bonus" [title]="getBonusSourcesTooltip(key)" [ngClass]="{
+        positive: getBonus(key) > 0,
+        negative: getBonus(key) < 0
+      }">
+            {{ getBonusPrefix(key) }}{{ getBonus(key) }}
+          </span>
         </ng-container>
-        <ng-template #empty>
-          <img class="slot-icon" src="/assets/icons/empty-slot.png" />
-          <div class="slot-info">
-            <strong>{{ slotLabels[slot] }}</strong>
-          </div>
+        <ng-template #bonusPlaceholder>
+          <span class="stat-bonus invisible">+0</span>
         </ng-template>
+
+        <span class="stat-equals">=</span>
+        <span class="stat-total">{{ getTotal(key) }}</span>
+      </div>
+
+
+    </div>
+
+    <!-- 🛡️ AUSRÜSTUNG -->
+    <div class="equipment-section">
+      <h3>🛡️ Ausrüstung</h3>
+      <div class="equipment-slots">
+        <div class="slot-card" *ngFor="let slot of equipmentSlots">
+          <ng-container *ngIf="getEquippedItem(slot); else empty">
+            <img class="slot-icon" [src]="'/assets/icons/' + getEquippedItem(slot)?.icon"
+              [alt]="getEquippedItem(slot)?.name" />
+            <div class="slot-info">
+              <strong>{{ getEquippedItem(slot)?.name }}</strong>
+              <div class="bonuses">
+                <span *ngFor="let stat of getStatBonuses(getEquippedItem(slot))">
+                  {{ stat }}
+                </span>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #empty>
+            <img class="slot-icon" src="/assets/icons/equipment-slot.svg" />
+            <div class="slot-info">
+              <strong>{{ slotLabels[slot] }}</strong>
+            </div>
+          </ng-template>
+        </div>
       </div>
     </div>
+
   </div>
-</div>

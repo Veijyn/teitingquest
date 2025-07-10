@@ -23,8 +23,8 @@ export interface Item {
   acquiredAt: Date;
   available?: boolean;
   questsRequired?: number;
-  slot?: EquipmentSlot; // ⬅️ NEU
-  equipped?: boolean;   // ⬅️ NEU
+  slot?: EquipmentSlot; 
+  equipped?: boolean; 
 }
 
 export interface ShopItem extends Item {

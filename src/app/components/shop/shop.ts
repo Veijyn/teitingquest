@@ -7,6 +7,7 @@ import { createShopItems } from './shop.factory';
 import { GameState } from '@core/models/game-state.model';
 import { GameSaveService } from '@core/services/game-save.service';
 import { ShopService } from '@core/services/shop.service';
+import { ToastService } from '@views/toasts/toast.service';
 
 @Component({
   selector: 'app-shop',
@@ -16,14 +17,14 @@ import { ShopService } from '@core/services/shop.service';
 })
 export class ShopComponent implements OnInit {
   itemsForSale: ShopItem[] = [];
-  message = '';
 
   constructor(
     private inventoryService: InventoryService,
     private playerService: PlayerService,
     private soundService: SoundService,
     private shopService: ShopService,
-    private gameSave: GameSaveService
+    private gameSave: GameSaveService,
+    private toast: ToastService
   ) { }
 
   ngOnInit(): void {
@@ -42,22 +43,15 @@ export class ShopComponent implements OnInit {
 
       try {
         await this.gameSave.updateCurrentGame();
-        this.soundService.playEffect('item');
-        this.showMessage(`Gekauft: ${item.name}`);
+        this.soundService.playEffect('item-kaufen');
+        this.toast.show(`Gekauft: ${item.name}`);
       } catch (err) {
         console.error('Fehler beim Speichern:', err);
-        this.showMessage('Fehler beim Speichern!');
+        //this.showMessage('Fehler beim Speichern!');
       }
     } else {
-      this.showMessage('Nicht genug Gil!');
+      this.toast.show('Nicht genug Gil!');
     }
-  }
-  showMessage(text: string) {
-    this.message = text;
-
-    setTimeout(() => {
-      this.message = '';
-    }, 3000);
   }
 
 }

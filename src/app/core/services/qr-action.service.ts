@@ -35,12 +35,12 @@ export class QrActionService {
           acquiredAt: new Date()
         };
         this.inventoryService.addItem(item);
-        this.soundService.playEffect('item');
+        this.soundService.playEffect('item-kaufen');
         return `Item erhalten: ${action.itemId}`;
 
       case 'quest':
         // questService.addQuest(action.questId); // später
-        this.soundService.playEffect('quest');
+        this.soundService.playEffect('quest-annahme');
         return `Neue Quest erhalten: ${action.questId}`;
 
       case 'startBattle':

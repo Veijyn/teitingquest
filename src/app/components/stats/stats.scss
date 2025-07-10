@@ -4,7 +4,7 @@
   background-color: #1c1b2a;
   border: 2px solid #ffc76a;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   max-width: 480px;
   margin-left: auto;
   margin-right: auto;
@@ -53,35 +53,82 @@
   }
 
   .stat-row {
-    display: grid;
-    grid-template-columns: 1.5rem 6rem auto auto auto;
+    display: flex;
     align-items: center;
-    margin-bottom: 0.5rem;
-    font-family: monospace;
-    font-size: 1rem;
+    justify-content: space-between;
+    background: #111;
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 0.3rem;
+    font-family: 'Press Start 2P', monospace;
 
     .stat-icon {
-      font-size: 1.2rem;
+      width: 1.5rem;
+      text-align: center;
     }
 
     .stat-label {
+      flex: 1;
+      padding-left: 0.5rem;
       font-weight: bold;
+      color: #fff;
     }
 
-    .stat-value {
-      color: #ffffff;
-    }
+    .stat-block {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 140px;
+  gap: 0.4rem;
+  font-family: monospace;
 
-    .stat-bonus {
-      color: #6fdf6f;
-      font-weight: bold;
-    }
-
-    .stat-total {
-      font-weight: bold;
-      color: #ffca4b;
-    }
+  .stat-base {
+    width: 2.5rem;
+    text-align: right;
+    color: #ddd;
   }
+
+  .stat-bonus {
+  width: 2.5rem;
+  text-align: right;
+  font-weight: bold;
+
+  &.positive {
+    color: #7ffb7f;
+  }
+
+  &.negative {
+    color: #ff6b6b;
+  }
+
+  &.invisible {
+    visibility: hidden;
+  }
+}
+
+  
+
+  .stat-bonus-placeholder {
+    width: 2.5rem;
+  }
+
+  .stat-equals {
+    width: 1rem;
+    text-align: center;
+    color: #aaa;
+  }
+
+  .stat-total {
+    width: 2.5rem;
+    text-align: right;
+    font-weight: bold;
+    color: white;
+  }
+}
+
+  }
+
+
 }
 
 .equipment-section {
@@ -131,5 +178,28 @@
       flex-wrap: wrap;
       gap: 0.3rem;
     }
+  }
+}
+
+.buff-list li img {
+  animation: pulse 1.5s infinite;
+  transition: transform 0.3s ease;
+}
+
+.buff-list li img:hover {
+  transform: scale(1.1);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0px var(--rpg-highlight);
+  }
+
+  50% {
+    box-shadow: 0 0 6px var(--rpg-highlight);
+  }
+
+  100% {
+    box-shadow: 0 0 0px var(--rpg-highlight);
   }
 }

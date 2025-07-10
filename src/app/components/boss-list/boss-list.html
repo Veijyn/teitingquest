@@ -7,15 +7,6 @@
       <h3>{{ boss.name }} <span *ngIf="boss.title">({{ boss.title }})</span></h3>
       <p class="description">{{ boss.description }}</p>
 
-      <div class="boss-stats">
-        <span>🗡️ {{ boss.stats.strength }}</span>
-        <span>🎯 {{ boss.stats.agility }}</span>
-        <span>🧠 {{ boss.stats.intelligence }}</span>
-        <span>❤️ {{ boss.stats.hp }}</span>
-        <span>💰 {{ boss.stats.money }}</span>
-        <span>⭐ {{ boss.stats.level }}</span>
-      </div>
-
       <p>Status: <strong>{{ boss.defeated ? 'Besiegt' : 'Bereit zum Kampf' }}</strong></p>
       <p *ngIf="boss.attempts">Versuche: {{ boss.attempts }}</p>
 

@@ -10,7 +10,7 @@
       <div class="item-details">
         <div class="item-header">
           <strong class="item-name">{{ item.name }}</strong>
-          <span class="item-type">({{ item.type }})</span>
+          <span class="item-type">({{ getGermanItemType(item.type) }})</span>
         </div>
         <p class="item-description">{{ item.description }}</p>
 
@@ -20,13 +20,23 @@
           <span *ngIf="item.bonusStats.agility">🎯 Geschick +{{ item.bonusStats.agility }}</span>
           <span *ngIf="item.bonusStats.intelligence">🧠 Intelligenz +{{ item.bonusStats.intelligence }}</span>
         </div>
-
         <div class="item-actions">
-          <button *ngIf="item.type === 'consumable'" class="rpg-button small" (click)="useItem(item)">Benutzen</button>
-          <button class="rpg-button small" *ngIf="item.type === 'equipment'" (click)="toggleEquip(item)">
-            {{ item.equipped ? 'Ausgerüstet' : 'Ausrüsten' }}
+          <button class="rpg-button small buff-button" *ngIf="item.type === 'buff'" (click)="useItem(item)"
+            title="Temporärer Effekt – hält 30 Minuten">
+            Anwenden
+          </button>
+
+          <button class="rpg-button small consumable-button" *ngIf="item.type === 'consumable'" (click)="useItem(item)"
+            title="Einmaliger Soforteffekt">
+            Verwenden
+          </button>
+
+          <button class="rpg-button small equipment-button" *ngIf="item.type === 'equipment'"
+            (click)="toggleEquip(item)" [title]="item.equipped ? 'Ausrüstung entfernen' : 'Ausrüstung anlegen'">
+            {{ item.equipped ? 'Entfernen' : 'Anlegen' }}
           </button>
         </div>
+
       </div>
     </div>
   </div>

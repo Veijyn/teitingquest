@@ -4,12 +4,14 @@ import { PlayerStats } from '../models/player-stats.model';
 import { Item } from '@core/models/item.model';
 import { calculateEffectiveStats } from '@core/utils/calculate-effective-stats';
 import { GameSaveService } from './game-save.service';
+import { getLevelForXp } from '../utils/xp-curve';
+import { ToastService } from '@views/toasts/toast.service';
 
 @Injectable({ providedIn: 'root' })
 export class PlayerService {
   private player$ = new BehaviorSubject<PlayerStats | null>(null);
 
-  constructor(private gameSave: GameSaveService) { }
+  constructor(private gameSave: GameSaveService, private toast: ToastService) { }
 
   setPlayer(stats: PlayerStats) {
     this.player$.next({ ...stats });
@@ -40,8 +42,28 @@ export class PlayerService {
   addXp(amount: number) {
     const stats = this.player$.value;
     if (!stats) return;
-    stats.experience += amount;
-    this.commit(stats);
+
+    const oldLevel = stats.level;
+    const newXp = stats.experience + amount;
+    const newLevel = getLevelForXp(newXp);
+
+    const levelDiff = newLevel - oldLevel;
+
+    if (levelDiff > 0) {
+      this.toast.show(`Du bist jetzt Level ${newLevel}!`);
+
+      // Dauerhafte Stat-Increases (Basiswerte!)
+      stats.hp += 3 * levelDiff;
+      stats.strength += 1 * levelDiff;
+      stats.agility += 1 * levelDiff;
+      stats.intelligence += 1 * levelDiff;
+    }
+
+    this.commit({
+      ...stats,
+      experience: newXp,
+      level: newLevel
+    });
   }
 
   addMoney(amount: number) {
@@ -71,7 +93,7 @@ export class PlayerService {
 
   removeExpiredBuffs() {
     const stats = this.player$.value;
-    if (!stats || !stats.activeBuffs) return;
+    if (!stats || !stats.activeBuffs) return;    
 
     const now = new Date();
     const stillValid = stats.activeBuffs.filter(buff => {

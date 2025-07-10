@@ -6,6 +6,7 @@ import { InventoryService } from './inventory.service';
 import { PlayerService } from './player.service';
 import { GameSaveService } from './game-save.service';
 import { ToastService } from '@views/toasts/toast.service';
+import { SoundService } from './sound.service';
 
 @Injectable({ providedIn: 'root' })
 export class QuestService {
@@ -16,7 +17,8 @@ export class QuestService {
     private inventoryService: InventoryService,
     private playerService: PlayerService,
     private gameSave: GameSaveService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private soundService: SoundService
   ) { }
 
   setQuests(quests: Quest[]) {
@@ -69,7 +71,7 @@ export class QuestService {
       }
 
       if (q.rewardMoney) {
-        playerService.addMoney(q.rewardMoney); // oder wie auch immer du Geld speicherst
+        playerService.addMoney(q.rewardMoney);
       }
 
       // Folgequests hinzufügen
@@ -111,6 +113,7 @@ export class QuestService {
 
       this.toastService.show(`Neue Ausrüstung freigeschaltet:\n- ${newUnlocks.join('\n- ')}`);
     }
+    this.soundService.playEffect("boss-besiegt-quest-erfuellt");
     this.commit(updated as Quest[]);
   }
 
@@ -118,7 +121,7 @@ export class QuestService {
     const updated = this.quests$.value.map(q =>
       q.id === id && q.status === 'open' ? { ...q, status: 'doing' } : q
     );
-
+    this.soundService.playEffect('quest-annahme');
     this.commit(updated as Quest[]);
   }
 
@@ -137,7 +140,7 @@ export class QuestService {
         failedAttempts
       };
     });
-
+    this.soundService.playEffect('quest-fehlgeschlagen');
     this.commit(updated as Quest[]);
   }
 

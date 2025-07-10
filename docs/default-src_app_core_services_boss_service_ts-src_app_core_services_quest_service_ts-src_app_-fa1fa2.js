@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkteitingquest"] = self["webpackChunkteitingquest"] || []).push([["default-src_app_core_services_battle_service_ts-src_app_core_services_boss_service_ts-src_app-245b7b"],{
+(self["webpackChunkteitingquest"] = self["webpackChunkteitingquest"] || []).push([["default-src_app_core_services_boss_service_ts-src_app_core_services_quest_service_ts-src_app_-fa1fa2"],{
 
 /***/ 7317:
 /*!***********************************************************!*\
@@ -37,7 +37,7 @@ function createQuestPool() {
     rewardMoney: 25,
     // rewardItems:
     // - Zufällige A-Karte (Triple Triad)
-    // - Gold Saucer Eintrittskarte
+    // - Gold Saucer Eintrittskarte (Gold Saucer Quests freischalten)
     //   (Chocobo-Rennen, Dosenschießen, Pokerturnier, Sackwerfen, Fingerdarts, Ringwurf)
     rewardItems: [],
     createdAt: now
@@ -59,7 +59,7 @@ function createQuestPool() {
   }, {
     id: 'mimikry-gogo',
     title: 'Tanz mit dem Teufel',
-    description: `Ein Mann in seltsamen Kleidern versperrt dir wortlos den Weg. Niemand vermag mit Sicherheit zu sagen, wer oder gar was hinter dieser Maskerade steckt... Was hat er nur vor?`,
+    description: `description: Ein Mann in seltsamen Kleidern versperrt dir den Weg. Niemand vermag mit Sicherheit zu sagen, wer oder gar was hinter dieser Maskerade steckt... Was hat er nur vor?`,
     type: 'main',
     status: 'open',
     acquired: true,
@@ -84,6 +84,7 @@ function createQuestPool() {
     rewardMoney: 25,
     // rewardItems:
     // - Zufällige A-Karte (Triple Triad)
+    // - 1x Abspotten (siehe Shop)
     rewardItems: [],
     createdAt: now
   }, {
@@ -133,6 +134,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: true,
+    repeatable: true,
     rewardXp: 175,
     rewardMoney: 10,
     // rewardItems:
@@ -146,10 +148,11 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: true,
+    repeatable: true,
     // rewardXp: 25/50/75 XP (abhängig vom High Score)
     // rewardMoney: 5/10/15 Gil (abhängig vom High Score)
-    rewardXp: 75,
-    rewardMoney: 15,
+    rewardXp: 150,
+    rewardMoney: 30,
     // rewardItems: keine
     rewardItems: [],
     createdAt: now
@@ -174,8 +177,9 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: true,
-    rewardXp: 75,
-    rewardMoney: 15,
+    repeatable: true,
+    rewardXp: 150,
+    rewardMoney: 30,
     // rewardItems: keine
     rewardItems: [],
     createdAt: now
@@ -186,8 +190,9 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: true,
-    rewardXp: 75,
-    rewardMoney: 15,
+    repeatable: true,
+    rewardXp: 150,
+    rewardMoney: 30,
     // rewardItems: keine
     rewardItems: [],
     createdAt: now
@@ -198,8 +203,9 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
-    rewardXp: 75,
-    rewardMoney: 15,
+    repeatable: true,
+    rewardXp: 150,
+    rewardMoney: 30,
     // rewardItems: keine
     rewardItems: [],
     createdAt: now
@@ -210,6 +216,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 75,
     rewardMoney: 5,
     // rewardItems: keine
@@ -222,6 +229,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 150,
     rewardMoney: 10,
     // rewardItems: keine
@@ -234,6 +242,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 125,
     rewardMoney: 10,
     // rewardItems: keine
@@ -246,6 +255,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 125,
     rewardMoney: 10,
     // rewardItems:
@@ -259,6 +269,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 200,
     rewardMoney: 10,
     // rewardItems: keine
@@ -271,6 +282,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 150,
     rewardMoney: 10,
     // rewardItems: keine
@@ -283,6 +295,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 200,
     rewardMoney: 20,
     // rewardItems: keine
@@ -295,6 +308,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 175,
     rewardMoney: 15,
     // rewardItems: keine
@@ -307,6 +321,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 75,
     rewardMoney: 10,
     // rewardItems: keine
@@ -319,6 +334,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 150,
     rewardMoney: 10,
     // rewardItems: keine
@@ -327,10 +343,11 @@ function createQuestPool() {
   }, {
     id: 'iq-test',
     title: 'Weiser und Gelehrter',
-    description: `Stelle dich einem IQ-Test und beantworte entsprechende Fragen. Mindestens 80% der Fragen müssen korrekt sein, damit die Aufgabe als bestanden gilt.`,
+    description: `Stelle dich einem IQ-Test und beantworte entsprechende Fragen. Alle Fragen müssen korrekt beantwortet sein, damit die Aufgabe als bestanden gilt.`,
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 125,
     rewardMoney: 0,
     // rewardItems:
@@ -344,6 +361,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 175,
     rewardMoney: 15,
     // rewardItems: keine
@@ -356,6 +374,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 175,
     rewardMoney: 15,
     // rewardItems: keine
@@ -368,6 +387,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 75,
     rewardMoney: 0,
     // rewardItems:
@@ -381,6 +401,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 100,
     rewardMoney: 5,
     // rewardItems: keine
@@ -393,6 +414,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 150,
     rewardMoney: 10,
     // rewardItems: keine
@@ -405,6 +427,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 75,
     rewardMoney: 5,
     // rewardItems: keine
@@ -417,6 +440,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 150,
     rewardMoney: 15,
     // rewardItems: keine
@@ -429,6 +453,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 200,
     rewardMoney: 15,
     // rewardItems: keine
@@ -441,6 +466,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 125,
     rewardMoney: 10,
     // rewardItems: keine
@@ -453,6 +479,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 175,
     rewardMoney: 10,
     // rewardItems: keine
@@ -465,6 +492,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 125,
     rewardMoney: 0,
     // rewardItems:
@@ -478,6 +506,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 150,
     rewardMoney: 10,
     // rewardItems: keine
@@ -490,6 +519,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 175,
     rewardMoney: 10,
     // rewardItems: keine
@@ -502,6 +532,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 200,
     rewardMoney: 20,
     // rewardItems: keine
@@ -514,6 +545,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 150,
     rewardMoney: 10,
     // rewardItems: keine
@@ -526,6 +558,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 150,
     rewardMoney: 10,
     // rewardItems: keine
@@ -538,6 +571,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 125,
     rewardMoney: 10,
     // rewardItems: keine
@@ -550,6 +584,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 100,
     rewardMoney: 5,
     // rewardItems: keine
@@ -562,6 +597,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 150,
     rewardMoney: 10,
     // rewardItems: keine
@@ -574,6 +610,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 150,
     rewardMoney: 10,
     // rewardItems: keine
@@ -586,6 +623,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 175,
     rewardMoney: 15,
     // rewardItems: keine
@@ -598,6 +636,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 150,
     rewardMoney: 10,
     // rewardItems: keine
@@ -610,6 +649,7 @@ function createQuestPool() {
     type: 'side',
     status: 'open',
     acquired: false,
+    repeatable: true,
     rewardXp: 150,
     rewardMoney: 10,
     // rewardItems: keine
@@ -617,96 +657,6 @@ function createQuestPool() {
     createdAt: now
   }];
 }
-
-/***/ }),
-
-/***/ 4406:
-/*!*************************************************!*\
-  !*** ./src/app/core/services/battle.service.ts ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   BattleService: () => (/* binding */ BattleService)
-/* harmony export */ });
-/* harmony import */ var C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 5797);
-/* harmony import */ var _utils_evaluate_condition__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/evaluate-condition */ 9699);
-/* harmony import */ var _game_save_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./game-save.service */ 2200);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7580);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 5072);
-
-
-
-
-
-
-
-
-let BattleService = /*#__PURE__*/(() => {
-  class BattleService {
-    router;
-    gameSave;
-    currentBattle$ = new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject(null);
-    gameState;
-    constructor(router, gameSave) {
-      this.router = router;
-      this.gameSave = gameSave;
-    }
-    setGameState(state) {
-      this.gameState = state;
-    }
-    startBattle(bossId) {
-      const boss = this.gameState.bosses.find(b => b.id === bossId);
-      if (!boss) return;
-      const unlockedAdvantages = boss.advantages.filter(adv => (0,_utils_evaluate_condition__WEBPACK_IMPORTED_MODULE_1__.evaluateCondition)(adv.condition, this.gameState.player));
-      const battle = {
-        id: `${bossId}-${Date.now()}`,
-        bossId: boss.id,
-        advantagesUnlocked: unlockedAdvantages,
-        startedAt: new Date()
-      };
-      this.currentBattle$.next(battle);
-    }
-    getCurrentBattle() {
-      return this.currentBattle$.asObservable();
-    }
-    finishBattle(won) {
-      var _this = this;
-      return (0,C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-        const battle = _this.currentBattle$.value;
-        if (!battle) return;
-        battle.outcome = won ? 'win' : 'loss';
-        battle.finishedAt = new Date();
-        const boss = _this.gameState.bosses.find(b => b.id === battle.bossId);
-        if (boss) {
-          if (won) {
-            boss.defeated = true;
-          } else {
-            boss.attempts = (boss.attempts || 0) + 1;
-          }
-        }
-        _this.gameState.battles.push(battle);
-        _this.currentBattle$.next(null);
-        yield _this.gameSave.updateCurrentGame();
-        _this.router.navigate(['/game']);
-      })();
-    }
-    getSnapshot() {
-      return this.gameState.battles;
-    }
-    static ɵfac = function BattleService_Factory(t) {
-      return new (t || BattleService)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_game_save_service__WEBPACK_IMPORTED_MODULE_2__.GameSaveService));
-    };
-    static ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
-      token: BattleService,
-      factory: BattleService.ɵfac,
-      providedIn: 'root'
-    });
-  }
-  return BattleService;
-})();
 
 /***/ }),
 
@@ -750,92 +700,6 @@ let BossService = /*#__PURE__*/(() => {
 
 /***/ }),
 
-/***/ 2200:
-/*!****************************************************!*\
-  !*** ./src/app/core/services/game-save.service.ts ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   GameSaveService: () => (/* binding */ GameSaveService)
-/* harmony export */ });
-/* harmony import */ var C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 6196);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7580);
-/* harmony import */ var ngx_indexed_db__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-indexed-db */ 465);
-
-
-
-
-
-let GameSaveService = /*#__PURE__*/(() => {
-  class GameSaveService {
-    db;
-    lastGameStateId;
-    currentSnapshotBuilder;
-    constructor(db) {
-      this.db = db;
-    }
-    registerSnapshotBuilder(builder) {
-      this.currentSnapshotBuilder = builder;
-    }
-    saveNewGame(state) {
-      var _this = this;
-      return (0,C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-        state.updatedAt = new Date();
-        const result = yield (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.firstValueFrom)(_this.db.add('gameStates', state));
-        const id = typeof result === 'number' ? result : result.id;
-        _this.lastGameStateId = id;
-        return {
-          ...state,
-          id
-        };
-      })();
-    }
-    updateCurrentGame() {
-      var _this2 = this;
-      return (0,C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-        if (!_this2.currentSnapshotBuilder) throw new Error('No snapshot builder registered.');
-        const snapshot = _this2.currentSnapshotBuilder();
-        snapshot.updatedAt = new Date();
-        return _this2.updateGame(snapshot);
-      })();
-    }
-    updateGame(state) {
-      var _this3 = this;
-      return (0,C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-        yield (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.firstValueFrom)(_this3.db.update('gameStates', state));
-        return state;
-      })();
-    }
-    loadGame(id) {
-      var _this4 = this;
-      return (0,C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-        _this4.lastGameStateId = id;
-        return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.firstValueFrom)(_this4.db.getByKey('gameStates', id));
-      })();
-    }
-    listGames() {
-      var _this5 = this;
-      return (0,C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-        return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.firstValueFrom)(_this5.db.getAll('gameStates'));
-      })();
-    }
-    static ɵfac = function GameSaveService_Factory(t) {
-      return new (t || GameSaveService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](ngx_indexed_db__WEBPACK_IMPORTED_MODULE_3__.NgxIndexedDBService));
-    };
-    static ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({
-      token: GameSaveService,
-      factory: GameSaveService.ɵfac,
-      providedIn: 'root'
-    });
-  }
-  return GameSaveService;
-})();
-
-/***/ }),
-
 /***/ 1100:
 /*!****************************************************!*\
   !*** ./src/app/core/services/inventory.service.ts ***!
@@ -846,9 +710,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   InventoryService: () => (/* binding */ InventoryService)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 5797);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 5797);
 /* harmony import */ var _views_toasts_toast_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @views/toasts/toast.service */ 8258);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _game_save_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game-save.service */ 2200);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7580);
+
+
 
 
 
@@ -856,127 +723,66 @@ __webpack_require__.r(__webpack_exports__);
 let InventoryService = /*#__PURE__*/(() => {
   class InventoryService {
     toast;
-    items$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__.BehaviorSubject([]);
-    constructor(toast) {
+    gameSave;
+    items$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__.BehaviorSubject([]);
+    constructor(toast, gameSave) {
       this.toast = toast;
+      this.gameSave = gameSave;
     }
     setInventory(items) {
-      this.items$.next([...items]);
+      this.commit(items);
     }
     getInventory() {
       return this.items$.asObservable();
     }
     addItem(item) {
       const current = this.items$.value;
-      this.items$.next([...current, item]);
-      /*if (item.available !== false) {
-        this.toast.show(`📦 Neues Item erhalten: ${item.name}`);
-      }*/
+      const updated = [...current, item];
+      this.commit(updated);
     }
     addItems(items) {
       const current = this.items$.value;
-      this.items$.next([...current, ...items]);
+      const updated = [...current, ...items];
+      this.commit(updated);
+    }
+    removeItem(id) {
+      const current = this.items$.value;
+      const updated = current.filter(item => item.id !== id);
+      this.commit(updated);
+    }
+    updateEquippedStatus(id, equipped) {
+      const current = this.items$.value;
+      const updated = current.map(item => item.id === id ? {
+        ...item,
+        equipped
+      } : item);
+      this.commit(updated);
+    }
+    removeSingleItem(itemToRemove) {
+      const current = this.items$.value;
+      const index = current.findIndex(i => i.id === itemToRemove.id && i.acquiredAt === itemToRemove.acquiredAt);
+      if (index !== -1) {
+        current.splice(index, 1);
+        this.commit([...current]);
+      }
     }
     getSnapshot() {
       return this.items$.value;
     }
+    commit(updated) {
+      this.items$.next(updated);
+      this.gameSave.updateCurrentGame();
+    }
     static ɵfac = function InventoryService_Factory(t) {
-      return new (t || InventoryService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_views_toasts_toast_service__WEBPACK_IMPORTED_MODULE_0__.ToastService));
+      return new (t || InventoryService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_views_toasts_toast_service__WEBPACK_IMPORTED_MODULE_0__.ToastService), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_game_save_service__WEBPACK_IMPORTED_MODULE_1__.GameSaveService));
     };
-    static ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({
+    static ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({
       token: InventoryService,
       factory: InventoryService.ɵfac,
       providedIn: 'root'
     });
   }
   return InventoryService;
-})();
-
-/***/ }),
-
-/***/ 3665:
-/*!*************************************************!*\
-  !*** ./src/app/core/services/player.service.ts ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   PlayerService: () => (/* binding */ PlayerService)
-/* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 5797);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
-
-
-let PlayerService = /*#__PURE__*/(() => {
-  class PlayerService {
-    player$ = new rxjs__WEBPACK_IMPORTED_MODULE_0__.BehaviorSubject(null);
-    setPlayer(stats) {
-      this.player$.next({
-        ...stats
-      });
-    }
-    getPlayer() {
-      return this.player$.asObservable();
-    }
-    updatePlayer(stats) {
-      this.player$.next({
-        ...stats
-      });
-    }
-    heal(amount) {
-      const stats = this.player$.value;
-      if (!stats) return;
-      stats.hp += amount;
-      this.player$.next({
-        ...stats
-      });
-    }
-    pay(amount) {
-      const stats = this.player$.value;
-      if (!stats || stats.money < amount) return false;
-      stats.money -= amount;
-      this.player$.next({
-        ...stats
-      });
-      return true;
-    }
-    addMoney(amount) {
-      const stats = this.player$.value;
-      if (!stats) return;
-      stats.money += amount;
-      this.player$.next({
-        ...stats
-      });
-    }
-    addXp(amount) {
-      const stats = this.player$.value;
-      if (!stats) return;
-      stats.experience += amount;
-      this.player$.next({
-        ...stats
-      });
-    }
-    updateStats(partial) {
-      const current = this.player$.value;
-      this.player$.next({
-        ...current,
-        ...partial
-      });
-    }
-    getSnapshot() {
-      return this.player$.value;
-    }
-    static ɵfac = function PlayerService_Factory(t) {
-      return new (t || PlayerService)();
-    };
-    static ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
-      token: PlayerService,
-      factory: PlayerService.ɵfac,
-      providedIn: 'root'
-    });
-  }
-  return PlayerService;
 })();
 
 /***/ }),
@@ -991,13 +797,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   QuestService: () => (/* binding */ QuestService)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ 5797);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ 5797);
 /* harmony import */ var _components_questlog_quest_pool_factory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @components/questlog/quest-pool.factory */ 7317);
 /* harmony import */ var _inventory_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./inventory.service */ 1100);
 /* harmony import */ var _player_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./player.service */ 3665);
 /* harmony import */ var _game_save_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./game-save.service */ 2200);
 /* harmony import */ var _views_toasts_toast_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @views/toasts/toast.service */ 8258);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _sound_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./sound.service */ 3455);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 7580);
+
+
 
 
 
@@ -1015,13 +824,15 @@ let QuestService = /*#__PURE__*/(() => {
     playerService;
     gameSave;
     toastService;
-    quests$ = new rxjs__WEBPACK_IMPORTED_MODULE_5__.BehaviorSubject([]);
+    soundService;
+    quests$ = new rxjs__WEBPACK_IMPORTED_MODULE_6__.BehaviorSubject([]);
     questPool = (0,_components_questlog_quest_pool_factory__WEBPACK_IMPORTED_MODULE_0__.createQuestPool)();
-    constructor(inventoryService, playerService, gameSave, toastService) {
+    constructor(inventoryService, playerService, gameSave, toastService, soundService) {
       this.inventoryService = inventoryService;
       this.playerService = playerService;
       this.gameSave = gameSave;
       this.toastService = toastService;
+      this.soundService = soundService;
     }
     setQuests(quests) {
       this.quests$.next([...quests]);
@@ -1070,7 +881,7 @@ let QuestService = /*#__PURE__*/(() => {
           playerService.addXp(q.rewardXp);
         }
         if (q.rewardMoney) {
-          playerService.addMoney(q.rewardMoney); // oder wie auch immer du Geld speicherst
+          playerService.addMoney(q.rewardMoney);
         }
         // Folgequests hinzufügen
         if (q.followUpQuestIds?.length) {
@@ -1112,6 +923,7 @@ let QuestService = /*#__PURE__*/(() => {
         this.inventoryService.setInventory(updatedInventory);
         this.toastService.show(`Neue Ausrüstung freigeschaltet:\n- ${newUnlocks.join('\n- ')}`);
       }
+      this.soundService.playEffect("boss-besiegt-quest-erfuellt");
       this.commit(updated);
     }
     startQuest(id) {
@@ -1119,6 +931,7 @@ let QuestService = /*#__PURE__*/(() => {
         ...q,
         status: 'doing'
       } : q);
+      this.soundService.playEffect('quest-annahme');
       this.commit(updated);
     }
     failQuest(id) {
@@ -1133,6 +946,7 @@ let QuestService = /*#__PURE__*/(() => {
           failedAttempts
         };
       });
+      this.soundService.playEffect('quest-fehlgeschlagen');
       this.commit(updated);
     }
     cancelQuest(id) {
@@ -1147,9 +961,9 @@ let QuestService = /*#__PURE__*/(() => {
       this.gameSave.updateCurrentGame();
     }
     static ɵfac = function QuestService_Factory(t) {
-      return new (t || QuestService)(_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](_inventory_service__WEBPACK_IMPORTED_MODULE_1__.InventoryService), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](_player_service__WEBPACK_IMPORTED_MODULE_2__.PlayerService), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](_game_save_service__WEBPACK_IMPORTED_MODULE_3__.GameSaveService), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](_views_toasts_toast_service__WEBPACK_IMPORTED_MODULE_4__.ToastService));
+      return new (t || QuestService)(_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵinject"](_inventory_service__WEBPACK_IMPORTED_MODULE_1__.InventoryService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵinject"](_player_service__WEBPACK_IMPORTED_MODULE_2__.PlayerService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵinject"](_game_save_service__WEBPACK_IMPORTED_MODULE_3__.GameSaveService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵinject"](_views_toasts_toast_service__WEBPACK_IMPORTED_MODULE_4__.ToastService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵinject"](_sound_service__WEBPACK_IMPORTED_MODULE_5__.SoundService));
     };
-    static ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineInjectable"]({
+    static ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineInjectable"]({
       token: QuestService,
       factory: QuestService.ɵfac,
       providedIn: 'root'
@@ -1206,78 +1020,7 @@ let ShopService = /*#__PURE__*/(() => {
   return ShopService;
 })();
 
-/***/ }),
-
-/***/ 9699:
-/*!**************************************************!*\
-  !*** ./src/app/core/utils/evaluate-condition.ts ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   evaluateCondition: () => (/* binding */ evaluateCondition)
-/* harmony export */ });
-function evaluateCondition(conditions, stats) {
-  return conditions.every(cond => {
-    const statVal = stats[cond.stat] ?? 0;
-    switch (cond.operator) {
-      case '>=':
-        return statVal >= cond.value;
-      case '<=':
-        return statVal <= cond.value;
-      case '>':
-        return statVal > cond.value;
-      case '<':
-        return statVal < cond.value;
-      case '==':
-        return statVal === cond.value;
-      case '!=':
-        return statVal !== cond.value;
-      default:
-        return false;
-    }
-  });
-}
-
-/***/ }),
-
-/***/ 6196:
-/*!***************************************************************!*\
-  !*** ./node_modules/rxjs/dist/esm/internal/firstValueFrom.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   firstValueFrom: () => (/* binding */ firstValueFrom)
-/* harmony export */ });
-/* harmony import */ var _util_EmptyError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/EmptyError */ 3335);
-/* harmony import */ var _Subscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Subscriber */ 9285);
-
-
-function firstValueFrom(source, config) {
-  const hasConfig = typeof config === 'object';
-  return new Promise((resolve, reject) => {
-    const subscriber = new _Subscriber__WEBPACK_IMPORTED_MODULE_0__.SafeSubscriber({
-      next: value => {
-        resolve(value);
-        subscriber.unsubscribe();
-      },
-      error: reject,
-      complete: () => {
-        if (hasConfig) {
-          resolve(config.defaultValue);
-        } else {
-          reject(new _util_EmptyError__WEBPACK_IMPORTED_MODULE_1__.EmptyError());
-        }
-      }
-    });
-    source.subscribe(subscriber);
-  });
-}
-
 /***/ })
 
 }]);
-//# sourceMappingURL=default-src_app_core_services_battle_service_ts-src_app_core_services_boss_service_ts-src_app-245b7b.js.map
+//# sourceMappingURL=default-src_app_core_services_boss_service_ts-src_app_core_services_quest_service_ts-src_app_-fa1fa2.js.map

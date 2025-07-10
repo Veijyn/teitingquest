@@ -97,6 +97,16 @@ export function createShopItems(): ShopItem[] {
       stock: 6
     },
     {
+      id: 'jan',
+      name: 'Der Jan',
+      description: 'Manchmal benötigen Dinge einfach länger. Verzögerung ist auch eine Kunst.',
+      icon: 'swap-bag.svg',
+      type: 'consumable',
+      price: 1,
+      acquiredAt: now,
+      stock: 1
+    },
+    {
       id: 'phoenixfeder',
       name: 'Phönixfeder',
       description: 'Man ist einmalig geschützt vor negativem Effekt wenn man KO geht',

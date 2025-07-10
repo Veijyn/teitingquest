@@ -7,6 +7,7 @@ import { evaluateCondition } from '../utils/evaluate-condition';
 import { Router } from '@angular/router';
 import { PlayerService } from './player.service';
 import { GameSaveService } from './game-save.service';
+import { SoundService } from './sound.service';
 
 @Injectable({ providedIn: 'root' })
 export class BattleService {
@@ -16,7 +17,8 @@ export class BattleService {
   constructor(
     private router: Router,
     private playerService: PlayerService,
-    private gameSave: GameSaveService
+    private gameSave: GameSaveService,
+    private soundService: SoundService
   ) { }
 
   setGameState(state: GameState) {
@@ -60,8 +62,10 @@ export class BattleService {
     if (boss) {
       if (won) {
         boss.defeated = true;
-      } else {
+        this.soundService.playEffect("boss-besiegt-quest-erfuellt");
+      } else {                
         boss.attempts = (boss.attempts || 0) + 1;
+        this.soundService.playEffect("hp-null");
       }
     }
 

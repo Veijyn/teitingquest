@@ -93,3 +93,40 @@
     }
   }
 }
+.item-actions {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+
+  .rpg-button.small {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+  }
+
+  .buff-button {
+    background-color: #4e8d63;
+    color: #fff;
+    border: 1px solid #2f5c3c;
+  }
+
+  .consumable-button {
+    background-color: #a9714b;
+    color: #fff;
+    border: 1px solid #774d2d;
+  }
+
+  .equipment-button {
+    background-color: #4a4a7f;
+    color: #fff;
+    border: 1px solid #2e2e59;
+  }
+
+  .buff-button:hover,
+  .consumable-button:hover,
+  .equipment-button:hover {
+    opacity: 0.85;
+    cursor: pointer;
+  }
+}
+

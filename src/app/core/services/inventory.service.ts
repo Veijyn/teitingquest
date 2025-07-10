@@ -44,6 +44,15 @@ export class InventoryService {
   this.commit(updated);
 }
 
+removeSingleItem(itemToRemove: Item) {
+  const current = this.items$.value;
+  const index = current.findIndex(i => i.id === itemToRemove.id && i.acquiredAt === itemToRemove.acquiredAt);
+  if (index !== -1) {
+    current.splice(index, 1);
+    this.commit([...current]);
+  }
+}
+
 
   getSnapshot(): Item[] {
     return this.items$.value;
