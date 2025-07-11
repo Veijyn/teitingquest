@@ -86,7 +86,15 @@ function createQuestPool() {
     // rewardItems:
     // - Zufällige A-Karte (Triple Triad)
     // - 1x Abspotten (siehe Shop)
-    rewardItems: [],
+    rewardItems: [{
+      id: 'abspotten',
+      name: 'Abspotten',
+      description: 'Jemand anderes muss saufen (gilt nicht für das Elixir des Lebens)',
+      icon: 'screaming.svg',
+      type: 'consumable',
+      price: 3,
+      acquiredAt: now
+    }],
     createdAt: now
   }, {
     id: 'yojimbo-bribe',
@@ -164,7 +172,15 @@ function createQuestPool() {
     rewardMoney: 10,
     // rewardItems:
     // - 1x Bobbycar
-    rewardItems: [],
+    rewardItems: [{
+      id: 'bobbycar',
+      name: 'Bobbycar',
+      description: 'Damit wirst du Spaß haben! Achte auf die Straßenverkehrsregeln.',
+      icon: 'chariot.svg',
+      type: 'quest',
+      price: 500,
+      acquiredAt: now
+    }],
     createdAt: now
   }, {
     id: 'can-throwing',
@@ -285,7 +301,15 @@ function createQuestPool() {
     rewardMoney: 10,
     // rewardItems:
     // - 1x Banane
-    rewardItems: [],
+    rewardItems: [{
+      id: 'banana',
+      name: 'Banane',
+      description: 'Lecker Banane, schmeckt immer. Besonders zu Alkohol.',
+      icon: 'banana.svg',
+      type: 'quest',
+      price: 500,
+      acquiredAt: now
+    }],
     createdAt: now
   }, {
     id: 'dreh-lauf',
@@ -377,7 +401,19 @@ function createQuestPool() {
     rewardMoney: 0,
     // rewardItems:
     // - 1x Intelligenztrank (siehe Shop)
-    rewardItems: [],
+    rewardItems: [{
+      id: 'buff-intelligence',
+      name: 'Intelligenztrank (Bufffood)',
+      description: '5min +3 Intelligenz aber -1 Geschicklichkeit (shared Cooldown 5min mit anderem Bufffood)\n(1 Pinnchen Rum)',
+      icon: 'magic-potion.svg',
+      type: 'buff',
+      price: 10,
+      bonusStats: {
+        intelligence: 3,
+        agility: -1
+      },
+      acquiredAt: now
+    }],
     createdAt: now
   }, {
     id: 'flunkyball',
@@ -417,7 +453,18 @@ function createQuestPool() {
     rewardMoney: 0,
     // rewardItems:
     // - 1x Potion (siehe Shop)
-    rewardItems: [],
+    rewardItems: [{
+      id: 'potion',
+      name: 'Potion',
+      description: 'Heilt 10 HP (Cooldown 5min)\n1 Glas Bier',
+      icon: 'health-potion.svg',
+      type: 'buff',
+      price: 5,
+      bonusStats: {
+        hp: 10
+      },
+      acquiredAt: now
+    }],
     createdAt: now
   }, {
     id: 'blumen-pfluecken',
@@ -522,7 +569,15 @@ function createQuestPool() {
     rewardMoney: 0,
     // rewardItems:
     // - 1x Triple Triad Karte "Common" (siehe Shop)
-    rewardItems: [],
+    rewardItems: [{
+      id: 'tt-card-common',
+      name: 'Triple Triad Karte Common',
+      description: '1 Zufallskarte Triple Triad Stufe 2–3',
+      icon: 'card-random.svg',
+      type: 'quest',
+      price: 10,
+      acquiredAt: now
+    }],
     createdAt: now
   }, {
     id: 'kniebeugen',
