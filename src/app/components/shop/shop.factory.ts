@@ -123,7 +123,7 @@ export function createShopItems(): ShopItem[] {
       name: 'Potion',
       description: 'Heilt 10 HP (Cooldown 5min)\n1 Glas Bier',
       icon: 'health-potion.svg',
-      type: 'buff',
+      type: 'consumable',
       price: 5,
       bonusStats: { hp: 10 },
       acquiredAt: now,
