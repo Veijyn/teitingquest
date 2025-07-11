@@ -88,7 +88,7 @@ export class InventoryComponent implements OnInit {
     });
 
     // Buff-Item mit Dauer
-    if (item.type === 'buff') {
+    if (item.type === 'buff' && !isPotion) {
       this.playerService.addBuff(item, durationMs);
 
       // Cooldown-Zeit setzen
@@ -108,7 +108,7 @@ export class InventoryComponent implements OnInit {
     }
 
     // Consumable → direkte Stats-Änderung
-    if (item.type === 'consumable') {
+    if (item.type === 'consumable' || isPotion) {
       const statsToApply: Partial<NumericStats> = {};
 
       for (const [key, val] of Object.entries(item.bonusStats ?? {})) {

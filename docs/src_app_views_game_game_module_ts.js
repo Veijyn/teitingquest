@@ -443,7 +443,7 @@ let InventoryComponent = /*#__PURE__*/(() => {
         return `${this.statIcon(key)} +${amount}`;
       });
       // Buff-Item mit Dauer
-      if (item.type === 'buff') {
+      if (item.type === 'buff' && !isPotion) {
         this.playerService.addBuff(item, durationMs);
         // Cooldown-Zeit setzen
         if (isBuffFood) {
@@ -464,7 +464,7 @@ let InventoryComponent = /*#__PURE__*/(() => {
         this.toastService.show(`Buff aktiv: ${buffs.join(', ')}`);
       }
       // Consumable → direkte Stats-Änderung
-      if (item.type === 'consumable') {
+      if (item.type === 'consumable' || isPotion) {
         const statsToApply = {};
         for (const [key, val] of Object.entries(item.bonusStats ?? {})) {
           if (typeof val === 'number' && key) {
