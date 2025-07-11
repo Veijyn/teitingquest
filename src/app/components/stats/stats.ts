@@ -167,7 +167,7 @@ export class StatsComponent implements OnInit {
     const labels: Record<string, string> = {
       hp: 'HP',
       strength: 'Stärke',
-      agility: 'Agilität',
+      agility: 'Geschicklichkeit',
       intelligence: 'Intelligenz',
       money: 'Gil',
       level: 'Level',

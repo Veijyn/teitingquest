@@ -46,6 +46,9 @@ export class BattleService {
   this.currentBattle$.next(battle);
 }
 
+getGameState(): GameState {
+  return this.gameState;
+}
 
   getCurrentBattle() {
     return this.currentBattle$.asObservable();
@@ -62,7 +65,7 @@ export class BattleService {
     if (boss) {
       if (won) {
         boss.defeated = true;
-        this.soundService.playEffect("boss-besiegt-quest-erfuellt");
+        //this.soundService.playEffect("boss-besiegt-quest-erfuellt");
       } else {                
         boss.attempts = (boss.attempts || 0) + 1;
         this.soundService.playEffect("hp-null");

@@ -44,8 +44,41 @@ export class QuestService {
   addQuestById(id: string): boolean {
     const template = this.questPool.find(q => q.id === id);
     if (!template) return false;
-    this.addQuest({ ...template });
+
+    this.addQuest({ ...template, acquired: true });
     return true;
+  }
+
+  unlockQuestById(id: string): boolean {
+    const updated = this.quests$.value.map(q => {
+      if (q.id !== id || q.acquired) return q;
+
+      return {
+        ...q,
+        acquired: true,
+        createdAt: new Date()
+      };
+    });
+
+    const wasUpdated = updated.some(q => q.id === id && q.acquired);
+    if (wasUpdated) {
+      this.commit(updated);
+    }
+
+    return wasUpdated;
+  }
+
+  markQuestAcquired(id: string) {
+    const updated = this.quests$.value.map(q =>
+      q.id === id
+        ? { ...q, acquired: true, createdAt: q.createdAt ?? new Date() }
+        : q
+    );
+    this.commit(updated);
+  }
+
+  getFromPoolById(id: string) {
+    return this.questPool.find(q => q.id === id);
   }
 
   getSnapshot(): Quest[] {

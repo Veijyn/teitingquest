@@ -17,7 +17,8 @@ function createBosses() {
     name: 'Vermummter Fremder',
     title: 'Der Gestaltlose',
     description: 'Es ist schon seltsam wie beweglich er in dieser Kleidung ist.',
-    image: 'mimic.png',
+    image: 'ninja-head.svg',
+    questId: 'mimikry-gogo',
     stats: {
       hp: 100,
       strength: 10,
@@ -60,7 +61,8 @@ function createBosses() {
     name: 'Krieger des Lichts',
     title: 'Das Licht vergangener Zeiten',
     description: 'Ein mythischer Krieger, der Patrick auf die Probe seiner geistigen und körperlichen Fähigkeiten stellt.',
-    image: 'warrior.png',
+    image: 'swordwoman.svg',
+    questId: 'memory-warrior-light',
     stats: {
       hp: 120,
       strength: 22,
@@ -121,8 +123,9 @@ function createBosses() {
     id: 'boss-music',
     name: 'Siren',
     title: 'Die Tödliche Melodie',
-    description: 'Du nimmst einen wundervollen Klang in weiter Ferne wahr. Als du näher herantrittst ertönt eine Stimme in deinem Kopf. Die Stimme ersucht dich eine Beschwörungsformel aufzusagen, damit du ihn aus seiner Gefangenschaft befreien kannst. Du sprichst die Worte aus und ein wundersames Wesen mit Harfe und Flügeln manifestiert sich vor dir. Jedoch hat dieses Wesen seine wahren Absichten verschleiert, ehe du dich versiehst bist du in seinen Bann gezogen worden.',
-    image: 'siren.png',
+    description: 'Ein verführerisches Wesen, das tödliche Musikrätsel stellt.',
+    image: 'lyre.svg',
+    questId: 'music-siren',
     stats: {
       hp: 100,
       strength: 13,
@@ -166,7 +169,8 @@ function createBosses() {
     name: 'Kaktor',
     title: 'Der rasende Fragenwerfer',
     description: 'Ein hyperaktiver Kaktor stellt dir Fragen, die du besser beantworten solltest.',
-    image: 'kaktor.png',
+    image: 'cactus.svg',
+    questId: 'ff-quiz-kaktor',
     stats: {
       hp: 150,
       strength: 12,
@@ -180,27 +184,20 @@ function createBosses() {
       id: 'attr-check',
       name: 'Attributsprüfung',
       description: 'Vor dem Kampf erfolgt ein Check auf Stärke, Intelligenz und Geschicklichkeit',
-      condition: [{
-        stat: 'strength',
-        operator: '>=',
-        value: 10
-      }, {
-        stat: 'agility',
-        operator: '>=',
-        value: 10
-      }, {
-        stat: 'intelligence',
-        operator: '>=',
-        value: 10
-      }]
+      condition: [
+        /*{ stat: 'strength', operator: '>=', value: 10 },
+        { stat: 'agility', operator: '>=', value: 10 },
+        { stat: 'intelligence', operator: '>=', value: 10 }*/
+      ]
     }],
     defeated: false
   }, {
     id: 'boss-yojimbo',
     name: 'Yojimbo',
     title: 'Der Bestechliche Krieger',
-    description: 'Ein legendärer Samurai, der eher auf Gil als auf Ehre hört.',
-    image: 'yojimbo.png',
+    description: 'Ein legendärer Samurai, dessen Loyalität zweifelhaft ist.',
+    image: 'samurai-helmet.svg',
+    questId: 'yojimbo-bribe',
     stats: {
       hp: 200,
       strength: 16,
@@ -212,8 +209,8 @@ function createBosses() {
     },
     advantages: [{
       id: 'has-lamp',
-      name: 'Wunderlampe notwendig',
-      description: 'Wenn die Wunderlampe nicht im Besitz ist, fallen HP auf 0',
+      name: 'Dinge',
+      description: 'Dinge sind sein Wunsch.',
       condition: [{
         stat: 'hp',
         operator: '>=',
@@ -226,7 +223,8 @@ function createBosses() {
     name: 'Seymour',
     title: 'Der Flüssige Tod',
     description: 'Ein unberechenbarer Alchemist – Details folgen.',
-    image: 'seymour.png',
+    image: 'fizzing-flask.svg',
+    questId: 'alchemy-seymour',
     stats: {
       hp: 180,
       strength: 12,
@@ -238,178 +236,6 @@ function createBosses() {
     },
     advantages: [],
     defeated: false
-  }];
-}
-
-/***/ }),
-
-/***/ 9232:
-/*!***********************************************************!*\
-  !*** ./src/app/components/inventory/inventory.factory.ts ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   createEquipmentItems: () => (/* binding */ createEquipmentItems)
-/* harmony export */ });
-function createEquipmentItems() {
-  const now = new Date();
-  return [{
-    id: 'belt',
-    slot: 'belt',
-    name: 'Starker Gürtel',
-    description: 'Ein stabiler Gürtel, der Haltung und Magie stärkt.',
-    icon: 'belt.svg',
-    type: 'equipment',
-    bonusStats: {
-      hp: 1,
-      agility: 1,
-      intelligence: 1
-    },
-    acquiredAt: now,
-    questsRequired: 1,
-    available: false
-  }, {
-    id: 'helmet',
-    name: 'Mystischer Helm',
-    slot: 'head',
-    description: 'Eine verstärkte Kopfbedeckung für mutige Abenteurer.',
-    icon: 'helm.svg',
-    type: 'equipment',
-    bonusStats: {
-      hp: 1,
-      intelligence: 2
-    },
-    acquiredAt: now,
-    questsRequired: 5,
-    available: false
-  }, {
-    id: 'backmount',
-    slot: 'back',
-    name: 'Waffenhalterung',
-    description: 'Ermöglicht dir, deine Waffen noch schneller zu ziehen.',
-    icon: 'scheide.svg',
-    type: 'equipment',
-    bonusStats: {
-      hp: 2,
-      intelligence: 1
-    },
-    acquiredAt: now,
-    questsRequired: 10,
-    available: false
-  }, {
-    id: 'gloves',
-    slot: 'hands',
-    name: 'Kampfhandschuhe',
-    description: 'Stärken den Griff und den Schlag im Kampf.',
-    icon: 'gloves.svg',
-    type: 'equipment',
-    bonusStats: {
-      hp: 2,
-      strength: 1
-    },
-    acquiredAt: now,
-    questsRequired: 16,
-    available: false
-  }, {
-    id: 'pants',
-    slot: 'legs',
-    name: 'Bequeme Hose',
-    description: 'Bietet Beweglichkeit und etwas Schutz.',
-    icon: 'beine.svg',
-    type: 'equipment',
-    bonusStats: {
-      hp: 5,
-      agility: 1
-    },
-    acquiredAt: now,
-    questsRequired: 23,
-    available: false
-  }, {
-    id: 'chest',
-    slot: 'chest',
-    name: 'Brustpanzer',
-    description: 'Robuste Brustplatte gegen jegliche Gefahren.',
-    icon: 'brust.svg',
-    type: 'equipment',
-    bonusStats: {
-      hp: 5,
-      strength: 1
-    },
-    acquiredAt: now,
-    questsRequired: 31,
-    available: false
-  }, {
-    id: 'wrist',
-    slot: 'wrist',
-    name: 'Gelenkschützer',
-    description: 'Im Shop erhältlich – schützt und stärkt die Gelenke.',
-    icon: 'wrist.svg',
-    type: 'equipment',
-    bonusStats: {
-      hp: 2,
-      strength: 1
-    },
-    price: 40,
-    acquiredAt: now,
-    available: false
-  }, {
-    id: 'shoulder',
-    slot: 'shoulders',
-    name: 'Schulterplatte',
-    description: 'Kommt aus einer geheimnisvollen Lootbox.',
-    icon: 'schultern.svg',
-    type: 'equipment',
-    bonusStats: {
-      hp: 3,
-      agility: 1,
-      intelligence: 1
-    },
-    acquiredAt: now,
-    available: false
-  }, {
-    id: 'boots',
-    slot: 'feet',
-    name: 'Verzauberte Stiefel',
-    description: 'Ein Schatz aus einem alten Haus – macht dich schneller.',
-    icon: 'boots.svg',
-    type: 'equipment',
-    bonusStats: {
-      hp: 2,
-      strength: 1,
-      agility: 2
-    },
-    acquiredAt: now,
-    available: false
-  }, {
-    id: 'bastardsword',
-    slot: 'weapon',
-    name: 'Bastardschwert',
-    description: 'Erhalten durch Sieg gegen alle Triple-Triad-Spieler.',
-    icon: 'schwert.svg',
-    type: 'equipment',
-    bonusStats: {
-      strength: 3,
-      agility: 2,
-      intelligence: 2
-    },
-    acquiredAt: now,
-    available: false
-  }, {
-    id: 'gunblade',
-    slot: 'weapon',
-    name: 'Gunblade',
-    description: 'Ultimative Waffe – nur durch das Sammeln aller Rüstungsteile.',
-    icon: 'schwert.svg',
-    type: 'equipment',
-    bonusStats: {
-      strength: 7,
-      agility: 5,
-      intelligence: 5
-    },
-    acquiredAt: now,
-    available: false
   }];
 }
 
@@ -431,7 +257,7 @@ function createShopItems() {
     id: 'abspotten',
     name: 'Abspotten',
     description: 'Jemand anderes muss saufen (gilt nicht für das Elixir des Lebens)',
-    icon: 'swap-bag.svg',
+    icon: 'screaming.svg',
     type: 'consumable',
     price: 3,
     acquiredAt: now,
@@ -440,8 +266,13 @@ function createShopItems() {
     id: 'armreife',
     name: 'Armreife',
     description: 'Ausrüstungsgegenstand (nur im Shop erhältlich)',
-    icon: 'swap-bag.svg',
+    slot: 'wrist',
+    icon: 'wrist.svg',
     type: 'equipment',
+    bonusStats: {
+      hp: 2,
+      strength: 1
+    },
     price: 40,
     acquiredAt: now,
     stock: 1
@@ -449,7 +280,7 @@ function createShopItems() {
     id: 'verlorene-seelen',
     name: 'Das Erwachen der Verlorenen Seelen',
     description: 'Man erzählt sich, dass die verlorenen Seelen einen im Schlaf heimsuchen',
-    icon: 'swap-bag.svg',
+    icon: 'book-cover.svg',
     type: 'quest',
     price: 20,
     acquiredAt: now,
@@ -458,7 +289,7 @@ function createShopItems() {
     id: 'vier-kristalle',
     name: 'Die Legende der vier Kristalle',
     description: 'Legenden zufolge handelt es sich hierbei um eine Legende',
-    icon: 'swap-bag.svg',
+    icon: 'book-cover2.svg',
     type: 'quest',
     price: 20,
     acquiredAt: now,
@@ -467,7 +298,7 @@ function createShopItems() {
     id: 'paradigmenwechsel',
     name: 'Ein Paradigmenwechsel des Schicksals',
     description: 'Kannst du dir eine Welt vorstellen, wo alles umso schwieriger wird je stärker man ist?',
-    icon: 'swap-bag.svg',
+    icon: 'book-pile.svg',
     type: 'quest',
     price: 20,
     acquiredAt: now,
@@ -476,7 +307,7 @@ function createShopItems() {
     id: 'buff-agility',
     name: 'Geschicklichkeitstrank (Bufffood)',
     description: '5min +3 Geschicklichkeit aber -1 Stärke (shared Cooldown 5min mit anderem Bufffood)\n(1 Pinnchen Jägermeister)',
-    icon: 'swap-bag.svg',
+    icon: 'potion-of-madness.svg',
     type: 'buff',
     price: 10,
     bonusStats: {
@@ -489,7 +320,7 @@ function createShopItems() {
     id: 'haargel',
     name: 'Haargel',
     description: 'Für stattliche Abenteurer',
-    icon: 'swap-bag.svg',
+    icon: 'comb.svg',
     type: 'consumable',
     price: 10,
     acquiredAt: now,
@@ -498,7 +329,7 @@ function createShopItems() {
     id: 'buff-intelligence',
     name: 'Intelligenztrank (Bufffood)',
     description: '5min +3 Intelligenz aber -1 Geschicklichkeit (shared Cooldown 5min mit anderem Bufffood)\n(1 Pinnchen Rum)',
-    icon: 'swap-bag.svg',
+    icon: 'magic-potion.svg',
     type: 'buff',
     price: 10,
     bonusStats: {
@@ -511,17 +342,17 @@ function createShopItems() {
     id: 'lootbox-w6',
     name: 'Lootbox W6 (6-seitiger Würfel)',
     description: 'Solange verfügbar bis jede Augenzahl einmal gewürfelt wurde.\n(Bei bereits gewürfelter Augenzahl = 5 Gil zurück)\nBelohnung: 3 Gil pro Auge + ggf. Bonus bei 6',
-    icon: 'swap-bag.svg',
+    icon: 'open-treasure-chest.svg',
     type: 'consumable',
     price: 10,
     acquiredAt: now,
-    stock: 6
+    stock: 99
   }, {
     id: 'jan',
     name: 'Der Jan',
     description: 'Manchmal benötigen Dinge einfach länger. Verzögerung ist auch eine Kunst.',
-    icon: 'swap-bag.svg',
-    type: 'consumable',
+    icon: 'clockwork.svg',
+    type: 'quest',
     price: 1,
     acquiredAt: now,
     stock: 1
@@ -529,7 +360,7 @@ function createShopItems() {
     id: 'phoenixfeder',
     name: 'Phönixfeder',
     description: 'Man ist einmalig geschützt vor negativem Effekt wenn man KO geht',
-    icon: 'swap-bag.svg',
+    icon: 'condor-emblem.svg',
     type: 'consumable',
     price: 80,
     acquiredAt: now,
@@ -539,7 +370,7 @@ function createShopItems() {
     name: 'Potion',
     description: 'Heilt 10 HP (Cooldown 5min)\n1 Glas Bier',
     icon: 'health-potion.svg',
-    type: 'consumable',
+    type: 'buff',
     price: 5,
     bonusStats: {
       hp: 10
@@ -550,7 +381,7 @@ function createShopItems() {
     id: 'midgar-schatten',
     name: 'Schatten über Midgar',
     description: 'Dieser sogenannte Schatten soll angeblich nichts weiter sein als eine riesige Smogwolke',
-    icon: 'swap-bag.svg',
+    icon: 'bookmarklet.svg',
     type: 'quest',
     price: 20,
     acquiredAt: now,
@@ -559,7 +390,7 @@ function createShopItems() {
     id: 'rulebook-mtg',
     name: 'Spielanleitung: Magic the Gathering',
     description: 'Für magische Regelnerds',
-    icon: 'swap-bag.svg',
+    icon: 'card-2-hearts.svg',
     type: 'quest',
     price: 2,
     acquiredAt: now,
@@ -568,7 +399,7 @@ function createShopItems() {
     id: 'rulebook-tripletriad',
     name: 'Spielanleitung: Triple Triad',
     description: 'Für fantasievolle Regelnerds',
-    icon: 'swap-bag.svg',
+    icon: 'card-ace-diamonds.svg',
     type: 'quest',
     price: 2,
     acquiredAt: now,
@@ -577,7 +408,7 @@ function createShopItems() {
     id: 'buff-strength',
     name: 'Stärketrank (Bufffood)',
     description: '5min +3 Stärke aber -1 Intelligenz (shared Cooldown 5min mit anderem Bufffood)\n(1 Pinnchen Vodka)',
-    icon: 'swap-bag.svg',
+    icon: 'standing-potion.svg',
     type: 'buff',
     price: 10,
     bonusStats: {
@@ -590,7 +421,7 @@ function createShopItems() {
     id: 'tidus',
     name: 'Tidus und sein Abenteuer',
     description: 'Da gab es mal einen jungen Mann namens Tidus… oder sprach man seinen Namen "Taidus" aus?',
-    icon: 'swap-bag.svg',
+    icon: 'bookmark.svg',
     type: 'quest',
     price: 20,
     acquiredAt: now,
@@ -599,7 +430,7 @@ function createShopItems() {
     id: 'tt-card-common',
     name: 'Triple Triad Karte Common',
     description: '1 Zufallskarte Triple Triad Stufe 2–3',
-    icon: 'swap-bag.svg',
+    icon: 'card-random.svg',
     type: 'quest',
     price: 10,
     acquiredAt: now,
@@ -608,7 +439,7 @@ function createShopItems() {
     id: 'tt-card-uncommon',
     name: 'Triple Triad Karte Uncommon',
     description: '1 Zufallskarte Triple Triad Stufe 4–6',
-    icon: 'swap-bag.svg',
+    icon: 'card-random.svg',
     type: 'quest',
     price: 20,
     acquiredAt: now,
@@ -617,7 +448,7 @@ function createShopItems() {
     id: 'tt-card-rare',
     name: 'Triple Triad Karte Rare',
     description: '1 Zufallskarte Triple Triad Stufe 7–9',
-    icon: 'swap-bag.svg',
+    icon: 'card-random.svg',
     type: 'quest',
     price: 30,
     acquiredAt: now,
@@ -626,7 +457,7 @@ function createShopItems() {
     id: 'wunderlampe',
     name: 'Wunderlampe',
     description: 'Eine schäbige alte Lampe',
-    icon: 'swap-bag.svg',
+    icon: 'magic-lamp.svg',
     type: 'quest',
     price: 80,
     acquiredAt: now,
@@ -635,7 +466,7 @@ function createShopItems() {
     id: 'wunschlied',
     name: 'Wunschlied',
     description: 'Füge ein Lied deiner Wahl der allgemeinen Playlist hinzu',
-    icon: 'swap-bag.svg',
+    icon: 'love-song.svg',
     type: 'consumable',
     price: 1,
     acquiredAt: now,
@@ -644,7 +475,7 @@ function createShopItems() {
     id: 'zidane',
     name: 'Zidane auf seiner Reise',
     description: 'Sein Kopfstoß während einer Weltmeisterschaft soll ohne gleichen sein',
-    icon: 'swap-bag.svg',
+    icon: 'white-book.svg',
     type: 'quest',
     price: 20,
     acquiredAt: now,
@@ -668,7 +499,7 @@ function createNewGameState(name) {
   const now = new Date();
   const player = {
     hp: 20,
-    money: 500,
+    money: 0,
     level: 1,
     experience: 0,
     strength: 1,

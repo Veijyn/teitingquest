@@ -1,34 +1,61 @@
-<div class="battle-container" *ngIf="battle">
-  <h2 class="boss-name">Kampf gegen: {{ battle.bossId }}</h2>
+<div class="battle-container" *ngIf="battle && boss">
+  <div class="boss-header">
+    <img *ngIf="boss.image" [src]="'assets/icons/' + boss.image" alt="{{ boss.name }}" class="boss-icon" />
+    <h2 class="boss-name">Kampf gegen: {{ boss.name }}</h2>
+  </div>
+
   <p class="timestamp">Beginn: {{ battle.startedAt | date: 'shortTime' }}</p>
 
   <div class="advantages" *ngIf="battle.advantagesUnlocked.length > 0">
-    <h3>Deine Vorteile</h3>
+    <h3>Kampfeffekte</h3>
     <ul>
       <li *ngFor="let adv of battle.advantagesUnlocked">
         <strong>{{ adv.name }}</strong><br />
-        <span>{{ adv.description }}</span>
+        <span>{{ adv.description }}</span><br />
+        <small class="condition-chip" *ngFor="let cond of adv.condition">
+          {{ formatCondition(cond.stat, cond.operator, cond.value) }}
+        </small>
       </li>
     </ul>
   </div>
-<div class="hp-manipulation" *ngIf="playerHp !== null">
-  <h3>HP: {{ playerHp }} </h3>
 
-  <label>
-    <input type="number" [(ngModel)]="hpInput" placeholder="z. B. 10 oder 25" />
-  </label>
+  <div class="player-stats" *ngIf="playerStats">
+    <h3>Deine Werte</h3>
+    <ul>
+      <li>Level: {{ playerStats.level }}</li>
+      <li>HP: {{ playerStats.hp }}</li>
+      <li>Stärke: {{ playerStats.strength }}</li>
+      <li>Geschicklichkeit: {{ playerStats.agility }}</li>
+      <li>Intelligenz: {{ playerStats.intelligence }}</li>
+      <li>Gil: {{ playerStats.money }}</li>
+    </ul>
+  </div>
 
-  <div class="buttons">
-    <button class="rpg-button" (click)="adjustHp(false)">HP abziehen</button>
-    <button class="rpg-button" (click)="adjustHp(true)">HP % abziehen</button>
+  <div class="hp-manipulation" *ngIf="playerHp !== null">
+  <h3>HP anpassen</h3>
+  <div class="hp-input-row">
+    <input type="number" [(ngModel)]="hpInput" placeholder="10" min="1" />
+    <button class="rpg-button action" (click)="adjustHp(false)">Abziehen</button>
   </div>
 </div>
-  <div class="battle-actions">
-    <button class="rpg-button win" (click)="finish(true)">Sieg</button>
-    <button class="rpg-button lose" (click)="finish(false)">Niederlage</button>
+
+<div class="battle-actions-row">
+  <!-- Sieg-Button mit Toggle -->
+  <div class="confirmable-button">
+    <button class="rpg-button win" (click)="toggleConfirmWin()">Sieg</button>
+    <div class="confirm-collapse" *ngIf="confirmWinVisible">
+      <p>Sieg wirklich bestätigen?</p>
+      <button class="rpg-button confirm" (click)="finish(true)">Ja, sicher!</button>
+    </div>
   </div>
+
+  <!-- Niederlage direkt -->
+  <button class="rpg-button lose" (click)="finish(false)">Niederlage</button>
 </div>
 
+<div class="back-button">
+  <button class="rpg-button back" (click)="goBack()">Zurück</button>
+</div>
 <div *ngIf="!battle" class="no-battle">
   <p>Kein aktiver Kampf.</p>
 </div>

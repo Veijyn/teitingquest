@@ -12,7 +12,7 @@
 -->
 <div class="questlog">
   <h2>Questlog</h2>
-
+  <p class="quest-stats">Abgeschlossene Quests: {{ completedQuestsCount }}</p>
   <div class="filters">
     <button [class.active]="filter === 'main'" (click)="toggleFilter('main')">Hauptquests</button>
     <button [class.active]="filter === 'side'" (click)="toggleFilter('side')">Nebenquests</button>
@@ -40,13 +40,13 @@
 
       <div *ngIf="quest.failedAttempts">Fehlversuche: {{ quest.failedAttempts }}</div>
 
-      <div class="actions" *ngIf="quest.type === 'side' && quest.status === 'open'">
+      <div class="actions" *ngIf="isInteractiveQuest(quest) && quest.status === 'open'">
         <button class="rpg-button" (click)="startQuest(quest.id)">Quest starten</button>
       </div>
 
-      <div class="actions" *ngIf="quest.status === 'doing'">
+      <div class="actions" *ngIf="isInteractiveQuest(quest) && quest.status === 'doing'">
         <button class="rpg-button" (click)="completeQuest(quest.id)">Erledigt</button>
-<button class="rpg-button" (click)="failQuest(quest.id)">Fehlgeschlagen</button>
+        <button class="rpg-button" (click)="failQuest(quest.id)">Fehlgeschlagen</button>
       </div>
     </li>
   </ul>

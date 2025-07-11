@@ -11,6 +11,7 @@ export function createQuestPool(): Quest[] {
       type: 'main',
       status: 'open',
       acquired: true,
+      repeatable: true,
       rewardXp: 25,
       rewardMoney: 5,
       // rewardItems:
@@ -53,7 +54,7 @@ export function createQuestPool(): Quest[] {
     {
       id: 'mimikry-gogo',
       title: 'Tanz mit dem Teufel',
-      description: `description: Ein Mann in seltsamen Kleidern versperrt dir den Weg. Niemand vermag mit Sicherheit zu sagen, wer oder gar was hinter dieser Maskerade steckt... Was hat er nur vor?`,
+      description: `Ein Mann in seltsamen Kleidern versperrt dir den Weg. Niemand vermag mit Sicherheit zu sagen, wer oder gar was hinter dieser Maskerade steckt... Was hat er nur vor?`,
       type: 'main',
       status: 'open',
       acquired: true,
@@ -67,7 +68,7 @@ export function createQuestPool(): Quest[] {
       followUpQuestIds: ['magic-roman'], // optionaler Verweis
       createdAt: now
     },
-        {
+    {
       id: 'music-siren',
       title: 'Sirens Jukebox des Todes',
       description: `Du nimmst einen wundervollen Klang in weiter Ferne wahr. Als du näher herantrittst ertönt eine Stimme in deinem Kopf. Die Stimme ersucht dich eine Beschwörungsformel aufzusagen, damit du ihn aus seiner Gefangenschaft befreien kannst. Du sprichst die Worte aus und ein wundersames Wesen mit Harfe und Flügeln manifestiert sich vor dir. Jedoch hat dieses Wesen seine wahren Absichten verschleiert, ehe du dich versiehst bist du in seinen Bann gezogen worden.`,
@@ -109,7 +110,28 @@ export function createQuestPool(): Quest[] {
       // rewardItems:
       // - Zufällige A-Karte (Triple Triad)
       // - Wahl zwischen 1x Potion / Stärke- / Geschicklichkeits- / Intelligenztrank
-      rewardItems: [],
+      rewardItems: [
+        {
+          id: 'buff-strength',
+          name: 'Stärketrank (Bufffood)',
+          description: '5min +3 Stärke aber -1 Intelligenz (shared Cooldown 5min mit anderem Bufffood)\n(1 Pinnchen Vodka)',
+          icon: 'standing-potion.svg',
+          type: 'buff',
+          price: 10,
+          bonusStats: { strength: 3, intelligence: -1 },
+          acquiredAt: now
+        },
+        {
+          id: 'buff-agility',
+          name: 'Geschicklichkeitstrank (Bufffood)',
+          description: '5min +3 Geschicklichkeit aber -1 Stärke (shared Cooldown 5min mit anderem Bufffood)\n(1 Pinnchen Jägermeister)',
+          icon: 'potion-of-madness.svg',
+          type: 'buff',
+          price: 10,
+          bonusStats: { agility: 3, strength: -1 },
+          acquiredAt: now,
+        }
+      ],
       createdAt: now
     },
     {
@@ -125,13 +147,13 @@ export function createQuestPool(): Quest[] {
       rewardItems: [],
       createdAt: now
     },
-      {
+    {
       id: 'chocobo-race',
       title: 'Das Rennen der dunklen Feder',
       description: `Gold Saucer Event (Für weitere Informationen siehe dir die separaten Spielregeln an)`,
       type: 'side',
       status: 'open',
-      acquired: true,
+      acquired: false,
       repeatable: true,
       rewardXp: 175,
       rewardMoney: 10,
@@ -146,7 +168,7 @@ export function createQuestPool(): Quest[] {
       description: `Gold Saucer Event (Für weitere Informationen siehe dir die separaten Spielregeln an)`,
       type: 'side',
       status: 'open',
-      acquired: true,
+      acquired: false,
       repeatable: true,
       // rewardXp: 25/50/75 XP (abhängig vom High Score)
       // rewardMoney: 5/10/15 Gil (abhängig vom High Score)
@@ -162,7 +184,7 @@ export function createQuestPool(): Quest[] {
       description: `Gold Saucer Event (Für weitere Informationen siehe dir die separaten Spielregeln an)`,
       type: 'side',
       status: 'open',
-      acquired: true,
+      acquired: false,
       // rewardXp: 200 XP (max)
       // rewardMoney: 30 Gil (max)
       rewardXp: 200,
@@ -177,7 +199,7 @@ export function createQuestPool(): Quest[] {
       description: `Gold Saucer Event (Für weitere Informationen siehe dir die separaten Spielregeln an)`,
       type: 'side',
       status: 'open',
-      acquired: true,
+      acquired: false,
       repeatable: true,
       rewardXp: 150,
       rewardMoney: 30,
@@ -191,7 +213,7 @@ export function createQuestPool(): Quest[] {
       description: `Gold Saucer Event (Für weitere Informationen siehe dir die separaten Spielregeln an)`,
       type: 'side',
       status: 'open',
-      acquired: true,
+      acquired: false,
       repeatable: true,
       rewardXp: 150,
       rewardMoney: 30,
@@ -312,7 +334,7 @@ export function createQuestPool(): Quest[] {
       rewardItems: [],
       createdAt: now
     },
-        {
+    {
       id: 'boccia',
       title: 'Rock and Roll',
       description: `Wähle einen Mitstreiter und zwei Gegner aus. Das Team, wessen Ball am Ende näher an der Markierung liegt gewinnt eine Partie. Gewinne 2 von 3 Partien um einen Sieg zu erringen.`,
@@ -412,7 +434,7 @@ export function createQuestPool(): Quest[] {
       rewardItems: [],
       createdAt: now
     },
-        {
+    {
       id: 'blumen-pfluecken',
       title: 'Vier Blumen für ein Hallelujah',
       description: `Entdecke den Baumkuschler in dir! Finde und pflücke 4 verschiedene Blumenarten.`,
@@ -510,7 +532,7 @@ export function createQuestPool(): Quest[] {
       rewardItems: [],
       createdAt: now
     },
-        {
+    {
       id: 'triple-triad',
       title: 'Das Herz der Karten',
       description: `Gewinne dein erstes Triple Triad Spiel.`,
@@ -609,7 +631,7 @@ export function createQuestPool(): Quest[] {
       rewardItems: [],
       createdAt: now
     },
-        {
+    {
       id: 'karaoke',
       title: 'Karaoke Abend',
       description: `Singe dein Lieblingslied.`,

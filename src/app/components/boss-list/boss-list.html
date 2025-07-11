@@ -2,15 +2,15 @@
   <h2>Bossübersicht</h2>
 
   <div *ngFor="let boss of bosses" class="boss-card" [class.defeated]="boss.defeated">
-    <img [src]="'assets/bosses/' + boss.image" alt="{{ boss.name }}" *ngIf="boss.image" />
+    <img [src]="'assets/icons/' + boss.image" alt="{{ boss.name }}" *ngIf="boss.image" />
     <div class="boss-details">
-      <h3>{{ boss.name }} <span *ngIf="boss.title">({{ boss.title }})</span></h3>
+      <h3>{{ boss.name }}</h3>
       <p class="description">{{ boss.description }}</p>
 
       <p>Status: <strong>{{ boss.defeated ? 'Besiegt' : 'Bereit zum Kampf' }}</strong></p>
       <p *ngIf="boss.attempts">Versuche: {{ boss.attempts }}</p>
 
-      <div *ngIf="boss.advantages?.length" class="advantages">
+      <!--<div *ngIf="boss.advantages?.length" class="advantages">
         <button class="toggle-btn" (click)="toggleAdvantages(boss.id)">
           {{ showAdvantages(boss.id) ? '−' : '+' }} Pot. Vorteile
         </button>
@@ -31,7 +31,7 @@
           </div>
         </div>
 
-      </div>
+      </div>-->
 
       <button class="rpg-button" (click)="startBattle(boss.id)" [disabled]="boss.defeated">
         Kampf starten

@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkteitingquest"] = self["webpackChunkteitingquest"] || []).push([["default-src_app_core_services_boss_service_ts-src_app_core_services_quest_service_ts-src_app_-fa1fa2"],{
+(self["webpackChunkteitingquest"] = self["webpackChunkteitingquest"] || []).push([["default-src_app_core_services_quest_service_ts"],{
 
 /***/ 7317:
 /*!***********************************************************!*\
@@ -20,6 +20,7 @@ function createQuestPool() {
     type: 'main',
     status: 'open',
     acquired: true,
+    repeatable: true,
     rewardXp: 25,
     rewardMoney: 5,
     // rewardItems:
@@ -59,7 +60,7 @@ function createQuestPool() {
   }, {
     id: 'mimikry-gogo',
     title: 'Tanz mit dem Teufel',
-    description: `description: Ein Mann in seltsamen Kleidern versperrt dir den Weg. Niemand vermag mit Sicherheit zu sagen, wer oder gar was hinter dieser Maskerade steckt... Was hat er nur vor?`,
+    description: `Ein Mann in seltsamen Kleidern versperrt dir den Weg. Niemand vermag mit Sicherheit zu sagen, wer oder gar was hinter dieser Maskerade steckt... Was hat er nur vor?`,
     type: 'main',
     status: 'open',
     acquired: true,
@@ -113,7 +114,31 @@ function createQuestPool() {
     // rewardItems:
     // - Zufällige A-Karte (Triple Triad)
     // - Wahl zwischen 1x Potion / Stärke- / Geschicklichkeits- / Intelligenztrank
-    rewardItems: [],
+    rewardItems: [{
+      id: 'buff-strength',
+      name: 'Stärketrank (Bufffood)',
+      description: '5min +3 Stärke aber -1 Intelligenz (shared Cooldown 5min mit anderem Bufffood)\n(1 Pinnchen Vodka)',
+      icon: 'standing-potion.svg',
+      type: 'buff',
+      price: 10,
+      bonusStats: {
+        strength: 3,
+        intelligence: -1
+      },
+      acquiredAt: now
+    }, {
+      id: 'buff-agility',
+      name: 'Geschicklichkeitstrank (Bufffood)',
+      description: '5min +3 Geschicklichkeit aber -1 Stärke (shared Cooldown 5min mit anderem Bufffood)\n(1 Pinnchen Jägermeister)',
+      icon: 'potion-of-madness.svg',
+      type: 'buff',
+      price: 10,
+      bonusStats: {
+        agility: 3,
+        strength: -1
+      },
+      acquiredAt: now
+    }],
     createdAt: now
   }, {
     id: 'finale-tracking',
@@ -133,7 +158,7 @@ function createQuestPool() {
     description: `Gold Saucer Event (Für weitere Informationen siehe dir die separaten Spielregeln an)`,
     type: 'side',
     status: 'open',
-    acquired: true,
+    acquired: false,
     repeatable: true,
     rewardXp: 175,
     rewardMoney: 10,
@@ -147,7 +172,7 @@ function createQuestPool() {
     description: `Gold Saucer Event (Für weitere Informationen siehe dir die separaten Spielregeln an)`,
     type: 'side',
     status: 'open',
-    acquired: true,
+    acquired: false,
     repeatable: true,
     // rewardXp: 25/50/75 XP (abhängig vom High Score)
     // rewardMoney: 5/10/15 Gil (abhängig vom High Score)
@@ -162,7 +187,7 @@ function createQuestPool() {
     description: `Gold Saucer Event (Für weitere Informationen siehe dir die separaten Spielregeln an)`,
     type: 'side',
     status: 'open',
-    acquired: true,
+    acquired: false,
     // rewardXp: 200 XP (max)
     // rewardMoney: 30 Gil (max)
     rewardXp: 200,
@@ -176,7 +201,7 @@ function createQuestPool() {
     description: `Gold Saucer Event (Für weitere Informationen siehe dir die separaten Spielregeln an)`,
     type: 'side',
     status: 'open',
-    acquired: true,
+    acquired: false,
     repeatable: true,
     rewardXp: 150,
     rewardMoney: 30,
@@ -189,7 +214,7 @@ function createQuestPool() {
     description: `Gold Saucer Event (Für weitere Informationen siehe dir die separaten Spielregeln an)`,
     type: 'side',
     status: 'open',
-    acquired: true,
+    acquired: false,
     repeatable: true,
     rewardXp: 150,
     rewardMoney: 30,
@@ -660,42 +685,88 @@ function createQuestPool() {
 
 /***/ }),
 
-/***/ 7901:
-/*!***********************************************!*\
-  !*** ./src/app/core/services/boss.service.ts ***!
-  \***********************************************/
+/***/ 2200:
+/*!****************************************************!*\
+  !*** ./src/app/core/services/game-save.service.ts ***!
+  \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   BossService: () => (/* binding */ BossService)
+/* harmony export */   GameSaveService: () => (/* binding */ GameSaveService)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 5797);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 6196);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var ngx_indexed_db__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-indexed-db */ 465);
 
 
-let BossService = /*#__PURE__*/(() => {
-  class BossService {
-    bosses$ = new rxjs__WEBPACK_IMPORTED_MODULE_0__.BehaviorSubject([]);
-    setBosses(bosses) {
-      this.bosses$.next([...bosses]);
+
+
+
+let GameSaveService = /*#__PURE__*/(() => {
+  class GameSaveService {
+    db;
+    lastGameStateId;
+    currentSnapshotBuilder;
+    constructor(db) {
+      this.db = db;
     }
-    getBosses() {
-      return this.bosses$.asObservable();
+    registerSnapshotBuilder(builder) {
+      this.currentSnapshotBuilder = builder;
     }
-    getSnapshot() {
-      return this.bosses$.value;
+    saveNewGame(state) {
+      var _this = this;
+      return (0,C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+        state.updatedAt = new Date();
+        const result = yield (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.firstValueFrom)(_this.db.add('gameStates', state));
+        const id = typeof result === 'number' ? result : result.id;
+        _this.lastGameStateId = id;
+        return {
+          ...state,
+          id
+        };
+      })();
     }
-    static ɵfac = function BossService_Factory(t) {
-      return new (t || BossService)();
+    updateCurrentGame() {
+      var _this2 = this;
+      return (0,C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+        if (!_this2.currentSnapshotBuilder) throw new Error('No snapshot builder registered.');
+        const snapshot = _this2.currentSnapshotBuilder();
+        snapshot.updatedAt = new Date();
+        return _this2.updateGame(snapshot);
+      })();
+    }
+    updateGame(state) {
+      var _this3 = this;
+      return (0,C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+        yield (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.firstValueFrom)(_this3.db.update('gameStates', state));
+        return state;
+      })();
+    }
+    loadGame(id) {
+      var _this4 = this;
+      return (0,C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+        _this4.lastGameStateId = id;
+        return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.firstValueFrom)(_this4.db.getByKey('gameStates', id));
+      })();
+    }
+    listGames() {
+      var _this5 = this;
+      return (0,C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+        return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.firstValueFrom)(_this5.db.getAll('gameStates'));
+      })();
+    }
+    static ɵfac = function GameSaveService_Factory(t) {
+      return new (t || GameSaveService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](ngx_indexed_db__WEBPACK_IMPORTED_MODULE_3__.NgxIndexedDBService));
     };
-    static ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
-      token: BossService,
-      factory: BossService.ɵfac,
+    static ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({
+      token: GameSaveService,
+      factory: GameSaveService.ɵfac,
       providedIn: 'root'
     });
   }
-  return BossService;
+  return GameSaveService;
 })();
 
 /***/ }),
@@ -745,6 +816,24 @@ let InventoryService = /*#__PURE__*/(() => {
       const updated = [...current, ...items];
       this.commit(updated);
     }
+    unlockItemById(id) {
+      const current = this.getSnapshot();
+      let updated = false;
+      const newInventory = current.map(item => {
+        if (item.id === id && item.available !== true) {
+          updated = true;
+          return {
+            ...item,
+            available: true
+          };
+        }
+        return item;
+      });
+      if (updated) {
+        this.setInventory(newInventory);
+      }
+      return updated;
+    }
     removeItem(id) {
       const current = this.items$.value;
       const updated = current.filter(item => item.id !== id);
@@ -783,6 +872,170 @@ let InventoryService = /*#__PURE__*/(() => {
     });
   }
   return InventoryService;
+})();
+
+/***/ }),
+
+/***/ 3665:
+/*!*************************************************!*\
+  !*** ./src/app/core/services/player.service.ts ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   PlayerService: () => (/* binding */ PlayerService)
+/* harmony export */ });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ 5797);
+/* harmony import */ var _core_utils_calculate_effective_stats__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @core/utils/calculate-effective-stats */ 2192);
+/* harmony import */ var _game_save_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game-save.service */ 2200);
+/* harmony import */ var _utils_xp_curve__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/xp-curve */ 350);
+/* harmony import */ var _views_toasts_toast_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @views/toasts/toast.service */ 8258);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7580);
+
+
+
+
+
+
+
+
+let PlayerService = /*#__PURE__*/(() => {
+  class PlayerService {
+    gameSave;
+    toast;
+    player$ = new rxjs__WEBPACK_IMPORTED_MODULE_4__.BehaviorSubject(null);
+    constructor(gameSave, toast) {
+      this.gameSave = gameSave;
+      this.toast = toast;
+    }
+    setPlayer(stats) {
+      this.player$.next({
+        ...stats
+      });
+    }
+    getPlayer() {
+      return this.player$.asObservable();
+    }
+    getSnapshot() {
+      return this.player$.value;
+    }
+    updatePlayer(stats) {
+      this.player$.next({
+        ...stats
+      });
+      this.gameSave.updateCurrentGame();
+    }
+    pay(amount) {
+      const stats = this.player$.value;
+      if (!stats || stats.money < amount) return false;
+      stats.money -= amount;
+      this.commit(stats); // nutzt jetzt zentrale commit-Methode
+      return true;
+    }
+    addXp(amount) {
+      const stats = this.player$.value;
+      if (!stats) return;
+      const oldLevel = stats.level;
+      const newXp = stats.experience + amount;
+      const newLevel = (0,_utils_xp_curve__WEBPACK_IMPORTED_MODULE_2__.getLevelForXp)(newXp);
+      const levelDiff = newLevel - oldLevel;
+      if (levelDiff > 0) {
+        this.toast.show(`Du bist jetzt Level ${newLevel}!`);
+        // Dauerhafte Stat-Increases (Basiswerte!)
+        stats.hp += 3 * levelDiff;
+        stats.strength += 1 * levelDiff;
+        stats.agility += 1 * levelDiff;
+        stats.intelligence += 1 * levelDiff;
+      }
+      this.commit({
+        ...stats,
+        experience: newXp,
+        level: newLevel
+      });
+    }
+    addMoney(amount) {
+      const stats = this.player$.value;
+      if (!stats) return;
+      stats.money += amount;
+      this.commit(stats);
+    }
+    heal(amount) {
+      const stats = this.player$.value;
+      if (!stats) return;
+      stats.hp += amount;
+      this.commit(stats);
+    }
+    updateStats(partial) {
+      const stats = this.player$.value;
+      if (!stats) return;
+      this.commit({
+        ...stats,
+        ...partial
+      });
+    }
+    getEffectiveStats() {
+      const player = this.player$.value;
+      return player ? (0,_core_utils_calculate_effective_stats__WEBPACK_IMPORTED_MODULE_0__.calculateEffectiveStats)(player) : null;
+    }
+    removeExpiredBuffs() {
+      const stats = this.player$.value;
+      if (!stats || !stats.activeBuffs) return;
+      const now = new Date();
+      const stillValid = stats.activeBuffs.filter(buff => {
+        const validUntil = buff.validUntil;
+        return !validUntil || new Date(validUntil) > now;
+      });
+      if (stillValid.length !== stats.activeBuffs.length) {
+        this.commit({
+          ...stats,
+          activeBuffs: stillValid
+        });
+      }
+    }
+    equipItem(item) {
+      const stats = this.player$.value;
+      if (!stats || !item.slot) return;
+      const filtered = (stats.equippedItems ?? []).filter(i => i.slot !== item.slot);
+      const updatedItem = {
+        ...item,
+        equipped: true
+      };
+      stats.equippedItems = [...filtered, updatedItem];
+      this.commit(stats);
+    }
+    unequipItem(slot) {
+      const stats = this.player$.value;
+      if (!stats) return;
+      stats.equippedItems = (stats.equippedItems ?? []).filter(i => i.slot !== slot);
+      this.commit(stats);
+    }
+    addBuff(item, durationMs) {
+      const stats = this.player$.value;
+      if (!stats) return;
+      const buffItem = {
+        ...item,
+        validUntil: new Date(Date.now() + durationMs)
+      };
+      stats.activeBuffs = [...(stats.activeBuffs ?? []), buffItem];
+      this.commit(stats);
+    }
+    commit(updated) {
+      this.player$.next({
+        ...updated
+      });
+      this.gameSave.updateCurrentGame();
+    }
+    static ɵfac = function PlayerService_Factory(t) {
+      return new (t || PlayerService)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"](_game_save_service__WEBPACK_IMPORTED_MODULE_1__.GameSaveService), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"](_views_toasts_toast_service__WEBPACK_IMPORTED_MODULE_3__.ToastService));
+    };
+    static ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineInjectable"]({
+      token: PlayerService,
+      factory: PlayerService.ɵfac,
+      providedIn: 'root'
+    });
+  }
+  return PlayerService;
 })();
 
 /***/ }),
@@ -856,9 +1109,36 @@ let QuestService = /*#__PURE__*/(() => {
       const template = this.questPool.find(q => q.id === id);
       if (!template) return false;
       this.addQuest({
-        ...template
+        ...template,
+        acquired: true
       });
       return true;
+    }
+    unlockQuestById(id) {
+      const updated = this.quests$.value.map(q => {
+        if (q.id !== id || q.acquired) return q;
+        return {
+          ...q,
+          acquired: true,
+          createdAt: new Date()
+        };
+      });
+      const wasUpdated = updated.some(q => q.id === id && q.acquired);
+      if (wasUpdated) {
+        this.commit(updated);
+      }
+      return wasUpdated;
+    }
+    markQuestAcquired(id) {
+      const updated = this.quests$.value.map(q => q.id === id ? {
+        ...q,
+        acquired: true,
+        createdAt: q.createdAt ?? new Date()
+      } : q);
+      this.commit(updated);
+    }
+    getFromPoolById(id) {
+      return this.questPool.find(q => q.id === id);
     }
     getSnapshot() {
       return this.quests$.value;
@@ -974,53 +1254,183 @@ let QuestService = /*#__PURE__*/(() => {
 
 /***/ }),
 
-/***/ 3108:
-/*!***********************************************!*\
-  !*** ./src/app/core/services/shop.service.ts ***!
-  \***********************************************/
+/***/ 3455:
+/*!************************************************!*\
+  !*** ./src/app/core/services/sound.service.ts ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   ShopService: () => (/* binding */ ShopService)
+/* harmony export */   SoundService: () => (/* binding */ SoundService)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 5797);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 7580);
 
-
-let ShopService = /*#__PURE__*/(() => {
-  class ShopService {
-    shopItems$ = new rxjs__WEBPACK_IMPORTED_MODULE_0__.BehaviorSubject([]);
-    setShopItems(items) {
-      this.shopItems$.next([...items]);
+let SoundService = /*#__PURE__*/(() => {
+  class SoundService {
+    play(src) {
+      const audio = new Audio(src);
+      audio.volume = 0.8; // anpassbar
+      audio.play().catch(err => console.error('Soundfehler:', err));
     }
-    getShopItems() {
-      return this.shopItems$.asObservable();
+    playEffect(name) {
+      this.play(`assets/sounds/${name}.mp3`);
     }
-    updateStock(itemId, delta) {
-      const current = this.shopItems$.value;
-      const updated = current.map(item => item.id === itemId ? {
-        ...item,
-        stock: item.stock + delta
-      } : item);
-      this.shopItems$.next(updated);
+    playBossMusic(bossId) {
+      this.play(`assets/sounds/boss-${bossId}.mp3`);
     }
-    getSnapshot() {
-      return this.shopItems$.value;
-    }
-    static ɵfac = function ShopService_Factory(t) {
-      return new (t || ShopService)();
+    static ɵfac = function SoundService_Factory(t) {
+      return new (t || SoundService)();
     };
-    static ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
-      token: ShopService,
-      factory: ShopService.ɵfac,
+    static ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+      token: SoundService,
+      factory: SoundService.ɵfac,
       providedIn: 'root'
     });
   }
-  return ShopService;
+  return SoundService;
 })();
+
+/***/ }),
+
+/***/ 2192:
+/*!*********************************************************!*\
+  !*** ./src/app/core/utils/calculate-effective-stats.ts ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   calculateEffectiveStats: () => (/* binding */ calculateEffectiveStats)
+/* harmony export */ });
+function calculateEffectiveStats(player) {
+  const now = new Date();
+  const numericStats = ['strength', 'agility', 'intelligence', 'hp'];
+  const bonuses = {
+    strength: 0,
+    agility: 0,
+    intelligence: 0,
+    hp: 0,
+    money: 0,
+    level: 0,
+    experience: 0,
+    questsCompleted: 0,
+    equippedItems: 0,
+    activeBuffs: 0,
+    lastBuffFoodUsedAt: 0,
+    lastPotionUsedAt: 0
+  };
+  // Ausrüstung
+  for (const item of player.equippedItems ?? []) {
+    if (!item.bonusStats) continue;
+    for (const key in item.bonusStats) {
+      const stat = key;
+      const val = item.bonusStats[stat];
+      if (numericStats.includes(stat) && typeof val === 'number') {
+        bonuses[stat] += val; // ✅ berücksichtigt auch negative Werte
+      }
+    }
+  }
+  // Aktive Buffs
+  for (const item of player.activeBuffs ?? []) {
+    const validUntil = item.validUntil;
+    if (validUntil && new Date() > new Date(validUntil)) continue;
+    if (!item.bonusStats) continue;
+    for (const key in item.bonusStats) {
+      const stat = key;
+      const val = item.bonusStats[stat];
+      if (numericStats.includes(stat) && typeof val === 'number') {
+        bonuses[stat] += val; // ✅ auch hier: negativ erlaubt
+      }
+    }
+  }
+  return {
+    ...player,
+    strength: player.strength + bonuses.strength,
+    agility: player.agility + bonuses.agility,
+    intelligence: player.intelligence + bonuses.intelligence,
+    hp: player.hp + bonuses.hp
+  };
+}
+
+/***/ }),
+
+/***/ 350:
+/*!****************************************!*\
+  !*** ./src/app/core/utils/xp-curve.ts ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   XP_TABLE: () => (/* binding */ XP_TABLE),
+/* harmony export */   getLevelForXp: () => (/* binding */ getLevelForXp)
+/* harmony export */ });
+const XP_TABLE = [0,
+// Level 1
+100,
+// Level 2
+350,
+// Level 3
+700,
+// Level 4
+1200,
+// Level 5
+1900,
+// Level 6
+2800,
+// Level 7
+3900,
+// Level 8
+5200,
+// Level 9
+7400 // Level 10
+];
+function getLevelForXp(xp) {
+  for (let i = XP_TABLE.length - 1; i >= 0; i--) {
+    if (xp >= XP_TABLE[i]) return i + 1;
+  }
+  return 1;
+}
+
+/***/ }),
+
+/***/ 6196:
+/*!***************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/firstValueFrom.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   firstValueFrom: () => (/* binding */ firstValueFrom)
+/* harmony export */ });
+/* harmony import */ var _util_EmptyError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/EmptyError */ 3335);
+/* harmony import */ var _Subscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Subscriber */ 9285);
+
+
+function firstValueFrom(source, config) {
+  const hasConfig = typeof config === 'object';
+  return new Promise((resolve, reject) => {
+    const subscriber = new _Subscriber__WEBPACK_IMPORTED_MODULE_0__.SafeSubscriber({
+      next: value => {
+        resolve(value);
+        subscriber.unsubscribe();
+      },
+      error: reject,
+      complete: () => {
+        if (hasConfig) {
+          resolve(config.defaultValue);
+        } else {
+          reject(new _util_EmptyError__WEBPACK_IMPORTED_MODULE_1__.EmptyError());
+        }
+      }
+    });
+    source.subscribe(subscriber);
+  });
+}
 
 /***/ })
 
 }]);
-//# sourceMappingURL=default-src_app_core_services_boss_service_ts-src_app_core_services_quest_service_ts-src_app_-fa1fa2.js.map
+//# sourceMappingURL=default-src_app_core_services_quest_service_ts.js.map

@@ -33,7 +33,7 @@ export class InventoryComponent implements OnInit {
   }
 
 
-  constructor(private inventoryService: InventoryService, private playerService: PlayerService, 
+  constructor(private inventoryService: InventoryService, private playerService: PlayerService,
     private gameSave: GameSaveService, private toastService: ToastService, private soundService: SoundService) { }
 
   ngOnInit(): void {
@@ -57,7 +57,7 @@ export class InventoryComponent implements OnInit {
 
   useItem(item: Item) {
     const now = Date.now();
-    const durationMs = 1000 * 60 * 30; // 30 Minuten
+    const durationMs = 1000 * 60 * 5;
     const stats = this.playerService.getSnapshot();
 
     const isBuffFood = item.name?.endsWith('(Bufffood)');
@@ -94,12 +94,16 @@ export class InventoryComponent implements OnInit {
       // Cooldown-Zeit setzen
       if (isBuffFood) {
         this.playerService.updateStats({ lastBuffFoodUsedAt: new Date().toISOString() });
+        setTimeout(() => {
+        this.playerService.removeExpiredBuffs();
+      }, durationMs);
       }
       if (isPotion) {
         this.playerService.updateStats({ lastPotionUsedAt: new Date().toISOString() });
-      }
+      }    
+
       this.soundService.playEffect('trank-benutzen');
-      this.inventoryService.removeSingleItem(item); // 👈 nur EIN Item entfernen!
+      this.inventoryService.removeSingleItem(item);
       this.toastService.show(`Buff aktiv: ${buffs.join(', ')}`);
     }
 

@@ -7,7 +7,8 @@ export function createBosses(): Boss[] {
       name: 'Vermummter Fremder',
       title: 'Der Gestaltlose',
       description: 'Es ist schon seltsam wie beweglich er in dieser Kleidung ist.',
-      image: 'mimic.png',
+      image: 'ninja-head.svg',
+      questId: 'mimikry-gogo',
       stats: {
         hp: 100,
         strength: 10,
@@ -47,7 +48,8 @@ export function createBosses(): Boss[] {
       name: 'Krieger des Lichts',
       title: 'Das Licht vergangener Zeiten',
       description: 'Ein mythischer Krieger, der Patrick auf die Probe seiner geistigen und körperlichen Fähigkeiten stellt.',
-      image: 'warrior.png',
+      image: 'swordwoman.svg',
+      questId: 'memory-warrior-light',
       stats: {
         hp: 120,
         strength: 22,
@@ -95,8 +97,9 @@ export function createBosses(): Boss[] {
       id: 'boss-music',
       name: 'Siren',
       title: 'Die Tödliche Melodie',
-      description: 'Du nimmst einen wundervollen Klang in weiter Ferne wahr. Als du näher herantrittst ertönt eine Stimme in deinem Kopf. Die Stimme ersucht dich eine Beschwörungsformel aufzusagen, damit du ihn aus seiner Gefangenschaft befreien kannst. Du sprichst die Worte aus und ein wundersames Wesen mit Harfe und Flügeln manifestiert sich vor dir. Jedoch hat dieses Wesen seine wahren Absichten verschleiert, ehe du dich versiehst bist du in seinen Bann gezogen worden.',
-      image: 'siren.png',
+      description: 'Ein verführerisches Wesen, das tödliche Musikrätsel stellt.',
+      image: 'lyre.svg',
+      questId: 'music-siren',
       stats: {
         hp: 100,
         strength: 13,
@@ -133,7 +136,8 @@ export function createBosses(): Boss[] {
       name: 'Kaktor',
       title: 'Der rasende Fragenwerfer',
       description: 'Ein hyperaktiver Kaktor stellt dir Fragen, die du besser beantworten solltest.',
-      image: 'kaktor.png',
+      image: 'cactus.svg',
+      questId: 'ff-quiz-kaktor',
       stats: {
         hp: 150,
         strength: 12,
@@ -149,9 +153,9 @@ export function createBosses(): Boss[] {
           name: 'Attributsprüfung',
           description: 'Vor dem Kampf erfolgt ein Check auf Stärke, Intelligenz und Geschicklichkeit',
           condition: [
-            { stat: 'strength', operator: '>=', value: 10 },
+            /*{ stat: 'strength', operator: '>=', value: 10 },
             { stat: 'agility', operator: '>=', value: 10 },
-            { stat: 'intelligence', operator: '>=', value: 10 }
+            { stat: 'intelligence', operator: '>=', value: 10 }*/
           ]
         }
       ],
@@ -161,8 +165,9 @@ export function createBosses(): Boss[] {
       id: 'boss-yojimbo',
       name: 'Yojimbo',
       title: 'Der Bestechliche Krieger',
-      description: 'Ein legendärer Samurai, der eher auf Gil als auf Ehre hört.',
-      image: 'yojimbo.png',
+      description: 'Ein legendärer Samurai, dessen Loyalität zweifelhaft ist.',
+      image: 'samurai-helmet.svg',
+      questId: 'yojimbo-bribe',
       stats: {
         hp: 200,
         strength: 16,
@@ -175,8 +180,8 @@ export function createBosses(): Boss[] {
       advantages: [
         {
           id: 'has-lamp',
-          name: 'Wunderlampe notwendig',
-          description: 'Wenn die Wunderlampe nicht im Besitz ist, fallen HP auf 0',
+          name: 'Dinge',
+          description: 'Dinge sind sein Wunsch.',
           condition: [{ stat: 'hp', operator: '>=', value: 1 }]
         }
       ],
@@ -187,7 +192,8 @@ export function createBosses(): Boss[] {
       name: 'Seymour',
       title: 'Der Flüssige Tod',
       description: 'Ein unberechenbarer Alchemist – Details folgen.',
-      image: 'seymour.png',
+      image: 'fizzing-flask.svg',
+      questId: 'alchemy-seymour',
       stats: {
         hp: 180,
         strength: 12,

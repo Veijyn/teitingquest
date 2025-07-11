@@ -23,4 +23,5 @@ export interface Boss {
   advantages: BossAdvantage[];
   defeated?: boolean;
   attempts?: number;
+  questId?: string;
 }

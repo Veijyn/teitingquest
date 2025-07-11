@@ -8,7 +8,7 @@ import { GameSaveService } from './game-save.service';
 export class InventoryService {
   private items$ = new BehaviorSubject<Item[]>([]);
 
-  constructor(private toast: ToastService, private gameSave: GameSaveService) {}
+  constructor(private toast: ToastService, private gameSave: GameSaveService) { }
 
   setInventory(items: Item[]) {
     this.commit(items);
@@ -30,6 +30,25 @@ export class InventoryService {
     this.commit(updated);
   }
 
+  unlockItemById(id: string): boolean {
+    const current = this.getSnapshot();
+    let updated = false;
+
+    const newInventory = current.map(item => {
+      if (item.id === id && item.available !== true) {
+        updated = true;
+        return { ...item, available: true };
+      }
+      return item;
+    });
+
+    if (updated) {
+      this.setInventory(newInventory);
+    }
+
+    return updated;
+  }
+
   removeItem(id: string) {
     const current = this.items$.value;
     const updated = current.filter(item => item.id !== id);
@@ -37,21 +56,21 @@ export class InventoryService {
   }
 
   updateEquippedStatus(id: string, equipped: boolean) {
-  const current = this.items$.value;
-  const updated = current.map(item =>
-    item.id === id ? { ...item, equipped } : item
-  );
-  this.commit(updated);
-}
-
-removeSingleItem(itemToRemove: Item) {
-  const current = this.items$.value;
-  const index = current.findIndex(i => i.id === itemToRemove.id && i.acquiredAt === itemToRemove.acquiredAt);
-  if (index !== -1) {
-    current.splice(index, 1);
-    this.commit([...current]);
+    const current = this.items$.value;
+    const updated = current.map(item =>
+      item.id === id ? { ...item, equipped } : item
+    );
+    this.commit(updated);
   }
-}
+
+  removeSingleItem(itemToRemove: Item) {
+    const current = this.items$.value;
+    const index = current.findIndex(i => i.id === itemToRemove.id && i.acquiredAt === itemToRemove.acquiredAt);
+    if (index !== -1) {
+      current.splice(index, 1);
+      this.commit([...current]);
+    }
+  }
 
 
   getSnapshot(): Item[] {

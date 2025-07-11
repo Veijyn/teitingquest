@@ -6,7 +6,7 @@ export function createNewGameState(name: string): Omit<GameState, 'id'> {
 
   const player: PlayerStats = {
     hp: 20,
-    money: 500,
+    money: 0,
     level: 1,
     experience: 0,
     strength: 1,

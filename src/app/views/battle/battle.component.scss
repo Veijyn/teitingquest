@@ -1,28 +1,50 @@
+:host {
+  display: block;
+  height: 100vh;
+  overflow-y: auto;
+}
+
 .battle-container {
   background: #1e1b18;
   border: 2px solid #e3b873;
   border-radius: 12px;
   padding: 1.5rem;
   margin: 1rem;
+  margin-bottom: 9rem;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-height: 100%;
 
-  .boss-name {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
+  .boss-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .boss-icon {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .boss-name {
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin: 0;
+    }
   }
 
   .timestamp {
     font-size: 0.9rem;
     opacity: 0.8;
-    margin-bottom: 1rem;
   }
 
-  .advantages {
+  .advantages, .player-stats {
     background: #2a2520;
     border: 1px solid #e3b873;
     padding: 1rem;
     border-radius: 8px;
-    margin-bottom: 1.5rem;
 
     h3 {
       margin-top: 0;
@@ -35,37 +57,126 @@
 
       li {
         margin-bottom: 0.8rem;
-        line-height: 1.2;
+        line-height: 1.4;
 
         strong {
           color: #ffd700;
         }
+
+        span {
+          display: block;
+          margin-top: 0.2rem;
+        }
       }
+    }
+
+    .condition-chip {
+      display: inline-block;
+      background: #3c332b;
+      border: 1px solid #e3b873;
+      color: #e3b873;
+      padding: 0.2rem 0.5rem;
+      margin: 0.3rem 0.3rem 0 0;
+      border-radius: 6px;
+      font-size: 0.75rem;
     }
   }
 
-  .battle-actions {
-    display: flex;
-    justify-content: space-around;
-
-    .rpg-button {
-      padding: 0.6rem 1.2rem;
+  .hp-manipulation {
+    h3 {
       font-size: 1rem;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
+      margin-bottom: 0.3rem;
+    }
 
-      &.win {
-        background: #4caf50;
-        color: #fff;
+    .hp-input-row {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+
+      input {
+        width: 4rem;
+        padding: 0.3rem;
+        font-size: 1rem;
+        border-radius: 6px;
+        border: 1px solid #aaa;
+        text-align: center;
+        background: #f0f0f0;
+        color: #000;
       }
 
-      &.lose {
-        background: #f44336;
+      .rpg-button.action {
+        background: #444;
         color: #fff;
+        padding: 0.4rem 1rem;
+        font-size: 0.95rem;
       }
     }
   }
+
+  .battle-actions-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  .rpg-button {
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    background: #333;
+    color: #fff;
+
+    &.win {
+      background: #3e6745;
+    }
+
+    &.lose {
+      background: #803e3e;
+    }
+
+    &.confirm {
+      background: #2a9d8f;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+  }
+
+  .confirmable-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .confirm-collapse {
+      margin-top: 0.5rem;
+      background: #2a2520;
+      border: 1px solid #e3b873;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      color: #ffd;
+      text-align: center;
+    }
+  }
+}
+
+
+.back-button {
+  text-align: center;
+  margin: 1rem 0 0 0;
+
+  .rpg-button.back {
+    background: #555;
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+  }
+}
+
 }
 
 .no-battle {
