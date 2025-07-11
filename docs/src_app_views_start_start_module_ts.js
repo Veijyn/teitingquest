@@ -716,7 +716,6 @@ let StartComponent = /*#__PURE__*/(() => {
       var _this2 = this;
       return (0,C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
         const gameState = yield _this2.gameSave.loadGame(id);
-        gameState.bosses = (0,_components_boss_list_boss_factory__WEBPACK_IMPORTED_MODULE_11__.createBosses)();
         _this2.applyGameState(gameState);
         _this2.router.navigate(['/game']);
       })();
