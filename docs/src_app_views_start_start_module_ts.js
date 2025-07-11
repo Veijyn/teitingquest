@@ -40,7 +40,7 @@ function createBosses() {
     }, {
       id: 'mimic-fail-damage',
       name: 'Fehlerbestrafung',
-      description: '50 % max HP Schaden bei Fehler',
+      description: '10 HP Schaden bei Fehler',
       condition: [{
         stat: 'hp',
         operator: '>=',
@@ -222,7 +222,7 @@ function createBosses() {
     id: 'boss-alchemie',
     name: 'Seymour',
     title: 'Der Flüssige Tod',
-    description: 'Ein unberechenbarer Alchemist – Details folgen.',
+    description: 'Ein unberechenbarer Alchemist. Sei gewarnt, er ist nicht normal und sein Gebräu ist überall gefürchtet.',
     image: 'fizzing-flask.svg',
     questId: 'alchemy-seymour',
     stats: {
@@ -234,7 +234,59 @@ function createBosses() {
       money: 50,
       level: 4
     },
-    advantages: [],
+    advantages: [{
+      id: 'trankkunde',
+      name: 'koerperresistent',
+      description: 'Du kannst der Versuchung von weiterer Flüssigkeit widerstehen.',
+      condition: [{
+        stat: 'intelligence',
+        operator: '>',
+        value: 9
+      }]
+    }, {
+      id: 'koerperresistenz',
+      name: 'Körperresistenz',
+      description: 'Du hast Resistent gegen das Alchemiegebräu. Weniger Schaden.',
+      condition: [{
+        stat: 'strength',
+        operator: '>',
+        value: 10
+      }, {
+        stat: 'agility',
+        operator: '>',
+        value: 10
+      }, {
+        stat: 'intelligence',
+        operator: '>',
+        value: 10
+      }]
+    }, {
+      id: 'mentalemeisterschaft',
+      name: 'Mentale Meisterschaft',
+      description: 'Du wirst fokussiert und kannst dein Gebräu besser zusammenstellen. Ein Plus auf Würfe.',
+      condition: [{
+        stat: 'strength',
+        operator: '>',
+        value: 13
+      }, {
+        stat: 'agility',
+        operator: '>',
+        value: 13
+      }, {
+        stat: 'intelligence',
+        operator: '>',
+        value: 13
+      }]
+    }, {
+      id: 'derjan',
+      name: 'Der Jan ist da',
+      description: 'Der Jan ist da, wirklich? Solltest du den Jan im Inventar haben, dann wirken deine Vorteile alle eine Runde später.',
+      condition: [{
+        stat: 'hp',
+        operator: '>=',
+        value: 0
+      }]
+    }],
     defeated: false
   }];
 }
@@ -664,6 +716,7 @@ let StartComponent = /*#__PURE__*/(() => {
       var _this2 = this;
       return (0,C_Users_sven_erik_borheier_source_repos_teitingquest_teitingquest_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
         const gameState = yield _this2.gameSave.loadGame(id);
+        gameState.bosses = (0,_components_boss_list_boss_factory__WEBPACK_IMPORTED_MODULE_11__.createBosses)();
         _this2.applyGameState(gameState);
         _this2.router.navigate(['/game']);
       })();
