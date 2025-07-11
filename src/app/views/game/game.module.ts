@@ -7,6 +7,7 @@ import { InventoryComponent } from '../../components/inventory/inventory';
 import { StatsComponent } from '../../components/stats/stats';
 import { BossListComponent } from '../../components/boss-list/boss-list';
 import { ShopComponent } from '../../components/shop/shop';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,6 @@ import { ShopComponent } from '../../components/shop/shop';
     BossListComponent,
     ShopComponent
     ],
-  imports: [CommonModule, RouterModule.forChild([{ path: '', component: GameComponent }])]
+  imports: [CommonModule, RouterModule.forChild([{ path: '', component: GameComponent }]), FormsModule]
 })
 export class GameModule {}

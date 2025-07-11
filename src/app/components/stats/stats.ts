@@ -159,9 +159,27 @@ export class StatsComponent implements OnInit {
   }
 
   isNumericBonus(key: keyof PlayerStats): boolean {
-  const numericKeys: (keyof PlayerStats)[] = ['strength', 'agility', 'intelligence', 'hp'];
-  return numericKeys.includes(key);
+    const numericKeys: (keyof PlayerStats)[] = ['strength', 'agility', 'intelligence', 'hp'];
+    return numericKeys.includes(key);
   }
+
+  gilAmount: number = 0;
+
+  changeGil() {
+    if (this.gilAmount === 0) return;
+
+    if (this.gilAmount > 0) {
+      this.playerService.addMoney(this.gilAmount);
+    } else {
+      const success = this.playerService.pay(Math.abs(this.gilAmount));
+      if (!success) {
+        alert('Nicht genug Gil!');
+      }
+    }
+
+    this.gilAmount = 0; // zurücksetzen
+  }
+
 
   getStatLabel(stat: string): string {
     const labels: Record<string, string> = {
@@ -185,4 +203,11 @@ export class StatsComponent implements OnInit {
     const bonus = this.bonusStats[stat] ?? 0;
     return (base as number) + (bonus as number);
   }
+
+  gilEditing: boolean = false;
+
+  toggleGilEditing() {
+    this.gilEditing = !this.gilEditing;
+  }
+
 }

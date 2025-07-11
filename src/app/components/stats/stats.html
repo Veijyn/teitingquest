@@ -13,31 +13,40 @@
   <div class="stats-card">
     <h3>🧾 Statuswerte</h3>
 
-    <div class="stat-row" *ngFor="let key of statsKeys">
-      <span class="stat-icon">{{ statIcon(key) }}</span>
-      <span class="stat-label">{{ getStatLabel(key) }}</span>
+   <!-- Gil-Eintrag mit klickbarem Toggle -->
+<div class="stat-row" *ngFor="let key of statsKeys">
+  <span class="stat-icon">{{ statIcon(key) }}</span>
+  <span class="stat-label"
+        (click)="key === 'money' && toggleGilEditing()"
+        [style.cursor]="key === 'money' ? 'pointer' : 'default'">
+    {{ getStatLabel(key) }}
+  </span>
 
-      <div class="stat-block">
-        <span class="stat-base">{{ baseStats?.[key] ?? 0 }}</span>
+  <div class="stat-block">
+    <span class="stat-base">{{ baseStats?.[key] ?? 0 }}</span>
 
-        <ng-container *ngIf="getBonus(key) !== 0; else bonusPlaceholder">
-          <span class="stat-bonus" [title]="getBonusSourcesTooltip(key)" [ngClass]="{
+    <ng-container *ngIf="getBonus(key) !== 0; else bonusPlaceholder">
+      <span class="stat-bonus" [title]="getBonusSourcesTooltip(key)" [ngClass]="{
         positive: getBonus(key) > 0,
         negative: getBonus(key) < 0
       }">
-            {{ getBonusPrefix(key) }}{{ getBonus(key) }}
-          </span>
-        </ng-container>
-        <ng-template #bonusPlaceholder>
-          <span class="stat-bonus invisible">+0</span>
-        </ng-template>
+        {{ getBonusPrefix(key) }}{{ getBonus(key) }}
+      </span>
+    </ng-container>
+    <ng-template #bonusPlaceholder>
+      <span class="stat-bonus invisible">+0</span>
+    </ng-template>
 
-        <span class="stat-equals">=</span>
-        <span class="stat-total">{{ getTotal(key) }}</span>
-      </div>
+    <span class="stat-equals">=</span>
+    <span class="stat-total">{{ getTotal(key) }}</span>
+  </div>
+</div>
 
-
-    </div>
+<!-- Collapse-Bereich direkt unter Gil -->
+<div class="gil-edit-collapse" *ngIf="gilEditing">
+  <input type="number" [(ngModel)]="gilAmount" placeholder="Betrag" />
+  <button (click)="changeGil()">Ändern</button>
+</div>
 
     <!-- 🛡️ AUSRÜSTUNG -->
     <div class="equipment-section">
@@ -65,5 +74,4 @@
         </div>
       </div>
     </div>
-
   </div>
