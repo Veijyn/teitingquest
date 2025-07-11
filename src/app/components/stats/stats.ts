@@ -204,6 +204,19 @@ export class StatsComponent implements OnInit {
     return (base as number) + (bonus as number);
   }
 
+  hpEditing: boolean = false;
+hpAmount: number = 0;
+
+toggleHpEditing() {
+  this.hpEditing = !this.hpEditing;
+}
+
+changeHp() {
+  if (this.hpAmount === 0) return;
+  this.playerService.heal(this.hpAmount); // negativ oder positiv erlaubt
+  this.hpAmount = 0;
+}
+
   gilEditing: boolean = false;
 
   toggleGilEditing() {

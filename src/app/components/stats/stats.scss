@@ -242,6 +242,29 @@
     background: #666;
   }
 }
+.hp-edit-collapse {
+  @extend .gil-edit-collapse;
+
+  input {
+    width: 80px;
+    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  button {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.5rem;
+    background: #444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #666;
+  }
+}
 
 
 
