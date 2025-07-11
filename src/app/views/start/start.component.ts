@@ -41,7 +41,6 @@ export class StartComponent {
 
   async loadGame(id: number) {
     const gameState = await this.gameSave.loadGame(id);
-    gameState.bosses = createBosses();
     this.applyGameState(gameState);
     this.router.navigate(['/game']);
   }
