@@ -42,11 +42,35 @@ export class BattleComponent implements OnInit {
     });
   }
 
+  quizActive = false;
+
+  onBackToBattleRequested(): void {
+  this.quizActive = false;
+}
+
+  startQuiz() {
+    if (this.boss?.id === 'boss-ffquiz') {
+      this.quizActive = true;
+    }
+  }
+  onQuizComplete(passed: boolean) {
+    this.quizActive = false;
+
+    if (passed) {
+      this.finish(true); // Quiz bestanden → Sieg
+    } else {
+      this.finish(false); // Quiz nicht bestanden → Niederlage
+    }
+  }
+
   loadBoss(bossId: string) {
     const bosses = this.battleService.getGameState().bosses;
     this.boss = bosses.find(b => b.id === bossId) || null;
-  }
 
+    if (this.boss?.id === 'kaktor') {
+      this.quizActive = true;
+    }
+  }
   loadPlayerStats() {
     this.playerService.getPlayer().subscribe(player => {
       if (!player) return;

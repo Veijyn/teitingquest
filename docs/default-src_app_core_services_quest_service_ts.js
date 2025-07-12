@@ -1033,6 +1033,18 @@ let PlayerService = /*#__PURE__*/(() => {
       const player = this.player$.value;
       return player ? (0,_core_utils_calculate_effective_stats__WEBPACK_IMPORTED_MODULE_0__.calculateEffectiveStats)(player) : null;
     }
+    updateQuizResult(quizKey, percent) {
+      const stats = this.player$.value;
+      if (!stats) return;
+      const updatedResults = {
+        ...(stats.quizResults || {}),
+        [quizKey]: percent
+      };
+      this.commit({
+        ...stats,
+        quizResults: updatedResults
+      });
+    }
     removeExpiredBuffs() {
       const stats = this.player$.value;
       if (!stats || !stats.activeBuffs) return;
@@ -1373,7 +1385,8 @@ function calculateEffectiveStats(player) {
     equippedItems: 0,
     activeBuffs: 0,
     lastBuffFoodUsedAt: 0,
-    lastPotionUsedAt: 0
+    lastPotionUsedAt: 0,
+    quizResults: 0
   };
   // Ausrüstung
   for (const item of player.equippedItems ?? []) {

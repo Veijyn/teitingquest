@@ -91,6 +91,15 @@ export class PlayerService {
     return player ? calculateEffectiveStats(player) : null;
   }
 
+  updateQuizResult(quizKey: string, percent: number): void {
+  const stats = this.player$.value;
+  if (!stats) return;
+
+  const updatedResults = { ...(stats.quizResults || {}), [quizKey]: percent };
+  this.commit({ ...stats, quizResults: updatedResults });
+}
+
+
   removeExpiredBuffs() {
     const stats = this.player$.value;
     if (!stats || !stats.activeBuffs) return;    

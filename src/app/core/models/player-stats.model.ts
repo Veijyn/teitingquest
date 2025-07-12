@@ -15,4 +15,7 @@ export interface PlayerStats {
   activeBuffs?: Item[];  
   lastBuffFoodUsedAt?: string;
   lastPotionUsedAt?: string;
+
+  quizResults?: { [key: string]: number };
 }
+

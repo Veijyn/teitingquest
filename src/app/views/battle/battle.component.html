@@ -1,4 +1,13 @@
-<div class="battle-container" *ngIf="battle && boss">
+<!-- Quiz aktiv -->
+<app-quiz
+  *ngIf="quizActive"
+  (quizFinished)="onQuizComplete($event)"
+  (backToBattleRequested)="onBackToBattleRequested()"
+></app-quiz>
+
+
+<!-- Normale Kampfansicht (ausgeblendet bei Quiz) -->
+<div *ngIf="!quizActive && battle && boss" class="battle-container">
   <div class="boss-header">
     <img *ngIf="boss.image" [src]="'assets/icons/' + boss.image" alt="{{ boss.name }}" class="boss-icon" />
     <h2 class="boss-name">Kampf gegen: {{ boss.name }}</h2>
@@ -6,6 +15,7 @@
 
   <p class="timestamp">Beginn: {{ battle.startedAt | date: 'shortTime' }}</p>
 
+  <!-- Vorteile / Effekte -->
   <div class="advantages" *ngIf="battle.advantagesUnlocked.length > 0">
     <h3>Kampfeffekte</h3>
     <ul>
@@ -19,6 +29,7 @@
     </ul>
   </div>
 
+  <!-- Spielerwerte -->
   <div class="player-stats" *ngIf="playerStats">
     <h3>Deine Werte</h3>
     <ul>
@@ -31,31 +42,44 @@
     </ul>
   </div>
 
+  <!-- HP-Anpassung -->
   <div class="hp-manipulation" *ngIf="playerHp !== null">
-  <h3>HP anpassen</h3>
-  <div class="hp-input-row">
-    <input type="number" [(ngModel)]="hpInput" placeholder="10" min="1" />
-    <button class="rpg-button action" (click)="adjustHp(false)">Abziehen</button>
-  </div>
-</div>
-
-<div class="battle-actions-row">
-  <!-- Sieg-Button mit Toggle -->
-  <div class="confirmable-button">
-    <button class="rpg-button win" (click)="toggleConfirmWin()">Sieg</button>
-    <div class="confirm-collapse" *ngIf="confirmWinVisible">
-      <p>Sieg wirklich bestätigen?</p>
-      <button class="rpg-button confirm" (click)="finish(true)">Ja, sicher!</button>
+    <h3>HP anpassen</h3>
+    <div class="hp-input-row">
+      <input type="number" [(ngModel)]="hpInput" placeholder="10" min="1" />
+      <button class="rpg-button action" (click)="adjustHp(false)">Abziehen</button>
     </div>
   </div>
 
-  <!-- Niederlage direkt -->
-  <button class="rpg-button lose" (click)="finish(false)">Niederlage</button>
+  <!-- Quiz starten Button (nur bei boss-ffquiz sichtbar) -->
+  <button
+    *ngIf="boss?.id === 'boss-ffquiz'"
+    class="rpg-button"
+    (click)="quizActive = true"
+  >
+    Quiz starten
+  </button>
+
+  <!-- Kampfaktionen -->
+  <div class="battle-actions-row">
+    <div class="confirmable-button">
+      <button class="rpg-button win" (click)="toggleConfirmWin()">Sieg</button>
+      <div class="confirm-collapse" *ngIf="confirmWinVisible">
+        <p>Sieg wirklich bestätigen?</p>
+        <button class="rpg-button confirm" (click)="finish(true)">Ja, sicher!</button>
+      </div>
+    </div>
+
+    <button class="rpg-button lose" (click)="finish(false)">Niederlage</button>
+  </div>
+
+  <!-- Zurück-Button -->
+  <div class="back-button">
+    <button class="rpg-button back" (click)="goBack()">Zurück</button>
+  </div>
 </div>
 
-<div class="back-button">
-  <button class="rpg-button back" (click)="goBack()">Zurück</button>
-</div>
-<div *ngIf="!battle" class="no-battle">
+<!-- Kein aktiver Kampf -->
+<div *ngIf="!battle && !quizActive" class="no-battle">
   <p>Kein aktiver Kampf.</p>
 </div>

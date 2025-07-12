@@ -19,7 +19,8 @@ export function calculateEffectiveStats(player: PlayerStats): PlayerStats {
       equippedItems: 0,
       activeBuffs: 0,
       lastBuffFoodUsedAt: 0,
-      lastPotionUsedAt: 0
+      lastPotionUsedAt: 0,
+      quizResults: 0
   };
 
   // Ausrüstung

@@ -1,0 +1,66 @@
+<div class="quiz-box">
+  <h2 class="quiz-title">Patricks ultimatives FF Quiz</h2>
+
+  <!-- Hauptmenü -->
+  <div *ngIf="!selectedQuizKey">
+    <p class="select-instruction">Wähle ein Quiz:</p>
+
+    <div class="quiz-selection">
+      <div *ngFor="let key of getQuizKeys()" class="quiz-select-box">
+        <button class="rpg-button action" (click)="selectQuiz(key)">
+          {{ quizzes[key].title }}
+        </button>
+        <p class="quiz-progress" *ngIf="getResultFor(key) !== null">
+          {{ getResultFor(key) }}%
+        </p>
+      </div>
+    </div>
+
+    <!-- Anzeige bei letztem Versuch < 92% -->
+    <div *ngIf="lastResult !== null && lastResult < 92" class="quiz-fail-text">
+      <p>Quiz fehlgeschlagen</p>
+    </div>
+
+    <!-- Zurück zur Battle-Komponente -->
+    <div *ngIf="lastResult !== null">
+      <button class="rpg-button" (click)="backToBattle()">Zurück zur Kampf-Ansicht</button>
+    </div>
+
+    <!-- Wenn alle bestanden -->
+    <div *ngIf="hasCompletedAllWithHighScore()">
+      <button class="rpg-button" (click)="backToBattle()">Alle bestanden – Zurück zur Battle-Komponente</button>
+    </div>
+  </div>
+
+  <!-- Quiz-Ansicht -->
+  <div *ngIf="selectedQuizKey && !finished">
+    <h3 class="quiz-subtitle">{{ currentQuiz?.title }}</h3>
+
+    <div class="quiz-question-block">
+      <p class="question">{{ currentQuestion?.question }}</p>
+
+      <div class="answers">
+        <button
+          class="rpg-button"
+          *ngFor="let answer of shuffledAnswers"
+          [disabled]="answerSubmitted"
+          (click)="answerSelected(answer)"
+          [ngClass]="{
+            correct: answerSubmitted && answer === currentQuestion.correct,
+            wrong: answerSubmitted && answer === selectedAnswer && answer !== currentQuestion.correct
+          }"
+        >
+          {{ answer }}
+        </button>
+      </div>
+
+      <!-- Feedback + Weiter -->
+      <div *ngIf="answerSubmitted">
+        <div *ngIf="selectedAnswer !== currentQuestion.correct" class="feedback">
+          Richtige Antwort: <strong>{{ currentQuestion.correct }}</strong>
+        </div>
+        <button class="rpg-button next" (click)="nextQuestion()">Weiter</button>
+      </div>
+    </div>
+  </div>
+</div>
