@@ -236,7 +236,7 @@ function createBosses() {
     },
     advantages: [{
       id: 'trankkunde',
-      name: 'koerperresistent',
+      name: 'Trankkunde',
       description: 'Du kannst der Versuchung von weiterer Flüssigkeit widerstehen.',
       condition: [{
         stat: 'intelligence',
@@ -246,7 +246,7 @@ function createBosses() {
     }, {
       id: 'koerperresistenz',
       name: 'Körperresistenz',
-      description: 'Du hast Resistent gegen das Alchemiegebräu. Weniger Schaden.',
+      description: 'Du hast Resistenz gegen das Alchemiegebräu. Weniger Schaden.',
       condition: [{
         stat: 'strength',
         operator: '>',
