@@ -32,7 +32,6 @@ export class InventoryComponent implements OnInit {
     }
   }
 
-
   constructor(private inventoryService: InventoryService, private playerService: PlayerService,
     private gameSave: GameSaveService, private toastService: ToastService, private soundService: SoundService) { }
 

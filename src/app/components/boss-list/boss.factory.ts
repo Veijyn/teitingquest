@@ -206,14 +206,14 @@ export function createBosses(): Boss[] {
       advantages: [
         {
           id: 'trankkunde',
-          name: 'koerperresistent',
+          name: 'Trankkunde',
           description: 'Du kannst der Versuchung von weiterer Flüssigkeit widerstehen.',
           condition: [{ stat: 'intelligence', operator: '>', value: 9 }]
         },
         {
           id: 'koerperresistenz',
           name: 'Körperresistenz',
-          description: 'Du hast Resistent gegen das Alchemiegebräu. Weniger Schaden.',
+          description: 'Du hast Resistenz gegen das Alchemiegebräu. Weniger Schaden.',
           condition: [{ stat: 'strength', operator: '>', value: 10 },
                     { stat: 'agility', operator: '>', value: 10 },
                     { stat: 'intelligence', operator: '>', value: 10 }
